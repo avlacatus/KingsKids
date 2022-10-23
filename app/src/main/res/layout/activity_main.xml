@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/default_margin"
+            android:theme="@style/AppTheme.Toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@{title}"
+                android:textColor="@color/text_color_blue_1"
+                android:textSize="@dimen/toolbar_text_size" />
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <fragment
+            android:id="@+id/nav_host_fragment_activity_main"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:navGraph="@navigation/mobile_navigation" />
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_navigation_size_height"
+            android:background="@drawable/bottom_navigation_bar_background"
+            android:elevation="0dp"
+            android:paddingBottom="@dimen/bottom_navigation_background_bottom_padding"
+            app:itemBackground="@drawable/navigation_view_item_background_selector"
+            app:itemHorizontalTranslationEnabled="true"
+            app:itemIconSize="@dimen/bottom_navigation_icon_size"
+            app:itemIconTint="@color/navbar_icon_color_selector"
+            app:itemPaddingBottom="@dimen/xsmall_margin"
+            app:itemRippleColor="@color/darkGray"
+            app:itemTextAppearanceActive="@style/Theme.KidsDevelopment.BottomNavText.Active"
+            app:itemTextAppearanceInactive="@style/Theme.KidsDevelopment.BottomNavText.Inactive"
+            app:labelVisibilityMode="selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

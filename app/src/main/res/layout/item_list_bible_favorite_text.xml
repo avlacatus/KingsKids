@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="ro.azs.kidsdevelopment.utils.ConversionUtils" />
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.models.BibleFavoriteText" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:padding="@dimen/default_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ConversionUtils.INSTANCE.getBibleReferenceDescription(viewModel.book, viewModel.chapter, viewModel.verse)}"
+            android:textSize="@dimen/normal_text_style"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Geneza 12:1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ConversionUtils.INSTANCE.getTimestampShortValue(viewModel.date)}"
+            android:textSize="@dimen/normal_text_style"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5. dec 2021" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

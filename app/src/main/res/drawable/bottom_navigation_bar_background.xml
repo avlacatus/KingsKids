@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:top="@dimen/bottom_navigation_background_top_margin">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners
+                android:topLeftRadius="@dimen/bottom_navigation_background_radius"
+                android:topRightRadius="@dimen/bottom_navigation_background_radius" />
+            <padding
+                android:left="@dimen/bottom_navigation_background_lateral_padding"
+                android:right="@dimen/bottom_navigation_background_lateral_padding" />
+
+        </shape>
+    </item>
+</layer-list>

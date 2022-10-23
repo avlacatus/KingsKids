@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="ro.azs.kidsdevelopment.ui.widgets.base.BaseWidgetOverviewContract.Presenter" />
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.widgets.base.BaseWidgetOverviewViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/default_margin"
+        android:paddingBottom="@dimen/large_margin">
+
+        <TextView
+            android:id="@+id/wo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:text="@{viewModel.titleRes}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/bibleDiscoveriesTitle" />
+
+        <TextView
+            android:id="@+id/wo_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:text="@{viewModel.hintRes}"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wo_title"
+            tools:text="@string/bibleDiscoveriesHint" />
+
+        <TextView
+            style="@style/HyperlinkText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> presenter.onSeeAllItemsClicked()}"
+            android:text="@string/seeAll"
+            app:layout_constraintBottom_toBottomOf="@id/wo_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/wo_title" />
+
+        <include
+            android:id="@+id/wo_separator"
+            layout="@layout/separator_gray_thin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/horizontal_separator_height"
+            android:layout_marginTop="@dimen/xsmall_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wo_hint" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wo_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:itemBinding="@{viewModel.itemBindings}"
+            app:items="@{viewModel.items}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/wo_separator"
+            app:showSeparator="@{true}"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_list_bible_discovery" />
+
+        <TextView
+            style="@style/HyperlinkText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:onClick="@{() -> presenter.onAddNewItemClicked()}"
+            android:text="@{viewModel.labelAddRes}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wo_items"
+            app:show="@{viewModel.isAddLabelVisible()}"
+            tools:text="@string/addDiscovery" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

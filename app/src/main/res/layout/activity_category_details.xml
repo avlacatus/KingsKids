@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.details.CategoryDetailsViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_margin">
+
+
+                <TextView
+                    android:id="@+id/cd_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/large_margin"
+                    android:text="@{viewModel.headerRes}"
+                    android:textSize="@dimen/normal_text_style"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/knowledgeHeader" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/cd_guide_33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.33" />
+
+                <ImageView
+                    android:id="@+id/cd_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@{viewModel.iconRes}"
+                    app:layout_constraintBottom_toBottomOf="@id/cd_message"
+                    app:layout_constraintEnd_toEndOf="@id/cd_guide_33"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cd_message"
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:src="@drawable/knowledge" />
+
+                <TextView
+                    android:id="@+id/cd_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:text="@{viewModel.messageRes}"
+                    android:textSize="@dimen/normal_text_style"
+                    android:textStyle="italic"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/cd_guide_33"
+                    app:layout_constraintTop_toBottomOf="@id/cd_header"
+                    tools:text="@string/knowledgeMessage" />
+
+                <LinearLayout
+                    android:id="@+id/cd_widget_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/cd_message" />
+
+                <TextView
+                    android:id="@+id/cd_logged_out_hint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/large_margin"
+                    android:gravity="center"
+                    android:text="@string/notAuthenticatedMessage"
+                    android:textColor="@color/text_color_blue_2"
+                    android:textSize="@dimen/normal_text_style"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cd_message"
+                    app:show="@{!viewModel.areWidgetsVisible}" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="isEditable"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.user.UserProfileFormData" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="@{isEditable}"
+        android:orientation="vertical"
+        android:padding="@dimen/default_margin">
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/labelBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="nameLabel, parentsLabel, churchLabel, coachLabel, pastorLabel, schoolLabel,gradeLabel" />
+
+        <TextView
+            android:id="@+id/nameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/nameText"
+            android:text="@string/nameLabel"
+            app:layout_constraintBottom_toBottomOf="@id/nameText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/nameText" />
+
+        <EditText
+            android:id="@+id/nameText"
+            style="@style/UserProfileEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEditable}"
+            android:hint="@string/nameLabel"
+            android:inputType="text"
+            android:text="@={viewModel.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/parentsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/parentsText"
+            android:text="@string/parentsLabel"
+            app:layout_constraintBottom_toBottomOf="@id/parentsText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/parentsText" />
+
+        <EditText
+            android:id="@+id/parentsText"
+            style="@style/UserProfileEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEditable}"
+            android:hint="@string/parentsLabel"
+            android:inputType="text"
+            android:text="@={viewModel.parents}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintTop_toBottomOf="@id/nameText" />
+
+
+        <TextView
+            android:id="@+id/churchLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/churchText"
+            android:text="@string/churchLabel"
+            app:layout_constraintBottom_toBottomOf="@id/churchText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/churchText" />
+
+        <EditText
+            android:id="@+id/churchText"
+            style="@style/UserProfileEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEditable}"
+            android:hint="@string/churchLabel"
+            android:inputType="text"
+            android:text="@={viewModel.church}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintTop_toBottomOf="@id/parentsText" />
+
+
+        <TextView
+            android:id="@+id/coachLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/churchText"
+            android:text="@string/coachLabel"
+            app:layout_constraintBottom_toBottomOf="@id/coachText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/churchText" />
+
+        <EditText
+            android:id="@+id/coachText"
+            style="@style/UserProfileEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEditable}"
+            android:hint="@string/coachLabel"
+            android:inputType="text"
+            android:text="@={viewModel.coach}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintTop_toBottomOf="@id/churchText" />
+
+        <TextView
+            android:id="@+id/pastorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/pastorText"
+            android:text="@string/pastorLabel"
+            app:layout_constraintBottom_toBottomOf="@id/pastorText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coachText" />
+
+        <EditText
+            android:id="@+id/pastorText"
+            style="@style/UserProfileEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEditable}"
+            android:hint="@string/pastorLabel"
+            android:inputType="text"
+            android:text="@={viewModel.pastor}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintTop_toBottomOf="@id/coachText" />
+
+        <TextView
+            android:id="@+id/schoolLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/schoolText"
+            android:text="@string/schoolLabel"
+            app:layout_constraintBottom_toBottomOf="@id/schoolText"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pastorText" />
+
+        <EditText
+            android:id="@+id/schoolText"
+            style="@style/UserProfileEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEditable}"
+            android:hint="@string/schoolLabel"
+            android:inputType="text"
+            android:text="@={viewModel.school}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintTop_toBottomOf="@id/pastorText" />
+
+        <TextView
+            android:id="@+id/gradeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/gradeText"
+            android:text="@string/gradeLabel"
+            app:layout_constraintBottom_toBottomOf="@id/gradeText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gradeText" />
+
+        <EditText
+            android:id="@+id/gradeText"
+            style="@style/UserProfileEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEditable}"
+            android:hint="@string/gradeLabel"
+            android:inputType="text"
+            android:text="@={viewModel.grade}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelBarrier"
+            app:layout_constraintTop_toBottomOf="@id/schoolText" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

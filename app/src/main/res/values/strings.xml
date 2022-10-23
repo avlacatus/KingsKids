@@ -1,0 +1,294 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Copiii Regelui</string>
+    <string name="title_home" tools:ignore="MissingTranslation">Acasă</string>
+    <string name="title_categories" tools:ignore="MissingTranslation">Categorii</string>
+    <string name="title_favourites" tools:ignore="MissingTranslation">Favorite</string>
+    <string name="title_history" tools:ignore="MissingTranslation">Istoric</string>
+    <string name="title_user_details" tools:ignore="MissingTranslation">Profil</string>
+
+    <string name="yesLabel">Yes</string>
+    <string name="noLabel">No</string>
+    <string name="sometimesLabel">Sometimes</string>
+    <string name="backButton">Back</string>
+    <string name="done">Done</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="notSet">Not set</string>
+    <string name="discardChanges">This form has unsaved changes. Are you sure you want to discard them? Otherwise, please tap Save.</string>
+    <string name="reviewForm">Review Form</string>
+    <string name="discard">Discard</string>
+    <string name="notAuthenticatedMessage">You are not signed in. Please Sign In into the Profile section.</string>
+    <string name="notAuthenticatedHomeMessage">You are not signed in. Please Sign In to use all the app features.</string>
+    <string name="notFound">No Translation</string>
+    <string name="categories">Categories</string>
+    <string name="favorites">Favorites</string>
+    <string name="history">History</string>
+    <string name="profile">Profile</string>
+    <!-- category Name -->
+    <string name="bible">Bible</string>
+    <string name="prayer">Prayer</string>
+    <string name="family">Family</string>
+    <string name="school">School</string>
+    <string name="church">Church</string>
+    <string name="volunteering">Volunteering</string>
+    <string name="dailySchedule">Daily Schedule</string>
+    <string name="behavior">Behavior</string>
+    <string name="body">Body</string>
+    <string name="health">Health</string>
+    <string name="sport">Sport</string>
+    <string name="knowledge">Knowledge</string>
+    <string name="hobby">Hobby</string>
+    <string name="media">Media</string>
+    <string name="personalFinances">Personal Finances</string>
+    <string name="loans">Loans</string>
+    <string name="debts">Debts</string>
+    <!-- category group Name -->
+    <string name="spiritual">Spiritual Development</string>
+    <string name="physical">Physical Development</string>
+    <string name="intellectual">Intellectual</string>
+    <string name="skills">Skills</string>
+    <string name="social">Social Relations</string>
+    <string name="finance">Finances</string>
+    <!-- profile -->
+    <string name="helloGreeting">Hello, %s</string>
+    <string name="unknownName">Unknown</string>
+    <string name="logoutMessage">Are you sure you want to logout?</string>
+    <string name="logoutYesAction">Yes, logout</string>
+    <string name="logoutNoAction">No, stay logged in</string>
+    <string name="loginButton">Sign In</string>
+    <string name="logoutButton">Sign Out</string>
+    <string name="detailsLabel">Details</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="report">Report</string>
+    <!-- category Header -->
+    <string name="bibleHeader">Through Jesus, God loves me and wants to communicate with me through His Word, which I read daily!</string>
+    <string name="prayerHeader">Through Jesus, God has loved me and wants to communicate with me through my personal prayer!</string>
+    <string name="bodyHeader">With His help and with Him, I develop in the image of God!</string>
+    <string name="healthHeader">Together with Jesus and like Him, I develop in His image.</string>
+    <string name="sportHeader">With His help and with Him, I develop in the image of God!</string>
+    <string name="knowledgeHeader"></string>
+    <string name="hobbyHeader"></string>
+    <string name="mediaHeader"></string>
+    <string name="volunteeringHeader"></string>
+    <string name="dailyScheduleHeader"></string>
+    <string name="behaviorHeader"></string>
+    <string name="familyHeader"></string>
+    <string name="schoolHeader"></string>
+    <string name="churchHeader"></string>
+    <string name="personalFinancesHeader"></string>
+    <string name="loansHeader"></string>
+    <string name="debtsHeader"></string>
+    <!-- category message -->
+    <string name="bibleMessage">The thought: ”Your word is a lamp for my feet, a light on my path.” - (Ps. 119:105)</string>
+    <string name="prayerMessage">The thought: ”Prayer is not a ”I want” list or a quick fix tool. Prayer is a time spent talking to God and listening to Him! - Kandy Elliot</string>
+    <string name="bodyMessage">The thought: ”Our habits should be brought under the control of a mind that is itself under the control of God.” - Ellen White</string>
+    <string name="healthMessage">The thought: ”Health depends largely on our daily habits. No drug or surgery can compensate for the consequences of unhealthy habits.” - George D. Pamplona-Roger</string>
+    <string name="sportMessage">The thought: ”Our habits should be brought under the control of a mind that is itself under the control of God.” - Ellen White</string>
+    <string name="knowledgeMessage"></string>
+    <string name="hobbyMessage"></string>
+    <string name="mediaMessage"></string>
+    <string name="volunteeringMessage"></string>
+    <string name="dailyScheduleMessage"></string>
+    <string name="behaviorMessage"></string>
+    <string name="familyMessage"></string>
+    <string name="schoolMessage"></string>
+    <string name="churchMessage"></string>
+    <string name="personalFinancesMessage"></string>
+    <string name="loansMessage"></string>
+    <string name="debtsMessage"></string>
+    <!-- bible books -->
+    <string name="genesis">Genesis</string>
+    <string name="exodus">Exodus</string>
+    <string name="leviticus">Leviticus</string>
+    <string name="numbers">Numbers</string>
+    <string name="deuteronomy">Deuteronomy</string>
+    <string name="joshua">Joshua</string>
+    <string name="judges">Judges</string>
+    <string name="ruth">Ruth</string>
+    <string name="samuel1">1 Samuel</string>
+    <string name="samuel2">2 Samuel</string>
+    <string name="kings1">1 Kings</string>
+    <string name="kings2">2 Kings</string>
+    <string name="chronicals1">1 Chronicals</string>
+    <string name="chronicals2">2 Chronicals</string>
+    <string name="ezra">Ezra</string>
+    <string name="nehemiah">Nehemiah</string>
+    <string name="esther">Esther</string>
+    <string name="job">Job</string>
+    <string name="psalms">Psalms</string>
+    <string name="proverbs">Proverbs</string>
+    <string name="ecclesiastes">Ecclesiastes</string>
+    <string name="songOfSongs">Song Of Songs</string>
+    <string name="isaiah">Isaiah</string>
+    <string name="jeremiah">Jeremiah</string>
+    <string name="lamentations">Lamentations</string>
+    <string name="ezekiel">Ezekiel</string>
+    <string name="daniel">Daniel</string>
+    <string name="hosea">Hosea</string>
+    <string name="joel">Joel</string>
+    <string name="amos">Amos</string>
+    <string name="obadiah">Obadiah</string>
+    <string name="jonah">Jonah</string>
+    <string name="micah">Micah</string>
+    <string name="nahum">Nahum</string>
+    <string name="habakkuk">Habakkuk</string>
+    <string name="zephanish">Zephanish</string>
+    <string name="haggai">Haggai</string>
+    <string name="zechariah">Zechariah</string>
+    <string name="malachi">Malachi</string>
+    <string name="matthew">Matthew</string>
+    <string name="mark">Mark</string>
+    <string name="luke">Luke</string>
+    <string name="john">John</string>
+    <string name="actsOfTheApostles">Acts Of The Apostles</string>
+    <string name="romans">Romans</string>
+    <string name="corinthians1">1 Corinthians</string>
+    <string name="corinthians2">2 Corinthians</string>
+    <string name="galatians">Galatians</string>
+    <string name="ephesians">Ephesians</string>
+    <string name="philippians">Philippians</string>
+    <string name="colossians">Colossians</string>
+    <string name="thessalonians1">1 Thessalonians</string>
+    <string name="thessalonians2">2 Thessalonians</string>
+    <string name="timothy1">1 Timothy</string>
+    <string name="timothy2">2 Timothy</string>
+    <string name="titus">Titus</string>
+    <string name="philemon">Philemon</string>
+    <string name="hebrews">Hebrews</string>
+    <string name="james">James</string>
+    <string name="peter1">1 Peter</string>
+    <string name="peter2">2 Peter</string>
+    <string name="john1">1 John</string>
+    <string name="john2">2 John</string>
+    <string name="john3">3 John</string>
+    <string name="jude">Jude</string>
+    <string name="revelation">Revelation</string>
+    <!-- prayer types -->
+    <string name="worship">Worship</string>
+    <string name="confession">Confession</string>
+    <string name="gratefulness">Gratefulness</string>
+    <string name="request">Request</string>
+    <string name="intercession">Intercession</string>
+    <string name="praise">Praise</string>
+    <string name="gratitude">Gratitude</string>
+    <!-- health discoveries types -->
+    <string name="food">Food</string>
+    <string name="rest">Rest</string>
+    <string name="hygiene">Hygiene</string>
+    <string name="physicalActivity">Physical Activity</string>
+    <string name="water">Water</string>
+    <string name="selfControl">Self Control</string>
+    <string name="godTrust">God Trust</string>
+    <!-- Bible category details -->
+    <string name="bibleDiscoveriesTitle">Discovery of the Bible</string>
+    <string name="bibleFavoriteTextsTitle">Favorite verses</string>
+    <string name="biblePrayerTextsTitle">Verses about Prayer</string>
+    <string name="prayerSubjectsTitle">Prayer Subjects</string>
+    <string name="prayerPeopleTitle">Prayer Persons</string>
+    <string name="bodyRoutinesTitle">Body Routines</string>
+    <string name="healthMetricsTitle">Health Metrics</string>
+    <string name="healthDiscoveriesTitle">Health Discoveries</string>
+    <string name="bibleDiscoveriesHint">I have read from the Bible</string>
+    <string name="bibleFavoriteTextsHint">My favorite verses from the Bible are</string>
+    <string name="biblePrayerTextsHint">The Bible teaches me how to pray</string>
+    <string name="prayerSubjectsHint">Prayer subjects important for me</string>
+    <string name="prayerPeopleHint">Just like Jesus I pray for me and others</string>
+    <string name="bodyRoutinesHint">Daily I take care of my body</string>
+    <string name="healthMetricsHint">I verify my health metrics</string>
+    <string name="healthDiscoveriesHint">I want to find out more about health reading many books</string>
+    <string name="addNew">Add New</string>
+    <string name="seeAll">See All</string>
+    <!-- Bible Discoveries -->
+    <string name="addNewDiscovery">Add New Discovery</string>
+    <string name="addDiscovery">Add discovery</string>
+    <string name="editDiscovery">Edit discovery</string>
+    <string name="deleteDiscoveryMessage">Are you sure you want to delete this Bible discovery?</string>
+    <string name="noDiscoveriesMessage">You don\'t have any discoveries saved yet. Tap Add New to record new discoveries.</string>
+    <!-- Favorite Text -->
+    <string name="addNewFavoriteText">Add New Favorite Text</string>
+    <string name="addFavoriteText">Add favorite text</string>
+    <string name="editFavoriteText">Edit favorite text</string>
+    <string name="deleteFavoriteTextMessage">Are you sure you want to delete this Bible favorite text?</string>
+    <string name="noFavoriteTextsMessage">You don\'t have any favorite texts saved yet. Tap Add New to record new favorite text.</string>
+    <!-- Prayer Text -->
+    <string name="addNewPrayerText">Add New Prayer Text</string>
+    <string name="addPrayerText">Add prayer text</string>
+    <string name="editPrayerText">Edit prayer text</string>
+    <string name="deletePrayerTextMessage">Are you sure you want to delete this Bible prayer text?</string>
+    <string name="noPrayerTextsMessage">You don\'t have any prayer texts saved yet. Tap Add New to record new prayer text.</string>
+    <!-- Prayer Subject -->
+    <string name="addNewPrayerSubject">Add New Prayer Subject</string>
+    <string name="addPrayerSubject">Add subject</string>
+    <string name="editPrayerSubject">Edit prayer subject</string>
+    <string name="deletePrayerSubjectMessage">Are you sure you want to delete this prayer subject?</string>
+    <string name="noPrayerSubjectsMessage">You don\'t have any prayer subjects saved yet. Tap Add New to record new prayer subject.</string>
+    <!-- Prayer People -->
+    <string name="addNewPrayerPeople">Add new person</string>
+    <string name="addPrayerPeople">Add new person</string>
+    <string name="editPrayerPeople">Edit person</string>
+    <string name="deletePrayerPeopleMessage">Are you sure you want to delete this prayer person?</string>
+    <string name="noPrayerPeopleMessage">You don\'t have any prayer persons saved yet. Tap Add New to record new prayer person.</string>
+    <!-- Body Routines -->
+    <string name="addNewBodyRoutine">Add new routine</string>
+    <string name="addBodyRoutine">Add new routine</string>
+    <string name="editBodyRoutine">Edit routine</string>
+    <string name="deleteBodyRoutineMessage">Are you sure you want to delete this body routine?</string>
+    <string name="noBodyRoutinesMessage">You don\'t have any body routines saved yet. Tap Add New to record new routine.</string>
+    <!-- Health Metrics -->
+    <string name="addNewHealthMetrics">Add new metrics</string>
+    <string name="addHealthMetrics">Add new metrics</string>
+    <string name="editHealthMetrics">Edit metrics</string>
+    <string name="deleteHealthMetricsMessage">Are you sure you want to delete this health metrics?</string>
+    <string name="noHealthMetricMessage">You don\'t have any health metrics saved yet. Tap Add New to record new metrics.</string>
+    <!-- Health Discoveries -->
+    <string name="addNewHealthDiscovery">Add discovery</string>
+    <string name="addHealthDiscovery">Add discovery</string>
+    <string name="editHealthDiscovery">Edit discovery</string>
+    <string name="deleteHealthDiscoveryMessage">Are you sure you want to delete this health discovery?</string>
+    <string name="noHealthDiscoveriesMessage">You don\'t have any health discoveries saved yet. Tap Add New to record new health discoveries.</string>
+    <!-- Favorites -->
+    <string name="emptyFavoritesMessage">You don\'t have any favorite categories. You can add them by tapping on the star from category details screen.</string>
+    <!-- Form -->
+    <string name="dateLabel">Date</string>
+    <string name="referenceLabel">Reference</string>
+    <string name="discoveryLabel">Discovery</string>
+    <string name="verseLabel">Verse</string>
+    <string name="prayerTypeLabel">Prayer of</string>
+    <string name="nameLabel">Name</string>
+    <string name="parentsLabel">Parents</string>
+    <string name="churchLabel">Church</string>
+    <string name="coachLabel">Coach</string>
+    <string name="pastorLabel">Pastor</string>
+    <string name="schoolLabel">School</string>
+    <string name="gradeLabel">Grade</string>
+    <string name="subjectLabel">Subject</string>
+    <string name="descriptionLabel">Description</string>
+    <string name="answerLabel">Answer</string>
+    <string name="personLabel">Person</string>
+    <string name="reasonLabel">Reason</string>
+    <string name="teethBrushLabel">Teeth brush after every meal</string>
+    <string name="showerLabel">Daily shower</string>
+    <string name="handWashLabel">Hand wash before eating</string>
+    <string name="nailsLabel">Nails kept clean</string>
+    <string name="teaseLabel">Teased the hair</string>
+    <string name="dressedLabel">Dressed up properly</string>
+    <string name="heightLabel">Height (cm)</string>
+    <string name="weightLabel">Weight (kg)</string>
+    <string name="healthTypeLabel">Health through</string>
+    <string name="authorLabel">Author</string>
+    <string name="bookNameLabel">Book Name</string>
+    <!-- Report -->
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="quarterly">Quarterly</string>
+    <string name="annualy">Annualy</string>
+    <string name="parents">Parents</string>
+    <string name="coach">Coach</string>
+    <string name="generateReport">Generate Report</string>
+    <string name="warning">Warning</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+</resources>

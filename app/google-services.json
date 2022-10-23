@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "406717035512",
+    "project_id": "developmentkids-d94e5",
+    "storage_bucket": "developmentkids-d94e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406717035512:android:bfae8f721ceea41d795c0d",
+        "android_client_info": {
+          "package_name": "ro.azs.kidsdevelopment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406717035512-f6kt89rugqgiqfr1gapr8lprsm6jktfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGb2i3CGShevASi98Dj0N1w-cJBZmBCQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406717035512-f6kt89rugqgiqfr1gapr8lprsm6jktfg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "406717035512-c767a5klarc0donacv6g6q5du5mr1ab3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Personal.DevelopmentKids"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

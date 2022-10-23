@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.user.UserDetailsViewModel" />
+
+        <variable
+            name="presenter"
+            type="ro.azs.kidsdevelopment.ui.user.UserDetailsContract.Presenter" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        tools:context=".ui.user.UserDetailsFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/large_margin"
+            tools:context=".ui.user.UserDetailsFragment">
+
+            <ImageView
+                android:id="@+id/profile_picture"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/family" />
+
+            <TextView
+                android:id="@+id/profile_welcome_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:text="@{@string/helloGreeting(viewModel.userDetails.name == null ? @string/unknownName : viewModel.userDetails.name)}"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Buna, David!" />
+
+            <Button
+                android:id="@+id/profile_button_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> presenter.onLogInClicked()}"
+                android:text="@string/loginButton"
+                app:show="@{viewModel.userDetails == null}" />
+
+
+            <include
+                layout="@layout/layout_user_profile_details"
+                app:isEditable="@{false}"
+                app:show="@{viewModel.userDetails != null}"
+                app:viewModel="@{viewModel.userDetails}" />
+
+            <Button
+                android:id="@+id/profile_button_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="@{() -> presenter.onLogOutClicked()}"
+                android:text="@string/logoutButton"
+                app:show="@{viewModel.userDetails != null}" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

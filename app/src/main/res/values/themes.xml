@@ -1,0 +1,68 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.KidsDevelopment" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/nunito_font_family</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/text_color_blue_1</item>
+        <item name="colorPrimaryVariant">@color/text_color_blue_2</item>
+        <item name="colorSecondary">@color/text_color_blue_1</item>
+        <item name="colorOnSecondary">@color/text_color_blue_2</item>
+        <item name="colorSecondaryVariant">@color/text_color_blue_2</item>
+        <item name="titleTextColor">@color/text_color_blue_1</item>
+        <item name="colorAccent">@color/text_color_blue_1</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="android:colorBackground">@color/background_blue_1</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:colorControlNormal">@color/white</item>
+        <item name="titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
+        <item name="android:titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
+
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:contentInsetStartWithNavigation" tools:targetApi="n">0dp</item>
+        <item name="android:popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+        <item name="android:background">@color/white</item>
+        <!--        <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>-->
+        <item name="android:homeAsUpIndicator">@drawable/ic_circle_arrow_left</item>
+
+    </style>
+
+    <style name="Theme.KidsDevelopment.BottomNavText">
+        <item name="android:textSize">@dimen/xsmall_text_size</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+        <item name="android:lineSpacingExtra">-0.25dp</item>
+        <item name="android:textColor">@color/text_color_blue_3</item>
+    </style>
+
+    <style name="Theme.KidsDevelopment.BottomNavText.Active">
+        <item name="android:textColor">@color/text_color_blue_1</item>
+    </style>
+
+    <style name="Theme.KidsDevelopment.BottomNavText.Inactive">
+        <item name="android:textColor">@color/text_color_blue_3</item>
+    </style>
+
+    <style name="ToolbarTitleTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="fontFamily">@font/nunito_bold</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+    </style>
+
+    <style name="UserProfileInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundMode">none</item>
+    </style>
+
+    <style name="UserProfileEditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:padding">10dp</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">no</item>
+    </style>
+
+    <style name="HyperlinkText" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/text_link_selector</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
