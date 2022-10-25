@@ -12,11 +12,11 @@ class CategoriesPresenter(view: CategoriesContract.View) : BasePresenter<Categor
     override fun onAttachView() {
         super.onAttachView()
 
-        addPresenterSubscription(Observable.combineLatest(FirestoreDataManager.categoryGroups, FirestoreDataManager.userData, { categoryGroups, userData ->
+        addPresenterSubscription(Observable.combineLatest(FirestoreDataManager.categoryGroups, FirestoreDataManager.userData) { categoryGroups, userData ->
             Pair<List<CategoryGroup>, List<Category>>(
                 categoryGroups,
                 userData.map { it.favouriteCategories.map { favoriteCategory -> Category(favoriteCategory.type) } }.orElseGet { emptyList() })
-        }).subscribe({ categoryGroups ->
+        }.subscribe({ categoryGroups ->
             if (isViewAttached) {
                 view.displaySections(categoryGroups.first, categoryGroups.second)
             }
