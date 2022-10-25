@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java8.util.Optional
@@ -16,10 +17,11 @@ object FirestoreDataManager {
 
     private var _categoriesListenerRegistration: ListenerRegistration? = null
 
+    private val userListenerRegistrations = ArrayList<ListenerRegistration>()
+
     private val _categoriesSubject: BehaviorSubject<List<CategoryGroup>> = BehaviorSubject.createDefault(emptyList())
     private val _userProfileSubject: BehaviorSubject<Optional<UserProfile>> = BehaviorSubject.createDefault(Optional.empty())
-
-    private val userListenerRegistrations = ArrayList<ListenerRegistration>()
+    private val _historySubject = BehaviorSubject.createDefault<List<HistoryItem>>(emptyList())
     private val _favouritesSubject: BehaviorSubject<List<FavoriteCategory>> = BehaviorSubject.createDefault(emptyList())
     private val _bibleDiscoveriesSubject: BehaviorSubject<List<BibleDiscovery>> = BehaviorSubject.createDefault(emptyList())
     private val _bibleFavoriteTextsSubject: BehaviorSubject<List<BibleFavoriteText>> = BehaviorSubject.createDefault(emptyList())
@@ -28,16 +30,17 @@ object FirestoreDataManager {
     private val _userDataSubject: Observable<Optional<UserData>> =
         Observable.combineLatest(_userProfileSubject,
             _favouritesSubject,
+            _historySubject,
             _bibleDiscoveriesSubject,
             _bibleFavoriteTextsSubject,
-            _biblePrayerTextsSubject,
-            { userProfile, favourites, bibleDiscoveries, bibleFavoriteTexts, biblePrayerTexts ->
-                if (userProfile.isPresent) {
-                    Optional.of(UserData(userProfile.get(), favourites, bibleDiscoveries, bibleFavoriteTexts, biblePrayerTexts))
-                } else {
-                    Optional.empty()
-                }
-            })
+            _biblePrayerTextsSubject
+        ) { userProfile, favourites, historyItems, bibleDiscoveries, bibleFavoriteTexts, biblePrayerTexts ->
+            if (userProfile.isPresent) {
+                Optional.of(UserData(userProfile.get(), favourites, historyItems, bibleDiscoveries, bibleFavoriteTexts, biblePrayerTexts))
+            } else {
+                Optional.empty()
+            }
+        }
 
     private val authStateListener: FirebaseAuth.AuthStateListener = object : FirebaseAuth.AuthStateListener {
 
@@ -51,6 +54,23 @@ object FirestoreDataManager {
                         }
 
                         _userProfileSubject.onNext(if (snapshot == null) Optional.empty() else Optional.of(snapshot.toObject(UserProfile::class.java)))
+                    }
+                )
+
+                addUserListenerRegistration(getFirestoreUserDocument()
+                    .collection(FirestoreConstants.history.name)
+                    .orderBy(FirestoreFields.date.name, Query.Direction.DESCENDING)
+                    .addSnapshotListener { snapshot, e ->
+                        if (e != null) {
+                            Logger.e(TAG, "error adding ${FirestoreConstants.history} snapshotListener: ${e.message}")
+                            return@addSnapshotListener
+                        }
+
+                        _historySubject.onNext(
+                            snapshot?.documents?.map { doc ->
+                                doc.toObject(HistoryItem::class.java)?.withId(doc.id) as HistoryItem
+                            } ?: emptyList()
+                            )
                     }
                 )
 
@@ -126,7 +146,7 @@ object FirestoreDataManager {
         get() = _userDataSubject.distinctUntilChanged()
 
     fun startDataSync() {
-        _categoriesListenerRegistration = FirebaseFirestore.getInstance().collection("categoriesGroups").addSnapshotListener { snapshot, e ->
+        _categoriesListenerRegistration = FirebaseFirestore.getInstance().collection(FirestoreConstants.categoriesGroups.name).addSnapshotListener { snapshot, e ->
             if (e != null) {
                 Logger.e(TAG, "error adding categories snapshotListener: ${e.message}")
                 return@addSnapshotListener
@@ -136,7 +156,7 @@ object FirestoreDataManager {
                 _categoriesSubject.onNext(snapshot.documents.map { documentSnapshot ->
                     return@map CategoryGroup(CategoryGroupType.getCategoryGroupById(documentSnapshot.getString("type") ?: ""),
                         documentSnapshot.getLong("order") ?: 0,
-                        (documentSnapshot.get("categories") as List<Map<String, String>>).map { map ->
+                        (documentSnapshot.get(FirestoreConstants.categories.name) as List<Map<String, String>>).map { map ->
                             val categoryType = CategoryType.getCategoryById(map["type"] ?: "")
                             Category(categoryType)
                         })

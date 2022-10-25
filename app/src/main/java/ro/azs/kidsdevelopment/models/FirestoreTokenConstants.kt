@@ -25,14 +25,46 @@ enum class CategorySectionType : FirestoreCollection {
     prayerPeople,
     bodyRoutines,
     healthMetrics,
-    healthDiscoveries;
-}
-
-enum class FirestoreConstants : FirestoreCollection {
-    users,
-    favoriteCategories;
+    healthDiscoveries,
+    sportPractice,
+    knowledgeFindings,
+    hobbies,
+    mediaDiscoveries,
+    goodDeeds,
+    dailySchedule,
+    pleasantActions,
+    usefulActions,
+    familyTasks,
+    schoolTasks,
+    churchTasks,
+    finances,
+    borrows,
+    lends
 }
 
 enum class PrayerType : LocalizedString {
-    worship, confession, gratefulness, request, intercession, praise, gratitude
+    worship,
+    confession,
+    gratefulness,
+    request,
+    intercession,
+    praise,
+    gratitude
 }
+
+enum class FirestoreConstants : FirestoreCollection {
+    categories,
+    categoriesGroups,
+    users,
+    bibleBooks,
+    favoriteCategories,
+    history,
+    reports,
+    findings
+}
+
+enum class FirestoreFields : Labeled {
+    order,
+    date
+}
+

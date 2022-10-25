@@ -13,6 +13,8 @@ class CategoriesPresenter(view: CategoriesContract.View) : BasePresenter<Categor
         super.onAttachView()
 
         addPresenterSubscription(Observable.combineLatest(FirestoreDataManager.categoryGroups, FirestoreDataManager.userData) { categoryGroups, userData ->
+            Logger.w("CategoriesPResenter", "received new userData: ${userData.get()?.historyItems}")
+
             Pair<List<CategoryGroup>, List<Category>>(
                 categoryGroups,
                 userData.map { it.favouriteCategories.map { favoriteCategory -> Category(favoriteCategory.type) } }.orElseGet { emptyList() })
