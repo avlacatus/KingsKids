@@ -75,7 +75,7 @@
                     android:maxLines="1"
                     android:text="@{viewModel.itemCountDesc}"
                     android:textColor="@color/text_color_blue_3"
-                    android:textSize="@dimen/small_text_size"
+                    android:textSize="@dimen/xsmall_text_size"
                     app:show="@{!viewModel.itemCountDesc.empty}"
                     tools:text="12 items"
                     tools:visibility="gone" />

@@ -11,7 +11,8 @@ object WidgetHelper {
 
     fun getWidgetsForCategory(categoryType: CategoryType): List<Class<out BaseWidgetOverviewFragment<*>?>> {
         return when (categoryType) {
-            CategoryType.bible -> return listOf(BibleDiscoveriesOverviewFragment::class.java,
+            CategoryType.bible -> return listOf(
+                BibleDiscoveriesOverviewFragment::class.java,
                 BibleFavoriteTextsOverviewFragment::class.java,
                 BiblePrayerTextsOverviewFragment::class.java)
             else -> emptyList()

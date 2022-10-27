@@ -196,49 +196,49 @@
     <string name="addNew">Adaugă</string>
     <string name="seeAll">Vezi toate</string>
     <!-- Bible Discoveries -->
-    <string name="addNewDiscovery">Adauga descoperire</string>
+    <string name="addNewDiscovery">+ Adauga descoperire</string>
     <string name="addDiscovery">Adaugă descoperire</string>
     <string name="editDiscovery">Editează descoperire</string>
     <string name="deleteDiscoveryMessage">Ești sigur că vrei să ștergi această descoperire din Biblie?</string>
     <string name="noDiscoveriesMessage">Nu ai descoperiri salvate încă. Apasă pe Adaugă pentru a salva noi descoperiri.</string>
     <!-- Favorite Texts -->
-    <string name="addNewFavoriteText">Adauga text favorit</string>
+    <string name="addNewFavoriteText">+ Adauga text favorit</string>
     <string name="addFavoriteText">Adaugă text favorit</string>
     <string name="editFavoriteText">Editează text favorit</string>
     <string name="deleteFavoriteTextMessage">Ești sigur că vrei să ștergi aceast text favorite din Biblie?</string>
     <string name="noFavoriteTextsMessage">Nu ai texte favorite salvate încă. Apasă pe Adaugă pentru a salva noi texte favorite.</string>
     <!-- Prayer Texts -->
-    <string name="addNewPrayerText">Adaugă text de rugăciune</string>
+    <string name="addNewPrayerText">+ Adaugă text de rugăciune</string>
     <string name="addPrayerText">Adaugă text de rugăciune</string>
     <string name="editPrayerText">Editează text de rugăciune</string>
     <string name="deletePrayerTextMessage">Ești sigur că vrei să ștergi aceast text de rugăciune din Biblie?</string>
     <string name="noPrayerTextsMessage">Nu ai texte de rugăciune salvate încă. Apasă pe Adaugă pentru a salva noi texte de rugăciune.</string>
     <!-- Prayer Subject -->
-    <string name="addNewPrayerSubject">Adaugă subiect de rugăciune</string>
+    <string name="addNewPrayerSubject">+ Adaugă subiect de rugăciune</string>
     <string name="addPrayerSubject">Adaugă subiect</string>
     <string name="editPrayerSubject">Editează subiect</string>
     <string name="deletePrayerSubjectMessage">Ești sigur că vrei să ștergi aceast subiect de rugăciune?</string>
     <string name="noPrayerSubjectsMessage">Nu ai subiecte de rugăciune salvate încă. Apasă pe Adaugă pentru a salva noi subiecte de rugăciune.</string>
     <!-- Prayer People -->
-    <string name="addNewPrayerPeople">Adaugă persoană pentru rugăciune</string>
+    <string name="addNewPrayerPeople">+ Adaugă persoană pentru rugăciune</string>
     <string name="addPrayerPeople">Adaugă persoană</string>
     <string name="editPrayerPeople">Editează persoană</string>
     <string name="deletePrayerPeopleMessage">Ești sigur că vrei să ștergi această persoana pentru rugăciune?</string>
     <string name="noPrayerPeopleMessage">Nu ai persoane pentru rugăciune salvate încă. Apasă pe Adaugă pentru a salva noi persoane pentru rugăciune.</string>
     <!-- Body Routines -->
-    <string name="addNewBodyRoutine">Adaugă rutină</string>
+    <string name="addNewBodyRoutine">+ Adaugă rutină</string>
     <string name="addBodyRoutine">Adaugă rutină</string>
     <string name="editBodyRoutine">Editează rutină</string>
     <string name="deleteBodyRoutineMessage">Ești sigur că vrei să ștergi această rutină?</string>
     <string name="noBodyRoutinesMessage">Nu ai nici o rutină salvată încă. Apasă pe Adaugă pentru a salva o nouă rutină.</string>
     <!-- Health Metrics -->
-    <string name="addNewHealthMetrics">Adaugă valori</string>
+    <string name="addNewHealthMetrics">+ Adaugă valori</string>
     <string name="addHealthMetrics">Adaugă valori</string>
     <string name="editHealthMetrics">Editează valori</string>
     <string name="deleteHealthMetricsMessage">Ești sigur că vrei să ștergi aceaste valori?</string>
     <string name="noHealthMetricMessage">Nu ai nici o valoare salvată încă. Apasă pe Adaugă pentru a salva o nouă valoare.</string>
     <!-- Health Discoveries -->
-    <string name="addNewHealthDiscovery">Adaugă descoperire</string>
+    <string name="addNewHealthDiscovery">+ Adaugă descoperire</string>
     <string name="addHealthDiscovery">Adaugă descoperire</string>
     <string name="editHealthDiscovery">Editează descoperire</string>
     <string name="deleteHealthDiscoveryMessage">Ești sigur că vrei să ștergi această descoperire despre sănătate?</string>

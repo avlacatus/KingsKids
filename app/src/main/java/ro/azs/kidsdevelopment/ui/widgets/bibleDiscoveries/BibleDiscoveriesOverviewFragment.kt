@@ -11,7 +11,7 @@ class BibleDiscoveriesOverviewFragment : BaseWidgetOverviewFragment<BibleDiscove
         super.onCreate(savedInstanceState)
         viewModel.titleRes.set(R.string.bibleDiscoveriesTitle)
         viewModel.hintRes.set(R.string.bibleDiscoveriesHint)
-        viewModel.labelAddRes.set(R.string.addDiscovery)
+        viewModel.labelAddRes.set(R.string.addNewDiscovery)
     }
 
     override fun getPresenter(): BibleDiscoveriesOverviewContract.Presenter {

@@ -27,11 +27,13 @@ class CategoryDetailsActivity : BaseActivity<CategoryDetailsContract.Presenter>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = ""
         viewModel = ViewModelProvider(this)[CategoryDetailsViewModel::class.java]
         _binding = ActivityCategoryDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         binding.viewModel = viewModel
-        supportActionBar?.displayOptions = ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_HOME_AS_UP
 
         viewModel.isFavoriteVisible.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
@@ -95,7 +97,7 @@ class CategoryDetailsActivity : BaseActivity<CategoryDetailsContract.Presenter>(
     }
 
     override fun displayDetails(titleRes: Int, iconRes: Int, headerRes: Int, messageRes: Int) {
-        setTitle(titleRes)
+        viewModel.title.set(getString(titleRes))
         viewModel.headerRes.set(headerRes)
         viewModel.iconRes.set(iconRes)
         viewModel.messageRes.set(messageRes)

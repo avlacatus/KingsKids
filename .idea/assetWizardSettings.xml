@@ -308,26 +308,11 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
-                        <option name="children">
-                          <map>
-                            <entry key="clipartAsset">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/arrow_forward_ios/baseline_arrow_forward_ios_24.xml" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="bible_nonstop" />
-                            <entry key="sourceFile" value="D:\Desktop\KingsKids\Bible_nonstop.svg" />
+                            <entry key="outputName" value="ic_history_update" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/update.svg" />
                           </map>
                         </option>
                       </PersistentState>

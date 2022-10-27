@@ -11,7 +11,7 @@ class BiblePrayerTextsOverviewFragment : BaseWidgetOverviewFragment<BiblePrayerT
         super.onCreate(savedInstanceState)
         viewModel.titleRes.set(R.string.biblePrayerTextsTitle)
         viewModel.hintRes.set(R.string.biblePrayerTextsHint)
-        viewModel.labelAddRes.set(R.string.addPrayerText)
+        viewModel.labelAddRes.set(R.string.addNewPrayerText)
     }
 
     override fun getPresenter(): BiblePrayerTextsOverviewContract.Presenter {

@@ -19,7 +19,7 @@ class BaseWidgetOverviewViewModel : ViewModel() {
     val isAddLabelVisible = ObservableBoolean(true)
     val items = ObservableArrayList<Any>()
 
-    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: Any? ->
+    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, position: Int, item: Any? ->
         if (item is BibleDiscovery) {
             itemBinding[BR.viewModel] = R.layout.item_list_bible_discovery
         } else if (item is BibleFavoriteText) {

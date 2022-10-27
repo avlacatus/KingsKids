@@ -10,6 +10,7 @@ import ro.azs.kidsdevelopment.databinding.FragmentCategoriesBinding
 import ro.azs.kidsdevelopment.models.Category
 import ro.azs.kidsdevelopment.models.CategoryGroup
 import ro.azs.kidsdevelopment.ui.details.CategoryDetailsActivity
+import ro.azs.kidsdevelopment.utils.Logger
 
 class CategoriesFragment : BaseFragment<CategoriesContract.Presenter>(), CategoriesContract.View {
 
@@ -31,6 +32,7 @@ class CategoriesFragment : BaseFragment<CategoriesContract.Presenter>(), Categor
     }
 
     override fun displaySections(groups: List<CategoryGroup>, favourites: List<Category>) {
+        Logger.e("CategoriesFragment", "displaySections called with ${groups.size}")
         viewModel.items.clear()
         viewModel.items.addAll(groups.withIndex().map { (index, group) ->
             CategoryGroupViewModel(group) { presenter.onCategorySelected(it) }.apply {

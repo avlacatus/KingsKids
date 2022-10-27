@@ -12,7 +12,9 @@
     <color name="text_color_blue_1">#26C1FC</color>
     <color name="text_color_blue_2">#1B6CAE</color>
     <color name="text_color_blue_3">#C6D7E3</color>
-
+    <color name="text_color_blue_4">#D0EAFC</color>
+    <color name="purple">#BF8FFD</color>
+    <color name="purple_tint">#8564b1</color>
 
     <color name="colorPrimary">@color/text_color_blue_1</color>
 

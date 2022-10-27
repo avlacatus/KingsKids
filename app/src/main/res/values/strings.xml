@@ -201,49 +201,49 @@
     <string name="addNew">Add New</string>
     <string name="seeAll">See All</string>
     <!-- Bible Discoveries -->
-    <string name="addNewDiscovery">Add New Discovery</string>
+    <string name="addNewDiscovery">+ Add New Discovery</string>
     <string name="addDiscovery">Add discovery</string>
     <string name="editDiscovery">Edit discovery</string>
     <string name="deleteDiscoveryMessage">Are you sure you want to delete this Bible discovery?</string>
     <string name="noDiscoveriesMessage">You don\'t have any discoveries saved yet. Tap Add New to record new discoveries.</string>
     <!-- Favorite Text -->
-    <string name="addNewFavoriteText">Add New Favorite Text</string>
+    <string name="addNewFavoriteText">+ Add New Favorite Text</string>
     <string name="addFavoriteText">Add favorite text</string>
     <string name="editFavoriteText">Edit favorite text</string>
     <string name="deleteFavoriteTextMessage">Are you sure you want to delete this Bible favorite text?</string>
     <string name="noFavoriteTextsMessage">You don\'t have any favorite texts saved yet. Tap Add New to record new favorite text.</string>
     <!-- Prayer Text -->
-    <string name="addNewPrayerText">Add New Prayer Text</string>
+    <string name="addNewPrayerText">+ Add New Prayer Text</string>
     <string name="addPrayerText">Add prayer text</string>
     <string name="editPrayerText">Edit prayer text</string>
     <string name="deletePrayerTextMessage">Are you sure you want to delete this Bible prayer text?</string>
     <string name="noPrayerTextsMessage">You don\'t have any prayer texts saved yet. Tap Add New to record new prayer text.</string>
     <!-- Prayer Subject -->
-    <string name="addNewPrayerSubject">Add New Prayer Subject</string>
+    <string name="addNewPrayerSubject">+ Add New Prayer Subject</string>
     <string name="addPrayerSubject">Add subject</string>
     <string name="editPrayerSubject">Edit prayer subject</string>
     <string name="deletePrayerSubjectMessage">Are you sure you want to delete this prayer subject?</string>
     <string name="noPrayerSubjectsMessage">You don\'t have any prayer subjects saved yet. Tap Add New to record new prayer subject.</string>
     <!-- Prayer People -->
-    <string name="addNewPrayerPeople">Add new person</string>
+    <string name="addNewPrayerPeople">+ Add new person</string>
     <string name="addPrayerPeople">Add new person</string>
     <string name="editPrayerPeople">Edit person</string>
     <string name="deletePrayerPeopleMessage">Are you sure you want to delete this prayer person?</string>
     <string name="noPrayerPeopleMessage">You don\'t have any prayer persons saved yet. Tap Add New to record new prayer person.</string>
     <!-- Body Routines -->
-    <string name="addNewBodyRoutine">Add new routine</string>
+    <string name="addNewBodyRoutine">+ Add new routine</string>
     <string name="addBodyRoutine">Add new routine</string>
     <string name="editBodyRoutine">Edit routine</string>
     <string name="deleteBodyRoutineMessage">Are you sure you want to delete this body routine?</string>
     <string name="noBodyRoutinesMessage">You don\'t have any body routines saved yet. Tap Add New to record new routine.</string>
     <!-- Health Metrics -->
-    <string name="addNewHealthMetrics">Add new metrics</string>
+    <string name="addNewHealthMetrics">+ Add new metrics</string>
     <string name="addHealthMetrics">Add new metrics</string>
     <string name="editHealthMetrics">Edit metrics</string>
     <string name="deleteHealthMetricsMessage">Are you sure you want to delete this health metrics?</string>
     <string name="noHealthMetricMessage">You don\'t have any health metrics saved yet. Tap Add New to record new metrics.</string>
     <!-- Health Discoveries -->
-    <string name="addNewHealthDiscovery">Add discovery</string>
+    <string name="addNewHealthDiscovery">+ Add discovery</string>
     <string name="addHealthDiscovery">Add discovery</string>
     <string name="editHealthDiscovery">Edit discovery</string>
     <string name="deleteHealthDiscoveryMessage">Are you sure you want to delete this health discovery?</string>

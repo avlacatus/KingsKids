@@ -13,17 +13,15 @@ class CategoriesPresenter(view: CategoriesContract.View) : BasePresenter<Categor
         super.onAttachView()
 
         addPresenterSubscription(Observable.combineLatest(FirestoreDataManager.categoryGroups, FirestoreDataManager.userData) { categoryGroups, userData ->
-            Logger.w("CategoriesPResenter", "received new userData: ${userData.get()?.historyItems}")
-
+            Logger.w("CategoriesPresenter", "received new userData: ${userData.orElseGet { null }?.historyItems}")
             Pair<List<CategoryGroup>, List<Category>>(
                 categoryGroups,
                 userData.map { it.favouriteCategories.map { favoriteCategory -> Category(favoriteCategory.type) } }.orElseGet { emptyList() })
-        }.subscribe({ categoryGroups ->
+        }.retry(3).subscribe({ categoryGroups ->
             if (isViewAttached) {
                 view.displaySections(categoryGroups.first, categoryGroups.second)
             }
-        }, { e -> Logger.e(TAG, "error fetching categories: ${e.message}") })
-        )
+        }, { e -> Logger.e(TAG, "error fetching categories: ${e.message}") }))
     }
 
     override fun onCategorySelected(category: Category) {

@@ -11,7 +11,7 @@ class BibleFavoriteTextsOverviewFragment : BaseWidgetOverviewFragment<BibleFavor
         super.onCreate(savedInstanceState)
         viewModel.titleRes.set(R.string.bibleFavoriteTextsTitle)
         viewModel.hintRes.set(R.string.bibleFavoriteTextsHint)
-        viewModel.labelAddRes.set(R.string.addFavoriteText)
+        viewModel.labelAddRes.set(R.string.addNewFavoriteText)
     }
 
     override fun getPresenter(): BibleFavoriteTextsOverviewContract.Presenter {

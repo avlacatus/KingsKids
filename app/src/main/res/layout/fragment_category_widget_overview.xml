@@ -15,82 +15,128 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/default_margin"
-        android:paddingBottom="@dimen/large_margin">
+        android:paddingStart="@dimen/xlarge_margin"
+        android:paddingTop="@dimen/medium_s_margin"
+        android:paddingEnd="@dimen/xlarge_margin"
+        android:paddingBottom="@dimen/medium_s_margin">
 
-        <TextView
-            android:id="@+id/wo_title"
+        <ImageView
+            android:id="@+id/wo_folder_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:text="@{viewModel.titleRes}"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/bibleDiscoveriesTitle" />
-
-        <TextView
-            android:id="@+id/wo_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:text="@{viewModel.hintRes}"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wo_title"
-            tools:text="@string/bibleDiscoveriesHint" />
-
-        <TextView
-            style="@style/HyperlinkText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:includeFontPadding="false"
-            android:onClick="@{() -> presenter.onSeeAllItemsClicked()}"
-            android:text="@string/seeAll"
-            app:layout_constraintBottom_toBottomOf="@id/wo_hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/wo_title" />
-
-        <include
-            android:id="@+id/wo_separator"
-            layout="@layout/separator_gray_thin"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/horizontal_separator_height"
-            android:layout_marginTop="@dimen/xsmall_margin"
+            android:layout_centerHorizontal="true"
+            android:elevation="10dp"
+            android:src="@drawable/ic_folder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wo_hint" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/wo_items"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/wo_content_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:itemBinding="@{viewModel.itemBindings}"
-            app:items="@{viewModel.items}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/wo_separator"
-            app:showSeparator="@{true}"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_list_bible_discovery" />
+            android:layout_alignTop="@id/wo_folder_icon"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginBottom="25dp"
 
-        <TextView
-            style="@style/HyperlinkText"
+            app:cardCornerRadius="@dimen/widget_overview_card_radius"
+            app:cardElevation="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/wo_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/xlarge_margin"
+                    android:layout_marginTop="@dimen/xxlarge_margin"
+                    android:fontFamily="@font/nunito_font_family"
+                    android:letterSpacing="-0.036"
+                    android:text="@{viewModel.titleRes}"
+                    android:textColor="@color/text_color_blue_2"
+                    android:textFontWeight="900"
+                    android:textSize="@dimen/large_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/bibleDiscoveriesTitle" />
+
+                <TextView
+                    android:id="@+id/wo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/xlarge_margin"
+                    android:letterSpacing="-0.028"
+                    android:text="@{viewModel.hintRes}"
+                    android:textColor="@color/text_color_blue_2"
+                    android:textSize="@dimen/small_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wo_title"
+                    tools:text="@string/bibleDiscoveriesHint" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/xlarge_margin"
+                    android:background="@null"
+                    android:includeFontPadding="false"
+                    android:onClick="@{() -> presenter.onSeeAllItemsClicked()}"
+                    android:src="@drawable/ic_see_all"
+                    app:layout_constraintBottom_toBottomOf="@id/wo_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/wo_title" />
+
+                <include
+                    android:id="@+id/wo_separator"
+                    layout="@layout/separator_light_blue_thin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/vertical_separator_height"
+                    android:layout_marginTop="@dimen/default_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wo_hint" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/wo_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:itemBinding="@{viewModel.itemBindings}"
+                    app:items="@{viewModel.items}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/wo_separator"
+                    tools:itemCount="3"
+                    android:paddingBottom="@dimen/widget_overview_add_button_height"
+                    tools:listitem="@layout/item_list_bible_discovery" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/wo_add_new"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
+            android:layout_height="@dimen/widget_overview_add_button_height"
+            android:layout_alignBottom="@id/wo_content_card"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/widget_overview_add_button_half_height_negative"
+            android:background="@drawable/btn_background_purple"
+            android:gravity="center"
+            android:textAllCaps="false"
             android:onClick="@{() -> presenter.onAddNewItemClicked()}"
+            android:paddingStart="@dimen/medium_s_margin"
+            android:paddingEnd="@dimen/medium_s_margin"
             android:text="@{viewModel.labelAddRes}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wo_items"
+            android:textColor="@color/white"
+            android:textSize="@dimen/larger_text_size"
+            android:clickable="true"
+            android:focusable="true"
             app:show="@{viewModel.isAddLabelVisible()}"
-            tools:text="@string/addDiscovery" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            tools:text="@string/addNewDiscovery" />
+    </RelativeLayout>
 
 </layout>

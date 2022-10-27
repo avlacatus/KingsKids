@@ -21,13 +21,12 @@
         <item name="android:colorControlNormal">@color/white</item>
         <item name="titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
         <item name="android:titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
-
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:contentInsetStartWithNavigation" tools:targetApi="n">0dp</item>
         <item name="android:popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
         <item name="android:fontFamily">@font/nunito_bold</item>
         <item name="android:background">@color/white</item>
-        <!--        <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>-->
+<!--        <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>-->
         <item name="android:homeAsUpIndicator">@drawable/ic_circle_arrow_left</item>
 
     </style>

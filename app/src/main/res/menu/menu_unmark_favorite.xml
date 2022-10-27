@@ -4,7 +4,8 @@
 
     <item
         android:id="@+id/menu_item_unmark_favorite"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_favorites"
+        app:iconTint="@color/text_color_blue_1"
         android:title="@string/favorites"
         app:showAsAction="ifRoom" />
 </menu>
