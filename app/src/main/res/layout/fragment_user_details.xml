@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/family" />
+                android:src="@drawable/img_profile" />
 
             <TextView
                 android:id="@+id/profile_welcome_text"
