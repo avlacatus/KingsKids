@@ -234,7 +234,7 @@ enum class UsefulActionType : LocalizedString {
 data class UsefulAction
     (var date: Timestamp = Timestamp.now(),
     var type: UsefulActionType = UsefulActionType.family,
-    var action: String) : FirestoreModel(), WithDescriptionTimestamp {
+    var action: String = "") : FirestoreModel(), WithDescriptionTimestamp {
     override fun getDescriptionLabel(): String = action + "(" + type.getLocalizedString() + ")"
     override fun getTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
 }

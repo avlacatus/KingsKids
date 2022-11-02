@@ -23,3 +23,5 @@
 *.probe
 .gradle/*
 .gradle/**
+*.bin
+*.lock
