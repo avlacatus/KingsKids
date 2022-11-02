@@ -58,6 +58,7 @@ class HomeFragment : BaseFragment<HomeContract.Presenter>(), HomeContract.View {
         _binding = null
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         if (viewModel.isLoggedIn.get()) {
@@ -66,6 +67,7 @@ class HomeFragment : BaseFragment<HomeContract.Presenter>(), HomeContract.View {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_user_profile) {
             editProfileLauncher.launch(Intent(activity, EditUserProfileActivity::class.java))

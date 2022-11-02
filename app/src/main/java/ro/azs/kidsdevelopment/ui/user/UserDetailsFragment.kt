@@ -66,6 +66,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         if (viewModel.userDetails.value != null) {
@@ -74,6 +75,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_item_edit) {
             editProfileLauncher.launch(Intent(activity, EditUserProfileActivity::class.java))

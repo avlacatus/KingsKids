@@ -19,7 +19,6 @@ class HistoryPresenter(view: HistoryContract.View) : BasePresenter<HistoryContra
                 } else Optional.empty()
             }.distinctUntilChanged()
                 .subscribe({ optionalItems ->
-                    Logger.e("HistoryPresenter", "subscribe received $optionalItems")
                     optionalItems.orElseGet { null }?.let {
                         historyItems = it
                     }

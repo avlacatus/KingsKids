@@ -24,13 +24,7 @@ object FirestoreDataManager {
     private val _historySubject = BehaviorSubject.createDefault<List<HistoryItem>>(emptyList())
     private val _favouritesSubject: BehaviorSubject<List<FavoriteCategory>> = BehaviorSubject.createDefault(emptyList())
 
-    private val dataProviders: Map<FirestoreCollection, FirestoreDataProvider<*>> =
-        mapOf(CategorySectionType.bibleDiscoveries to BibleDiscoveriesProvider,
-            CategorySectionType.bibleFavoriteTexts to BibleFavoriteTextsProvider,
-            CategorySectionType.biblePrayerTexts to BiblePrayerTextsProvider,
-            CategorySectionType.prayerSubjects to PrayerSubjectsProvider,
-            CategorySectionType.prayerPeople to PrayerPeopleProvider
-        )
+    private val dataProviders: Map<FirestoreCollection, FirestoreDataProvider<*>> = CategorySectionType.values().map { it to  FirestoreDataProvider(it, it.modelClass)}.toMap()
 
     private val _userDataSubject: Observable<Optional<UserData>> =
         Observable.combineLatest(_userProfileSubject,
@@ -191,7 +185,7 @@ object FirestoreDataManager {
         return dataProviders[sectionType]
     }
 
-    abstract class FirestoreDataProvider<T : FirestoreModel>(private val firestoreCollection: FirestoreCollection, private val modelClass: Class<T>) {
+    open class FirestoreDataProvider<T : FirestoreModel>(private val firestoreCollection: FirestoreCollection, private val modelClass: Class<T>) {
         private val _dataSubject: BehaviorSubject<List<T>> by lazy {
             startSync()
             BehaviorSubject.createDefault(emptyList())
@@ -206,8 +200,6 @@ object FirestoreDataManager {
                         Logger.e(TAG, "error adding ${firestoreCollection.name} snapshotListener: ${e.message}")
                         return@addSnapshotListener
                     }
-
-                    Logger.e(firestoreCollection.name, "received new! ")
                     _dataSubject.onNext(
                         snapshot?.documents?.map { doc ->
                             doc.toObject(modelClass)?.withId(doc.id) as T
@@ -219,15 +211,4 @@ object FirestoreDataManager {
             return _dataSubject
         }
     }
-
-    object BibleDiscoveriesProvider : FirestoreDataProvider<BibleDiscovery>(CategorySectionType.bibleDiscoveries, BibleDiscovery::class.java)
-
-    object BibleFavoriteTextsProvider : FirestoreDataProvider<BibleFavoriteText>(CategorySectionType.bibleFavoriteTexts, BibleFavoriteText::class.java)
-
-    object BiblePrayerTextsProvider : FirestoreDataProvider<BiblePrayerText>(CategorySectionType.biblePrayerTexts, BiblePrayerText::class.java)
-
-    object PrayerSubjectsProvider : FirestoreDataProvider<PrayerSubject>(CategorySectionType.prayerSubjects, PrayerSubject::class.java)
-
-    object PrayerPeopleProvider : FirestoreDataProvider<PrayerPeople>(CategorySectionType.prayerPeople, PrayerPeople::class.java)
-
 }

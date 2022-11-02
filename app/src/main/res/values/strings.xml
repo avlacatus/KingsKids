@@ -219,7 +219,7 @@
     <string name="juniors">Juniors</string>
     <!-- Readings -->
     <string name="readingsLabel">Readings</string>
-    <string name="errorDownloading">An error occured while downloading the document. Please try again.</string>
+    <string name="errorDownloading">An error occurred while downloading the document. Please try again.</string>
     <!-- Bible category details -->
     <string name="bibleDiscoveriesTitle">Discovery of the Bible</string>
     <string name="bibleFavoriteTextsTitle">Favorite verses</string>
@@ -442,7 +442,7 @@
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
     <string name="quarterly">Quarterly</string>
-    <string name="annualy">Annualy</string>
+    <string name="annualy">Annually</string>
     <string name="parents">Parents</string>
     <string name="coach">Coach</string>
     <string name="generateReport">Generate Report</string>
@@ -452,9 +452,9 @@
     <string name="monthLabel">Month</string>
     <string name="reportForYear">Report for %s</string>
     <string name="noReportGeneratedYet">There is no report generated for this interval. Please generate the report first</string>
-    <string name="loadingReport">Loading the report...</string>
+    <string name="loadingReport">Loading the report…</string>
     <string name="generatingReport">Generating the report. This might take a while. At the end of process the report will be displayed.</string>
-    <string name="errorGeneratingReport">An error occured while generating the report. Please try again</string>
+    <string name="errorGeneratingReport">An error occurred while generating the report. Please try again</string>
     <string name="categoryLabel">Category</string>
     <string name="changesLabel">Changes</string>
 
@@ -465,6 +465,7 @@
     <string name="warning">Warning</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="somethimes">Rare</string>
 
 
     <!-- History -->
