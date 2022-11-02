@@ -32,9 +32,7 @@ class CategoriesFragment : BaseFragment<CategoriesContract.Presenter>(), Categor
     }
 
     override fun displaySections(groups: List<CategoryGroup>, favourites: List<Category>) {
-        Logger.e("CategoriesFragment", "displaySections called with ${groups.size}")
-        viewModel.items.clear()
-        viewModel.items.addAll(groups.withIndex().map { (index, group) ->
+        viewModel.items.update(groups.withIndex().map { (index, group) ->
             CategoryGroupViewModel(group) { presenter.onCategorySelected(it) }.apply {
                 showBottomMargin.set(index == groups.size - 1)
             }

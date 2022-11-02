@@ -23,20 +23,22 @@ object FirestoreDataManager {
     private val _userProfileSubject: BehaviorSubject<Optional<UserProfile>> = BehaviorSubject.createDefault(Optional.empty())
     private val _historySubject = BehaviorSubject.createDefault<List<HistoryItem>>(emptyList())
     private val _favouritesSubject: BehaviorSubject<List<FavoriteCategory>> = BehaviorSubject.createDefault(emptyList())
-    private val _bibleDiscoveriesSubject: BehaviorSubject<List<BibleDiscovery>> = BehaviorSubject.createDefault(emptyList())
-    private val _bibleFavoriteTextsSubject: BehaviorSubject<List<BibleFavoriteText>> = BehaviorSubject.createDefault(emptyList())
-    private val _biblePrayerTextsSubject: BehaviorSubject<List<BiblePrayerText>> = BehaviorSubject.createDefault(emptyList())
+
+    private val dataProviders: Map<FirestoreCollection, FirestoreDataProvider<*>> =
+        mapOf(CategorySectionType.bibleDiscoveries to BibleDiscoveriesProvider,
+            CategorySectionType.bibleFavoriteTexts to BibleFavoriteTextsProvider,
+            CategorySectionType.biblePrayerTexts to BiblePrayerTextsProvider,
+            CategorySectionType.prayerSubjects to PrayerSubjectsProvider,
+            CategorySectionType.prayerPeople to PrayerPeopleProvider
+        )
 
     private val _userDataSubject: Observable<Optional<UserData>> =
         Observable.combineLatest(_userProfileSubject,
             _favouritesSubject,
-            _historySubject,
-            _bibleDiscoveriesSubject,
-            _bibleFavoriteTextsSubject,
-            _biblePrayerTextsSubject
-        ) { userProfile, favourites, historyItems, bibleDiscoveries, bibleFavoriteTexts, biblePrayerTexts ->
+            _historySubject
+        ) { userProfile, favourites, historyItems ->
             if (userProfile.isPresent) {
-                Optional.of(UserData(userProfile.get(), favourites, historyItems, bibleDiscoveries, bibleFavoriteTexts, biblePrayerTexts))
+                Optional.of(UserData(userProfile.get(), favourites, historyItems))
             } else {
                 Optional.empty()
             }
@@ -70,7 +72,7 @@ object FirestoreDataManager {
                             snapshot?.documents?.map { doc ->
                                 doc.toObject(HistoryItem::class.java)?.withId(doc.id) as HistoryItem
                             } ?: emptyList()
-                            )
+                        )
                     }
                 )
 
@@ -89,49 +91,6 @@ object FirestoreDataManager {
                             } ?: emptyList())
                     })
 
-                addUserListenerRegistration(getFirestoreUserDocument()
-                    .collection(CategorySectionType.bibleDiscoveries.name)
-                    .addSnapshotListener { snapshot, e ->
-                        if (e != null) {
-                            Logger.e(TAG, "error adding  ${CategorySectionType.bibleDiscoveries} snapshotListener: ${e.message}")
-                            return@addSnapshotListener
-                        }
-
-                        _bibleDiscoveriesSubject.onNext(
-                            snapshot?.documents?.map { doc ->
-                                doc.toObject(BibleDiscovery::class.java)?.withId(doc.id) as BibleDiscovery
-                            } ?: emptyList())
-                    })
-
-                addUserListenerRegistration(getFirestoreUserDocument()
-                    .collection(CategorySectionType.bibleFavoriteTexts.name)
-                    .addSnapshotListener { snapshot, e ->
-                        if (e != null) {
-                            Logger.e(TAG, "error adding ${CategorySectionType.bibleFavoriteTexts} snapshotListener: ${e.message}")
-                            return@addSnapshotListener
-                        }
-
-                        _bibleFavoriteTextsSubject.onNext(
-                            snapshot?.documents?.map { doc ->
-                                doc.toObject(BibleFavoriteText::class.java)?.withId(doc.id) as BibleFavoriteText
-                            } ?: emptyList())
-                    })
-
-                addUserListenerRegistration(getFirestoreUserDocument()
-                    .collection(CategorySectionType.biblePrayerTexts.name)
-                    .addSnapshotListener { snapshot, e ->
-                        if (e != null) {
-                            Logger.e(TAG, "error adding ${CategorySectionType.biblePrayerTexts} snapshotListener: ${e.message}")
-                            return@addSnapshotListener
-                        }
-
-                        _biblePrayerTextsSubject.onNext(
-                            snapshot?.documents?.map { doc ->
-                                doc.toObject(BiblePrayerText::class.java)?.withId(doc.id) as BiblePrayerText
-                            } ?: emptyList())
-                    })
-
-
             } else {
                 _userProfileSubject.onNext(Optional.empty())
                 clearUserListenerRegistrations()
@@ -146,24 +105,25 @@ object FirestoreDataManager {
         get() = _userDataSubject.distinctUntilChanged()
 
     fun startDataSync() {
-        _categoriesListenerRegistration = FirebaseFirestore.getInstance().collection(FirestoreConstants.categoriesGroups.name).addSnapshotListener { snapshot, e ->
-            if (e != null) {
-                Logger.e(TAG, "error adding categories snapshotListener: ${e.message}")
-                return@addSnapshotListener
-            }
+        _categoriesListenerRegistration =
+            FirebaseFirestore.getInstance().collection(FirestoreConstants.categoriesGroups.name).addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Logger.e(TAG, "error adding categories snapshotListener: ${e.message}")
+                    return@addSnapshotListener
+                }
 
-            if (snapshot != null) {
-                _categoriesSubject.onNext(snapshot.documents.map { documentSnapshot ->
-                    return@map CategoryGroup(CategoryGroupType.getCategoryGroupById(documentSnapshot.getString("type") ?: ""),
-                        documentSnapshot.getLong("order") ?: 0,
-                        (documentSnapshot.get(FirestoreConstants.categories.name) as List<Map<String, String>>).map { map ->
-                            val categoryType = CategoryType.getCategoryById(map["type"] ?: "")
-                            Category(categoryType)
-                        })
-                }.sortedBy { categoryGroup -> categoryGroup.order })
+                if (snapshot != null) {
+                    _categoriesSubject.onNext(snapshot.documents.map { documentSnapshot ->
+                        return@map CategoryGroup(CategoryGroupType.getCategoryGroupById(documentSnapshot.getString("type") ?: ""),
+                            documentSnapshot.getLong("order") ?: 0,
+                            (documentSnapshot.get(FirestoreConstants.categories.name) as List<Map<String, String>>).map { map ->
+                                val categoryType = CategoryType.getCategoryById(map["type"] ?: "")
+                                Category(categoryType)
+                            })
+                    }.sortedBy { categoryGroup -> categoryGroup.order })
 
+                }
             }
-        }
 
         FirebaseAuth.getInstance().addAuthStateListener(authStateListener)
     }
@@ -226,4 +186,48 @@ object FirestoreDataManager {
     private fun clearUserListenerRegistrations() {
         userListenerRegistrations.forEach { it.remove() }
     }
+
+    fun getSectionDataProvider(sectionType: CategorySectionType) : FirestoreDataProvider<*>? {
+        return dataProviders[sectionType]
+    }
+
+    abstract class FirestoreDataProvider<T : FirestoreModel>(private val firestoreCollection: FirestoreCollection, private val modelClass: Class<T>) {
+        private val _dataSubject: BehaviorSubject<List<T>> by lazy {
+            startSync()
+            BehaviorSubject.createDefault(emptyList())
+
+        }
+
+        private fun startSync() {
+            addUserListenerRegistration(getFirestoreUserDocument()
+                .collection(firestoreCollection.name)
+                .addSnapshotListener { snapshot, e ->
+                    if (e != null) {
+                        Logger.e(TAG, "error adding ${firestoreCollection.name} snapshotListener: ${e.message}")
+                        return@addSnapshotListener
+                    }
+
+                    Logger.e(firestoreCollection.name, "received new! ")
+                    _dataSubject.onNext(
+                        snapshot?.documents?.map { doc ->
+                            doc.toObject(modelClass)?.withId(doc.id) as T
+                        } ?: emptyList())
+                })
+        }
+
+        fun getDataSubject(): Observable<List<T>> {
+            return _dataSubject
+        }
+    }
+
+    object BibleDiscoveriesProvider : FirestoreDataProvider<BibleDiscovery>(CategorySectionType.bibleDiscoveries, BibleDiscovery::class.java)
+
+    object BibleFavoriteTextsProvider : FirestoreDataProvider<BibleFavoriteText>(CategorySectionType.bibleFavoriteTexts, BibleFavoriteText::class.java)
+
+    object BiblePrayerTextsProvider : FirestoreDataProvider<BiblePrayerText>(CategorySectionType.biblePrayerTexts, BiblePrayerText::class.java)
+
+    object PrayerSubjectsProvider : FirestoreDataProvider<PrayerSubject>(CategorySectionType.prayerSubjects, PrayerSubject::class.java)
+
+    object PrayerPeopleProvider : FirestoreDataProvider<PrayerPeople>(CategorySectionType.prayerPeople, PrayerPeople::class.java)
+
 }

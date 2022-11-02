@@ -26,16 +26,12 @@ open class BaseActivity<T : BaseContract.Presenter?> : AppCompatActivity(), Base
 
     override fun onResume() {
         super.onResume()
-        if (getPresenter() != null) {
-            getPresenter()!!.onAttachView()
-        }
+        getPresenter()?.onAttachView()
     }
 
     override fun onPause() {
         super.onPause()
-        if (getPresenter() != null) {
-            getPresenter()!!.onDetachView()
-        }
+        getPresenter()?.onDetachView()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

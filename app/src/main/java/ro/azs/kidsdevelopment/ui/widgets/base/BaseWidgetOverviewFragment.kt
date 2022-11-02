@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.base.BaseFragment
 import ro.azs.kidsdevelopment.databinding.FragmentCategoryWidgetOverviewBinding
+import ro.azs.kidsdevelopment.models.CategorySectionType
 
-open class BaseWidgetOverviewFragment<T : BaseWidgetOverviewContract.Presenter?> : BaseFragment<T>(), BaseWidgetOverviewContract.View {
+abstract class BaseWidgetOverviewFragment<T : BaseWidgetOverviewContract.Presenter> : BaseFragment<T>(), BaseWidgetOverviewContract.View {
 
     private var _binding: FragmentCategoryWidgetOverviewBinding? = null
 
@@ -20,6 +22,14 @@ open class BaseWidgetOverviewFragment<T : BaseWidgetOverviewContract.Presenter?>
         _binding = FragmentCategoryWidgetOverviewBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.presenter = getPresenter()
+
+        getCategorySectionType().let { sectionType ->
+            viewModel.titleRes.set(sectionType.widgetTitleRes)
+            viewModel.hintRes.set(sectionType.widgetHintRes)
+            viewModel.emptyMessageRes.set(sectionType.widgetEmptyRes)
+            viewModel.labelAddRes.set(sectionType.widgetAddLabelRes)
+        }
+
         return binding.root
     }
 

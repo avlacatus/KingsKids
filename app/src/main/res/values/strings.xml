@@ -6,9 +6,9 @@
     <string name="title_history" tools:ignore="MissingTranslation">Istoric</string>
     <string name="title_user_details" tools:ignore="MissingTranslation">Profil</string>
 
+
     <string name="yesLabel">Yes</string>
     <string name="noLabel">No</string>
-    <string name="sometimesLabel">Sometimes</string>
     <string name="backButton">Back</string>
     <string name="done">Done</string>
     <string name="save">Save</string>
@@ -16,11 +16,13 @@
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="notSet">Not set</string>
+    <string name="all">All</string>
+    <string name="tryAgain">Try Again</string>
+    <string name="offlineMessage">You appear to be offline. Don\'t worry, the app will use and save locally the data for now. The data will sync with the server as soon as you will be back online.</string>
     <string name="discardChanges">This form has unsaved changes. Are you sure you want to discard them? Otherwise, please tap Save.</string>
     <string name="reviewForm">Review Form</string>
     <string name="discard">Discard</string>
-    <string name="notAuthenticatedMessage">You are not signed in. Please Sign In into the Profile section.</string>
-    <string name="notAuthenticatedHomeMessage">You are not signed in. Please Sign In to use all the app features.</string>
+    <string name="unautheticatedMessage">You are not signed in. Please Sign In into the Profile section.</string>
     <string name="notFound">No Translation</string>
     <string name="categories">Categories</string>
     <string name="favorites">Favorites</string>
@@ -68,36 +70,36 @@
     <string name="bodyHeader">With His help and with Him, I develop in the image of God!</string>
     <string name="healthHeader">Together with Jesus and like Him, I develop in His image.</string>
     <string name="sportHeader">With His help and with Him, I develop in the image of God!</string>
-    <string name="knowledgeHeader"></string>
-    <string name="hobbyHeader"></string>
-    <string name="mediaHeader"></string>
-    <string name="volunteeringHeader"></string>
-    <string name="dailyScheduleHeader"></string>
-    <string name="behaviorHeader"></string>
-    <string name="familyHeader"></string>
-    <string name="schoolHeader"></string>
-    <string name="churchHeader"></string>
-    <string name="personalFinancesHeader"></string>
-    <string name="loansHeader"></string>
-    <string name="debtsHeader"></string>
+    <string name="knowledgeHeader">With His help and with Him, I develop my knowledge.</string>
+    <string name="hobbyHeader">With His help and with Him, I develop my knowledge.</string>
+    <string name="mediaHeader">With His help and with Him, I develop my knowledge.</string>
+    <string name="volunteeringHeader">Following God\'s example, I share the presence of Jesus!</string>
+    <string name="dailyScheduleHeader">With His help and with Him, I use the time in the best way!</string>
+    <string name="behaviorHeader">With His help and with Him, I develop my behavior.</string>
+    <string name="familyHeader">With His help and with Him, I develop my behavior.</string>
+    <string name="schoolHeader">With His help and with Him, I develop my behavior.</string>
+    <string name="churchHeader">With His help and with Him, I develop my behavior.</string>
+    <string name="personalFinancesHeader">With His help and with Him, I share!</string>
+    <string name="loansHeader">With His help and with Him, I share!</string>
+    <string name="debtsHeader">With His help and with Him, I share!</string>
     <!-- category message -->
     <string name="bibleMessage">The thought: ”Your word is a lamp for my feet, a light on my path.” - (Ps. 119:105)</string>
     <string name="prayerMessage">The thought: ”Prayer is not a ”I want” list or a quick fix tool. Prayer is a time spent talking to God and listening to Him! - Kandy Elliot</string>
     <string name="bodyMessage">The thought: ”Our habits should be brought under the control of a mind that is itself under the control of God.” - Ellen White</string>
     <string name="healthMessage">The thought: ”Health depends largely on our daily habits. No drug or surgery can compensate for the consequences of unhealthy habits.” - George D. Pamplona-Roger</string>
     <string name="sportMessage">The thought: ”Our habits should be brought under the control of a mind that is itself under the control of God.” - Ellen White</string>
-    <string name="knowledgeMessage"></string>
-    <string name="hobbyMessage"></string>
-    <string name="mediaMessage"></string>
-    <string name="volunteeringMessage"></string>
-    <string name="dailyScheduleMessage"></string>
-    <string name="behaviorMessage"></string>
-    <string name="familyMessage"></string>
-    <string name="schoolMessage"></string>
-    <string name="churchMessage"></string>
-    <string name="personalFinancesMessage"></string>
-    <string name="loansMessage"></string>
-    <string name="debtsMessage"></string>
+    <string name="knowledgeMessage">The heart of the discerning acquires knowledge, for the ears of the wise seek it out. - (Prov. 18:15)</string>
+    <string name="hobbyMessage">Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things. (Philippians 4:8)</string>
+    <string name="mediaMessage">I will not look with approval on anything that is vile. (Psalms 101:3)</string>
+    <string name="volunteeringMessage">But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Galatians 5:22</string>
+    <string name="dailyScheduleMessage">Our success in acquiring knowledge and intellectual culture depends on the correct use of time. - (Ellen White)</string>
+    <string name="behaviorMessage">Our success in acquiring knowledge and intellectual culture depends on the correct use of time. - (Ellen White)</string>
+    <string name="familyMessage">Our success in acquiring knowledge and intellectual culture depends on the correct use of time. - (Ellen White)</string>
+    <string name="schoolMessage">Our success in acquiring knowledge and intellectual culture depends on the correct use of time. - (Ellen White)</string>
+    <string name="churchMessage">Our success in acquiring knowledge and intellectual culture depends on the correct use of time. - (Ellen White)</string>
+    <string name="personalFinancesMessage">I manage my finances. Money are a tool used by people to accomplish various trades.</string>
+    <string name="loansMessage">I manage my money, hence I record all the amounts I lend to others, but also the money I borrow, because I want to be fair about personal finances.</string>
+    <string name="debtsMessage">I manage my money, hence I record all the amounts I lend to others, but also the money I borrow, because I want to be fair about personal finances.</string>
     <!-- bible books -->
     <string name="genesis">Genesis</string>
     <string name="exodus">Exodus</string>
@@ -181,6 +183,43 @@
     <string name="water">Water</string>
     <string name="selfControl">Self Control</string>
     <string name="godTrust">God Trust</string>
+    <!-- hobbies types -->
+    <string name="playing">Playing</string>
+    <string name="singing">Singing</string>
+    <string name="drawing">Drawing</string>
+    <string name="shooting">Shooting</string>
+    <string name="reading">Reading</string>
+    <string name="other">Other</string>
+    <!-- media discoveries types -->
+    <string name="TVshow">TV Show</string>
+    <string name="internet">Internet</string>
+    <!-- good deeds types -->
+    <string name="loyalty">Loyalty</string>
+    <string name="kindness">Kindness</string>
+    <!-- useful action types -->
+    <string name="colleagues">Colleagues</string>
+    <string name="friends">Friends</string>
+    <!-- finance types -->
+    <string name="earning">Earnings</string>
+    <string name="gift">Gifts</string>
+    <string name="tihte">Tihte</string>
+    <string name="givings">Givings</string>
+    <string name="spendings">Spendings</string>
+    <string name="savings">Savings</string>
+    <!-- finance currency types -->
+    <string name="RON">RON</string>
+    <string name="EUR">EURO</string>
+    <string name="USD">USD</string>
+    <!-- history event types -->
+    <string name="deleted">Deleted</string>
+    <string name="updated">Updated</string>
+    <string name="created">Created</string>
+    <!-- readings types -->
+    <string name="primary">Primary</string>
+    <string name="juniors">Juniors</string>
+    <!-- Readings -->
+    <string name="readingsLabel">Readings</string>
+    <string name="errorDownloading">An error occured while downloading the document. Please try again.</string>
     <!-- Bible category details -->
     <string name="bibleDiscoveriesTitle">Discovery of the Bible</string>
     <string name="bibleFavoriteTextsTitle">Favorite verses</string>
@@ -190,7 +229,21 @@
     <string name="bodyRoutinesTitle">Body Routines</string>
     <string name="healthMetricsTitle">Health Metrics</string>
     <string name="healthDiscoveriesTitle">Health Discoveries</string>
-    <string name="bibleDiscoveriesHint">I have read from the Bible</string>
+    <string name="sportPracticeTitle">Sport practice</string>
+    <string name="knowledgeFindingsTitle">Findings</string>
+    <string name="hobbiesTitle">Hobbies</string>
+    <string name="mediaDiscoveriesTitle">Media Discoveries</string>
+    <string name="goodDeedsTitle">Good Deeds</string>
+    <string name="dailyScheduleTitle">Daily schedule</string>
+    <string name="pleasantActionsTitle">Pleasant Actions</string>
+    <string name="usefulActionsTitle">Useful Actions</string>
+    <string name="familyTasksTitle">Family Tasks</string>
+    <string name="schoolTasksTitle">School Tasks</string>
+    <string name="churchTasksTitle">Church Tasks</string>
+    <string name="financesTitle">Finances</string>
+    <string name="borrowsTitle">Borrows</string>
+    <string name="lendsTitle">Lends</string>
+    <string name="bibleDiscoveriesHint">I have red from the Bible</string>
     <string name="bibleFavoriteTextsHint">My favorite verses from the Bible are</string>
     <string name="biblePrayerTextsHint">The Bible teaches me how to pray</string>
     <string name="prayerSubjectsHint">Prayer subjects important for me</string>
@@ -198,56 +251,142 @@
     <string name="bodyRoutinesHint">Daily I take care of my body</string>
     <string name="healthMetricsHint">I verify my health metrics</string>
     <string name="healthDiscoveriesHint">I want to find out more about health reading many books</string>
+    <string name="sportPracticeHint">I practice the following sports</string>
+    <string name="knowledgeFindingsHint">In school, church and family I discovered</string>
+    <string name="hobbiesHint">I have the following hobbies</string>
+    <string name="mediaDiscoveriesHint">From educative TV shows or internet research I discovered</string>
+    <string name="goodDeedsHint">I make good deeds</string>
+    <string name="dailyScheduleHint">My daily schedule contains:</string>
+    <string name="pleasantActionsHint">What I like to do</string>
+    <string name="usefulActionsHint">What I like to do and is useful</string>
+    <string name="familyTasksHint">My tasks in family</string>
+    <string name="schoolTasksHint">My tasks at school</string>
+    <string name="churchTasksHint">My tasks at church</string>
+    <string name="financesHint">I manange my money</string>
+    <string name="borrowsHint">I borrow money from others</string>
+    <string name="lendsHint">I lend money to others</string>
     <string name="addNew">Add New</string>
     <string name="seeAll">See All</string>
     <!-- Bible Discoveries -->
-    <string name="addNewDiscovery">+ Add New Discovery</string>
+    <string name="addNewDiscovery">Add New Discovery</string>
     <string name="addDiscovery">Add discovery</string>
     <string name="editDiscovery">Edit discovery</string>
     <string name="deleteDiscoveryMessage">Are you sure you want to delete this Bible discovery?</string>
     <string name="noDiscoveriesMessage">You don\'t have any discoveries saved yet. Tap Add New to record new discoveries.</string>
     <!-- Favorite Text -->
-    <string name="addNewFavoriteText">+ Add New Favorite Text</string>
+    <string name="addNewFavoriteText">Add New Favorite Text</string>
     <string name="addFavoriteText">Add favorite text</string>
     <string name="editFavoriteText">Edit favorite text</string>
     <string name="deleteFavoriteTextMessage">Are you sure you want to delete this Bible favorite text?</string>
     <string name="noFavoriteTextsMessage">You don\'t have any favorite texts saved yet. Tap Add New to record new favorite text.</string>
     <!-- Prayer Text -->
-    <string name="addNewPrayerText">+ Add New Prayer Text</string>
+    <string name="addNewPrayerText">Add New Prayer Text</string>
     <string name="addPrayerText">Add prayer text</string>
     <string name="editPrayerText">Edit prayer text</string>
     <string name="deletePrayerTextMessage">Are you sure you want to delete this Bible prayer text?</string>
     <string name="noPrayerTextsMessage">You don\'t have any prayer texts saved yet. Tap Add New to record new prayer text.</string>
     <!-- Prayer Subject -->
-    <string name="addNewPrayerSubject">+ Add New Prayer Subject</string>
+    <string name="addNewPrayerSubject">Add New Prayer Subject</string>
     <string name="addPrayerSubject">Add subject</string>
     <string name="editPrayerSubject">Edit prayer subject</string>
     <string name="deletePrayerSubjectMessage">Are you sure you want to delete this prayer subject?</string>
     <string name="noPrayerSubjectsMessage">You don\'t have any prayer subjects saved yet. Tap Add New to record new prayer subject.</string>
     <!-- Prayer People -->
-    <string name="addNewPrayerPeople">+ Add new person</string>
+    <string name="addNewPrayerPeople">Add new person</string>
     <string name="addPrayerPeople">Add new person</string>
     <string name="editPrayerPeople">Edit person</string>
     <string name="deletePrayerPeopleMessage">Are you sure you want to delete this prayer person?</string>
     <string name="noPrayerPeopleMessage">You don\'t have any prayer persons saved yet. Tap Add New to record new prayer person.</string>
     <!-- Body Routines -->
-    <string name="addNewBodyRoutine">+ Add new routine</string>
+    <string name="addNewBodyRoutine">Add new routine</string>
     <string name="addBodyRoutine">Add new routine</string>
     <string name="editBodyRoutine">Edit routine</string>
     <string name="deleteBodyRoutineMessage">Are you sure you want to delete this body routine?</string>
     <string name="noBodyRoutinesMessage">You don\'t have any body routines saved yet. Tap Add New to record new routine.</string>
     <!-- Health Metrics -->
-    <string name="addNewHealthMetrics">+ Add new metrics</string>
+    <string name="addNewHealthMetrics">Add new metrics</string>
     <string name="addHealthMetrics">Add new metrics</string>
     <string name="editHealthMetrics">Edit metrics</string>
     <string name="deleteHealthMetricsMessage">Are you sure you want to delete this health metrics?</string>
     <string name="noHealthMetricMessage">You don\'t have any health metrics saved yet. Tap Add New to record new metrics.</string>
     <!-- Health Discoveries -->
-    <string name="addNewHealthDiscovery">+ Add discovery</string>
+    <string name="addNewHealthDiscovery">Add discovery</string>
     <string name="addHealthDiscovery">Add discovery</string>
     <string name="editHealthDiscovery">Edit discovery</string>
     <string name="deleteHealthDiscoveryMessage">Are you sure you want to delete this health discovery?</string>
     <string name="noHealthDiscoveriesMessage">You don\'t have any health discoveries saved yet. Tap Add New to record new health discoveries.</string>
+    <!-- Sport Practice -->
+    <string name="addNewSportPractice">Add sport practice</string>
+    <string name="addSportPractice">Add sport practice</string>
+    <string name="editSportPractice">Edit sport practice</string>
+    <string name="deleteSportPracticeMessage">Are you sure you want to delete this sport practice?</string>
+    <string name="noSportPracticeMessage">You don\'t have any sport practice saved yet. Tap Add New to record new sport practice.</string>
+    <!-- Knowledge Findings -->
+    <string name="addNewFinding">Add finding</string>
+    <string name="addFinding">Add finding</string>
+    <string name="editFinding">Edit finding</string>
+    <string name="deleteFindingMessage">Are you sure you want to delete this finding?</string>
+    <string name="noFindingMessage">You don\'t have any findings saved yet. Tap Add New to record new findings.</string>
+    <!-- Knowledge Hobbies -->
+    <string name="addNewHobby">Add hobby</string>
+    <string name="addHobby">Add hobby</string>
+    <string name="editHobby">Edit hobby</string>
+    <string name="deleteHobbyMessage">Are you sure you want to delete this hobby?</string>
+    <string name="noHobbiesMessage">You don\'t have any hobbies saved yet. Tap Add New to record new hobby.</string>
+    <!-- Media Discoveries -->
+    <string name="addNewMediaDiscovery">Add discovery</string>
+    <string name="addMediaDiscovery">Add discovery</string>
+    <string name="editMediaDiscovery">Edit discovery</string>
+    <string name="deleteMediaDiscoveryMessage">Are you sure you want to delete this media discovery?</string>
+    <string name="noMediaDiscoveriesMessage">You don\'t have any media discoveries saved yet. Tap Add New to record new media discoveries.</string>
+    <!-- Good Deeds -->
+    <string name="addNewGoodDeed">Add good deed</string>
+    <string name="addGoodDeed">Add good deed</string>
+    <string name="editGoodDeed">Edit good deed</string>
+    <string name="deleteGoodDeedMessage">Are you sure you want to delete this good deed?</string>
+    <string name="noGoodDeedsMessage">You don\'t have any good deeds saved yet. Tap Add New to record new good deeds.</string>
+    <!-- DailySchedule -->
+    <string name="addNewDailySchedule">Add daily schedule</string>
+    <string name="addDailySchedule">Add daily schedule</string>
+    <string name="editDailySchedule">Edit daily schedule</string>
+    <string name="deleteDailyScheduleMessage">Are you sure you want to delete this daily schedule?</string>
+    <string name="noDailyScheduleMessage">You don\'t have any daily schedule saved yet. Tap Add New to add new daily schedule.</string>
+    <!-- Pleasant Actions -->
+    <string name="addNewPleasantAction">Add pleasant action</string>
+    <string name="addPleasantAction">Add pleasant action</string>
+    <string name="editPleasantAction">Edit pleasant action</string>
+    <string name="deletePleasantActionMessage">Are you sure you want to delete this pleasant action?</string>
+    <string name="noPleasantActionMessage">You don\'t have any pleasant actions saved yet. Tap Add New to add new pleasant action.</string>
+    <!-- Useful Actions -->
+    <string name="addNewUsefulAction">Add useful action</string>
+    <string name="addUsefulAction">Add useful action</string>
+    <string name="editUsefulAction">Edit useful action</string>
+    <string name="deleteUsefulActionMessage">Are you sure you want to delete this useful action?</string>
+    <string name="noUsefulActionMessage">You don\'t have any useful actions saved yet. Tap Add New to add new useful action.</string>
+    <!-- Tasks -->
+    <string name="addNewTask">Add task</string>
+    <string name="addTask">Add task</string>
+    <string name="editTask">Edit task</string>
+    <string name="deleteTaskMessage">Are you sure you want to delete this task?</string>
+    <string name="noTasksMessage">You don\'t have any tasks saved yet. Tap Add New to add new task.</string>
+    <!-- Finances -->
+    <string name="addNewFinance">Add finance</string>
+    <string name="addFinance">Add finance</string>
+    <string name="editFinance">Edit finance</string>
+    <string name="deleteFinanceMessage">Are you sure you want to delete this finance?</string>
+    <string name="noFinancesMessage">You don\'t have any finances saved yet. Tap Add New to add new finance.</string>
+    <!-- Borrows -->
+    <string name="addNewBorrow">Add borrow</string>
+    <string name="addBorrow">Add borrow</string>
+    <string name="editBorrow">Edit borrow</string>
+    <string name="deleteBorrowMessage">Are you sure you want to delete this borrow?</string>
+    <string name="noBorrowsMessage">You don\'t have any borrows saved yet. Tap Add New to add new borrow.</string>
+    <!-- Lends -->
+    <string name="addNewLend">Add lend</string>
+    <string name="addLend">Add lend</string>
+    <string name="editLend">Edit lend</string>
+    <string name="deleteLendMessage">Are you sure you want to delete this lend?</string>
+    <string name="noLendsMessage">You don\'t have any lends saved yet. Tap Add New to add new lend.</string>
     <!-- Favorites -->
     <string name="emptyFavoritesMessage">You don\'t have any favorite categories. You can add them by tapping on the star from category details screen.</string>
     <!-- Form -->
@@ -279,6 +418,26 @@
     <string name="healthTypeLabel">Health through</string>
     <string name="authorLabel">Author</string>
     <string name="bookNameLabel">Book Name</string>
+    <string name="sportLabel">Sport practice</string>
+    <string name="locationLabel">Location</string>
+    <string name="whereLabel">Where</string>
+    <string name="hobbyTypeLabel">Hobby type</string>
+    <string name="hobbyTypeDetailsLabel">Hobby type details</string>
+    <string name="hobbyDetailsLabel">Hobby details</string>
+    <string name="mediaTypeLabel">Discovery through</string>
+    <string name="goodDeedTypeLabel">Good Deed Type</string>
+    <string name="godLabel">God (min)</string>
+    <string name="schoolLabel2">School (min)</string>
+    <string name="familyLabel">Family (min)</string>
+    <string name="friendsLabel">Friends (min)</string>
+    <string name="pleasantActionLabel">Pleasant Action</string>
+    <string name="usefulActionLabel">Useful Action</string>
+    <string name="usefulActionTypeLabel">Useful Action for</string>
+    <string name="taskLabel">Task</string>
+    <string name="financeTypeLabel">Finance Type</string>
+    <string name="amountLabel">Amount</string>
+    <string name="currencyLabel">Currency</string>
+    <string name="rareLabel">Rare</string>
     <!-- Report -->
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
@@ -287,8 +446,29 @@
     <string name="parents">Parents</string>
     <string name="coach">Coach</string>
     <string name="generateReport">Generate Report</string>
+    <string name="viewReport">View Report</string>
+    <string name="reports">Reports</string>
+    <string name="quarterLabel">Quarter</string>
+    <string name="monthLabel">Month</string>
+    <string name="reportForYear">Report for %s</string>
+    <string name="noReportGeneratedYet">There is no report generated for this interval. Please generate the report first</string>
+    <string name="loadingReport">Loading the report...</string>
+    <string name="generatingReport">Generating the report. This might take a while. At the end of process the report will be displayed.</string>
+    <string name="errorGeneratingReport">An error occured while generating the report. Please try again</string>
+    <string name="categoryLabel">Category</string>
+    <string name="changesLabel">Changes</string>
+
+
+    <string name="sometimesLabel">Sometimes</string>
+    <string name="notAuthenticatedMessage">You are not signed in. Please Sign In into the Profile section.</string>
+    <string name="notAuthenticatedHomeMessage">You are not signed in. Please Sign In to use all the app features.</string>
     <string name="warning">Warning</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+
+    <!-- History -->
+    <string name="oneItemFromSection">%1$s something from %2$s section.</string>
+    <string name="oneItemInSection">%1$s something into %2$s section</string>
+    <string name="historyListEmptyMessage">You have no history record yet.</string>
 </resources>

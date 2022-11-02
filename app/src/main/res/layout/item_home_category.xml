@@ -42,7 +42,7 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
                 android:src="@{viewModel.category.type.iconRes}"
-                tools:src="@drawable/bible_new" />
+                tools:src="@drawable/bible" />
 
             <LinearLayout
                 android:layout_width="match_parent"

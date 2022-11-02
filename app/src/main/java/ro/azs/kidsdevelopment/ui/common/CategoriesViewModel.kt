@@ -6,11 +6,14 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ObservableList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DiffUtil
 import me.tatarka.bindingcollectionadapter2.ItemBinding
+import me.tatarka.bindingcollectionadapter2.collections.DiffObservableList
 import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.models.Category
 import ro.azs.kidsdevelopment.models.CategoryGroup
+import ro.azs.kidsdevelopment.ui.history.HistoryEntryViewModel
 import java.util.function.Consumer
 
 
@@ -23,11 +26,22 @@ public class CategoriesViewModelFactory(private val listener: Consumer<Category>
 
 public class CategoriesViewModel(val listener: Consumer<Category>) : ViewModel() {
 
-    val items: ObservableList<CategoryGroupViewModel> = ObservableArrayList()
+    private val diffCallback: DiffUtil.ItemCallback<CategoryGroupViewModel> = object : DiffUtil.ItemCallback<CategoryGroupViewModel>() {
+        override fun areItemsTheSame(oldItem: CategoryGroupViewModel, newItem: CategoryGroupViewModel): Boolean {
+            return oldItem.categoryGroup == newItem.categoryGroup
+        }
+
+        override fun areContentsTheSame(oldItem: CategoryGroupViewModel, newItem: CategoryGroupViewModel): Boolean {
+            return oldItem.items.containsAll(newItem.items) && newItem.items.containsAll(oldItem.items)
+        }
+    }
+    val items: DiffObservableList<CategoryGroupViewModel> = DiffObservableList(diffCallback)
 
     val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: CategoryGroupViewModel? ->
         itemBinding[BR.viewModel] = R.layout.item_home_category_group
     }
+
+    val emptyMessage = ObservableField("")
 }
 
 public class CategoryGroupViewModel(val categoryGroup: CategoryGroup, val listener: Consumer<Category>) {

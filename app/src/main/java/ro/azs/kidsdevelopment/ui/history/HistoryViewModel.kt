@@ -1,29 +1,29 @@
 package ro.azs.kidsdevelopment.ui.history
 
-import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.DiffUtil
 import me.tatarka.bindingcollectionadapter2.ItemBinding
+import me.tatarka.bindingcollectionadapter2.collections.DiffObservableList
 import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
-import ro.azs.kidsdevelopment.models.BibleDiscovery
-import ro.azs.kidsdevelopment.models.BibleFavoriteText
-import ro.azs.kidsdevelopment.models.BiblePrayerText
 
 class HistoryViewModel : ViewModel() {
 
-    val items = ObservableArrayList<Any>()
+    val message = ObservableField("")
 
-    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, position: Int, item: Any? ->
-        if (item is BibleDiscovery) {
-            itemBinding[BR.viewModel] = R.layout.item_list_bible_discovery
-        } else if (item is BibleFavoriteText) {
-            itemBinding[BR.viewModel] = R.layout.item_list_bible_favorite_text
-        } else if (item is BiblePrayerText) {
-            itemBinding[BR.viewModel] = R.layout.item_list_bible_prayer_text
+    private val diffCallback: DiffUtil.ItemCallback<HistoryEntryViewModel> = object : DiffUtil.ItemCallback<HistoryEntryViewModel>() {
+        override fun areItemsTheSame(oldItem: HistoryEntryViewModel, newItem: HistoryEntryViewModel): Boolean {
+            return oldItem.timestamp == newItem.timestamp
         }
+
+        override fun areContentsTheSame(oldItem: HistoryEntryViewModel, newItem: HistoryEntryViewModel): Boolean {
+            return oldItem.description == newItem.description
+        }
+    }
+    val items = DiffObservableList(diffCallback)
+
+    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, _: HistoryEntryViewModel? ->
+        itemBinding[BR.viewModel] = R.layout.item_list_history_entry
     }
 }

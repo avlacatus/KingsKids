@@ -185,6 +185,20 @@
     <string name="bodyRoutinesTitle">Rutine zilnice</string>
     <string name="healthMetricsTitle">Valori de sănătate</string>
     <string name="healthDiscoveriesTitle">Descoperiri despre sănătate</string>
+    <string name="sportPracticeTitle">Sporturi practicate</string>
+    <string name="knowledgeFindingsTitle">Ce am găsit</string>
+    <string name="hobbiesTitle">Hobby-uri</string>
+    <string name="mediaDiscoveriesTitle">Descoperiri media</string>
+    <string name="goodDeedsTitle">Fapte bune</string>
+    <string name="dailyScheduleTitle">Program zilnic</string>
+    <string name="pleasantActionsTitle">Acțiuni plăcute</string>
+    <string name="usefulActionsTitle">Acțiuni utile</string>
+    <string name="familyTasksTitle">Sarcini în familie</string>
+    <string name="schoolTasksTitle">Sarcini la școală</string>
+    <string name="churchTasksTitle">Sarcini la biserică</string>
+    <string name="financesTitle">Finanțe</string>
+    <string name="borrowsTitle">Împrumuturi</string>
+    <string name="lendsTitle">Împrumuturi</string>
     <string name="bibleDiscoveriesHint">Am citit următoarele din Biblie</string>
     <string name="bibleFavoriteTextsHint">Versetele mele preferate sunt</string>
     <string name="biblePrayerTextsHint">Biblia mă învață cum să mă rog</string>
@@ -193,6 +207,20 @@
     <string name="bodyRoutinesHint">Am grijă de corpul meu zilnic</string>
     <string name="healthMetricsHint">Îmi verific valorile sănătății</string>
     <string name="healthDiscoveriesHint">Doresc să aflu mai multe despre sănătate citind cărti</string>
+    <string name="sportPracticeHint">Practic cu plăcere următoarele sporturi</string>
+    <string name="knowledgeFindingsHint">La biserică, școală și în familie am descoperit</string>
+    <string name="hobbiesHint">Am următoarele hobby-uri</string>
+    <string name="mediaDiscoveriesHint">Am descoperit in emisiuni TV educative sau pe internet</string>
+    <string name="goodDeedsHint">Fac fapte bune</string>
+    <string name="dailyScheduleHint">Programul meu zilnic include:</string>
+    <string name="pleasantActionsHint">Ce îmi place să fac</string>
+    <string name="usefulActionsHint">Ce îmi place să fac și este util</string>
+    <string name="familyTasksHint">Participarea mea în viața de familie</string>
+    <string name="schoolTasksHint">Participarea mea în viața clasei</string>
+    <string name="churchTasksHint">Participarea mea în viața bisericii</string>
+    <string name="financesHint">Îmi gestionez banii</string>
+    <string name="borrowsHint">M-am împrumutat de bani</string>
+    <string name="lendsHint">Am împrumutat bani altora</string>
     <string name="addNew">Adaugă</string>
     <string name="seeAll">Vezi toate</string>
     <!-- Bible Discoveries -->
@@ -243,6 +271,131 @@
     <string name="editHealthDiscovery">Editează descoperire</string>
     <string name="deleteHealthDiscoveryMessage">Ești sigur că vrei să ștergi această descoperire despre sănătate?</string>
     <string name="noHealthDiscoveriesMessage">Nu ai nici o descoperire salvată încă. Apasă pe Adaugă pentru a salva o nouă descoperire despre sănătate.</string>
+    <string name="warning">Atenție</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+
+    <!-- history event types -->
+    <string name="deleted">A fost șters</string>
+    <string name="updated">A fost actualizat</string>
+    <string name="created">A fost creat</string>
+
+    <!-- History -->
+    <string name="oneItemFromSection">%1$s ceva din secțiunea %2$s.</string>
+    <string name="oneItemInSection">%1$s ceva în secțiunea %2$s.</string>
+    <string name="historyListEmptyMessage">Nu există nici o înregistrare.</string>
+
+
+
+    <string name="all">Toate</string>
+    <string name="tryAgain">Reîncercați</string>
+    <string name="offlineMessage">Ești ofline. Nu te panica, aplicația va accesa și salva datele local. Sincronizarea datelor se va efectua când conexiunea va fi restabilită.</string>
+    <string name="unautheticatedMessage">Nu ești autetificat. Autentifică-te în secțiunea de Profil.</string>
+    <!-- hobbies types -->
+    <string name="playing">Cântat (instrument)</string>
+    <string name="singing">Cântat (vocal)</string>
+    <string name="drawing">Desenat</string>
+    <string name="shooting">Pozat</string>
+    <string name="reading">Citit</string>
+    <string name="other">Altul</string>
+    <!-- media discoveries types -->
+    <string name="TVshow">Emisiune TV</string>
+    <string name="internet">Internet</string>
+    <!-- good deeds types -->
+    <string name="loyalty">Loialitate</string>
+    <string name="kindness">Amabilitate</string>
+    <!-- useful action types -->
+    <string name="colleagues">Colegi</string>
+    <string name="friends">Prieteni</string>
+    <!-- finance types -->
+    <string name="earning">Câștiguri</string>
+    <string name="gift">Daruri</string>
+    <string name="tihte">Zeciuială</string>
+    <string name="givings">Daruri</string>
+    <string name="spendings">Cheltuieli</string>
+    <string name="savings">Economii</string>
+    <!-- finance currency types -->
+    <string name="RON">RON</string>
+    <string name="EUR">EURO</string>
+    <string name="USD">USD</string>
+    <!-- readings types -->
+    <string name="primary">Primara</string>
+    <string name="juniors">Juniori</string>
+    <!-- Readings -->
+    <string name="readingsLabel">De citit</string>
+    <string name="errorDownloading">A apărut o eroare la descărcarea documentului. Mai încercați o o data.</string>
+    <!-- Sport Practice -->
+    <string name="addNewSportPractice">Adaugă sport practicat</string>
+    <string name="addSportPractice">Adaugă sport practicat</string>
+    <string name="editSportPractice">Editează sport practicat</string>
+    <string name="deleteSportPracticeMessage">Ești sigur că vrei să ștergi aceast sport practicat?</string>
+    <string name="noSportPracticeMessage">Nu ai nici un sport practicat salvat. Apasă pe Adaugă pentru a salva un sport practicat.</string>
+    <!-- Knowledge Findings -->
+    <string name="addNewFinding">Adaugă descoperire</string>
+    <string name="addFinding">Adaugă descoperire</string>
+    <string name="editFinding">Edit descoperire</string>
+    <string name="deleteFindingMessage">Ești sigur că vrei să ștergi această descoperire?</string>
+    <string name="noFindingMessage">Nu ai nici descoperire salvată. Apasă pe Adaugă pentru a salva una.</string>
+    <!-- Knowledge Hobbies -->
+    <string name="addNewHobby">Adaugă hobby</string>
+    <string name="addHobby">Adaugă hobby</string>
+    <string name="editHobby">Editează hobby</string>
+    <string name="deleteHobbyMessage">Ești sigur că vrei să ștergi aceast hobby?</string>
+    <string name="noHobbiesMessage">Nu ai nici un hobby salvată. Apasă pe Adaugă pentru a salva unul.</string>
+    <!-- Media Discoveries -->
+    <string name="addNewMediaDiscovery">Adaugă descoperire</string>
+    <string name="addMediaDiscovery">Adaugă descoperire</string>
+    <string name="editMediaDiscovery">Editează descoperire</string>
+    <string name="deleteMediaDiscoveryMessage">Ești sigur că vrei să ștergi această descoperire din media?</string>
+    <string name="noMediaDiscoveriesMessage">Nu ai nici o descoperire salvată încă. Apasă pe Adaugă pentru a salva o nouă descoperire din media.</string>
+    <!-- Good Deeds -->
+    <string name="addNewGoodDeed">Adaugă faptă bună</string>
+    <string name="addGoodDeed">Adaugă faptă bună</string>
+    <string name="editGoodDeed">Editează faptă bună</string>
+    <string name="deleteGoodDeedMessage">Ești sigur că vrei să ștergi această faptă bună?</string>
+    <string name="noGoodDeedsMessage">Nu ai nici o faptă bună salvată încă. Apasă pe Adaugă pentru a salva o nouă faptă bună.</string>
+    <!-- DailySchedule -->
+    <string name="addNewDailySchedule">Adaugă program zilnic</string>
+    <string name="addDailySchedule">Adaugă program zilnic</string>
+    <string name="editDailySchedule">Editează program zilnic</string>
+    <string name="deleteDailyScheduleMessage">Ești sigur că vrei să ștergi aceast program zilnic?</string>
+    <string name="noDailyScheduleMessage">Nu ai nici un program salvat încă. Apasă pe Adaugă pentru a salva un program zilnic.</string>
+    <!-- Pleasant Actions -->
+    <string name="addNewPleasantAction">Adaugă acțiune plăcută</string>
+    <string name="addPleasantAction">Adaugă acțiune plăcută</string>
+    <string name="editPleasantAction">Editează acțiune plăcută</string>
+    <string name="deletePleasantActionMessage">Ești sigur că vrei să ștergi această acțiune plăcută?</string>
+    <string name="noPleasantActionMessage">Nu ai nici o acțiune plăcută salvată încă. Apasă pe Adaugă pentru a salva o acțiune plăcută.</string>
+    <!-- Useful Actions -->
+    <string name="addNewUsefulAction">Adaugă acțiune utilă</string>
+    <string name="addUsefulAction">Adaugă acțiune utilă</string>
+    <string name="editUsefulAction">Editează acțiune utilă</string>
+    <string name="deleteUsefulActionMessage">Ești sigur că vrei să ștergi această acțiune utilă?</string>
+    <string name="noUsefulActionMessage">Nu ai nici o acțiune utilă salvată încă. Apasă pe Adaugă pentru a salva o acțiune plăcută și utilă.</string>
+    <!-- Tasks -->
+    <string name="addNewTask">Adaugă sarcină</string>
+    <string name="addTask">Adaugă sarcină</string>
+    <string name="editTask">Editează sarcină</string>
+    <string name="deleteTaskMessage">Ești sigur că vrei să ștergi această sarcină?</string>
+    <string name="noTasksMessage">Nu ai nici o sarcină salvată încă. Apasă pe Adaugă pentru a salva o nouă sarcină.</string>
+    <!-- Finances -->
+    <string name="addNewFinance">Adaugă finanță</string>
+    <string name="addFinance">Adaugă finanță</string>
+    <string name="editFinance">Editează finanță</string>
+    <string name="deleteFinanceMessage">Ești sigur că vrei să ștergi această finanță?</string>
+    <string name="noFinancesMessage">Nu ai nici o finanță salvată încă. Apasă pe Adaugă pentru a salva o nouă finanță.</string>
+    <!-- Borrows -->
+    <string name="addNewBorrow">Adaugă împrumut</string>
+    <string name="addBorrow">Adaugă împrumut</string>
+    <string name="editBorrow">Editează împrumut</string>
+    <string name="deleteBorrowMessage">Ești sigur că vrei să ștergi aceast împrumut?</string>
+    <string name="noBorrowsMessage">Nu ai nici un împrumut salvat încă. Apasă pe Adaugă pentru a salva un nou împrumut.</string>
+    <!-- Lends -->
+    <string name="addNewLend">Adaugă împrumut</string>
+    <string name="addLend">Adaugă împrumut</string>
+    <string name="editLend">Editează împrumut</string>
+    <string name="deleteLendMessage">Ești sigur că vrei să ștergi aceast împrumut?</string>
+    <string name="noLendsMessage">Nu ai nici un împrumut salvat încă. Apasă pe Adaugă pentru a salva un nou împrumut.</string>
     <!-- Favorites -->
     <string name="emptyFavoritesMessage">Nu ai nici o categorie favorită. Poți adăuga favorite apăsând pe steluța din ecranul de detalii al categoriei.</string>
     <!-- Form -->
@@ -274,6 +427,26 @@
     <string name="healthTypeLabel">Sănătate prin</string>
     <string name="authorLabel">Autor</string>
     <string name="bookNameLabel">Nume carte</string>
+    <string name="sportLabel">Sportul practicat</string>
+    <string name="locationLabel">Locatia</string>
+    <string name="whereLabel">Unde</string>
+    <string name="hobbyTypeLabel">Tipul hobby-ului</string>
+    <string name="hobbyTypeDetailsLabel">Detalii tipul hobby</string>
+    <string name="hobbyDetailsLabel">Detalii hobby</string>
+    <string name="mediaTypeLabel">Descoperire prin</string>
+    <string name="goodDeedTypeLabel">Tip de faptă bună</string>
+    <string name="godLabel">Dumnezeu (min)</string>
+    <string name="familyLabel">Familie (min)</string>
+    <string name="schoolLabel2">Școală (min)</string>
+    <string name="friendsLabel">Prieteni (min)</string>
+    <string name="pleasantActionLabel">Acțiune plăcută</string>
+    <string name="usefulActionLabel">Acțiune utilă</string>
+    <string name="usefulActionTypeLabel">Acțiune utilă pentru</string>
+    <string name="taskLabel">Sarcină</string>
+    <string name="financeTypeLabel">Tipul de finanță</string>
+    <string name="amountLabel">Valoarea</string>
+    <string name="currencyLabel">Valuta</string>
+    <string name="rareLabel">Rar</string>
     <!-- Report -->
     <string name="weekly">Saptamanal</string>
     <string name="monthly">Lunar</string>
@@ -281,9 +454,16 @@
     <string name="annualy">Anual</string>
     <string name="parents">Parinti</string>
     <string name="coach">Mentor</string>
-    <string name="generateReport">Genereaza Raport</string>
-    <string name="warning">Atenție</string>
-    <string name="yes">Da</string>
-    <string name="no">Nu</string>
-
+    <string name="generateReport">Generează Raport</string>
+    <string name="viewReport">Vizualizare Raport</string>
+    <string name="reports">Rapoarte</string>
+    <string name="quarterLabel">Trimestrul</string>
+    <string name="monthLabel">Luna</string>
+    <string name="reportForYear">Raport pentru %s</string>
+    <string name="noReportGeneratedYet">Nu a fost generat nici un raport pentru intervalul selectat. Generează raportul mai întâi</string>
+    <string name="loadingReport">Raportul se încarcă...</string>
+    <string name="generatingReport">Raportul se generează. Procesul poate dura mai mult. La final raportul va fi afișat.</string>
+    <string name="errorGeneratingReport">A apărut o eroare la generarea raportului. Mai încercați încă o data</string>
+    <string name="categoryLabel">Categorie</string>
+    <string name="changesLabel">Modificări</string>
 </resources>

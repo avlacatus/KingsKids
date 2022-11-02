@@ -10,7 +10,7 @@
     </data>
 
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -26,6 +26,17 @@
             tools:itemCount="2"
             tools:listitem="@layout/item_home_category_group" />
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/xxlarge_margin"
+            android:gravity="center"
+            android:text="@{viewModel.emptyMessage}"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/large_text_size"
+            android:textStyle="bold"
+            tools:text="@string/emptyFavoritesMessage" />
+    </FrameLayout>
 
 </layout>

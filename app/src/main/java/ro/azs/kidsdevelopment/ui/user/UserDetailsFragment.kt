@@ -55,9 +55,9 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.userDetails.observe(this.viewLifecycleOwner, {
+        viewModel.userDetails.observe(this.viewLifecycleOwner) {
             activity?.invalidateOptionsMenu()
-        })
+        }
     }
 
     override fun onDestroyView() {

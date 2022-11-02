@@ -18,16 +18,12 @@ abstract class BaseFragment<T : BaseContract.Presenter?> : Fragment(), BaseContr
 
     override fun onResume() {
         super.onResume()
-        if (getPresenter() != null) {
-            getPresenter()!!.onAttachView()
-        }
+        getPresenter()?.onAttachView()
     }
 
     override fun onPause() {
         super.onPause()
-        if (getPresenter() != null) {
-            getPresenter()!!.onDetachView()
-        }
+        getPresenter()?.onDetachView()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.base.BaseFragment
 import ro.azs.kidsdevelopment.databinding.FragmentCategoriesBinding
 import ro.azs.kidsdevelopment.models.Category
@@ -34,12 +35,13 @@ class FavoritesFragment : BaseFragment<FavoritesContract.Presenter>(), Favorites
     }
 
     override fun displaySections(categories: List<CategoryGroup>) {
-        viewModel.items.clear()
-        viewModel.items.addAll(categories.withIndex().map { (index, group) ->
+        viewModel.items.update(categories.withIndex().map { (index, group) ->
             CategoryGroupViewModel(group) { presenter.onCategorySelected(it) }.apply {
                 showBottomMargin.set(index == categories.size - 1)
             }
         })
+
+        viewModel.emptyMessage.set(if (categories.isEmpty()) getString(R.string.emptyFavoritesMessage) else "")
     }
 
     override fun openCategoryDetails(category: Category) {

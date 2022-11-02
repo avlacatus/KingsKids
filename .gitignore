@@ -19,8 +19,7 @@
 .idea/modules.xml
 /*.log
 *.bin
-*.bin
-*.bin
 *.lock
 *.probe
 .gradle/*
+.gradle/**

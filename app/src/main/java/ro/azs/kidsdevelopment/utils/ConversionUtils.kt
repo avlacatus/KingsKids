@@ -8,8 +8,8 @@ import java.util.*
 
 object ConversionUtils {
 
-    val PATTERN_D_M_Y = "d MMM. yyyy"
-    val GENERAL_DATE_FORMAT = SimpleDateFormat(PATTERN_D_M_Y, Locale.ENGLISH)
+    const val PATTERN_D_M_Y = "d MMM. yyyy"
+    private val GENERAL_DATE_FORMAT = SimpleDateFormat(PATTERN_D_M_Y, Locale.ENGLISH)
 
     fun getTimestampShortValue(timestamp: Timestamp): String {
         return GENERAL_DATE_FORMAT.format(timestamp.toDate())

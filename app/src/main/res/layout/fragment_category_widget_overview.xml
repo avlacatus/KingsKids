@@ -52,7 +52,7 @@
 
                 <TextView
                     android:id="@+id/wo_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/xlarge_margin"
                     android:layout_marginTop="@dimen/xxlarge_margin"
@@ -60,26 +60,29 @@
                     android:letterSpacing="-0.036"
                     android:text="@{viewModel.titleRes}"
                     android:textColor="@color/text_color_blue_2"
-                    android:textFontWeight="900"
                     android:textSize="@dimen/large_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/wo_see_all"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/bibleDiscoveriesTitle" />
 
                 <TextView
                     android:id="@+id/wo_hint"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/xlarge_margin"
                     android:letterSpacing="-0.028"
                     android:text="@{viewModel.hintRes}"
                     android:textColor="@color/text_color_blue_2"
                     android:textSize="@dimen/small_text_size"
+                    app:layout_constraintEnd_toStartOf="@id/wo_see_all"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/wo_title"
                     tools:text="@string/bibleDiscoveriesHint" />
 
                 <ImageButton
+                    android:id="@+id/wo_see_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/xlarge_margin"
@@ -106,13 +109,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:paddingBottom="@dimen/widget_overview_add_button_height"
                     app:itemBinding="@{viewModel.itemBindings}"
                     app:items="@{viewModel.items}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/wo_separator"
-                    tools:itemCount="3"
-                    android:paddingBottom="@dimen/widget_overview_add_button_height"
-                    tools:listitem="@layout/item_list_bible_discovery" />
+                    tools:itemCount="0"
+                    tools:listitem="@layout/item_list_widget_timestamp_label" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/xxlarge_margin"
+                    android:layout_marginEnd="@dimen/xxlarge_margin"
+                    android:layout_marginBottom="@dimen/xxlarge_margin"
+                    android:gravity="center"
+                    android:padding="@dimen/large_margin"
+                    android:text="@{viewModel.emptyMessageRes}"
+                    android:textColor="@color/text_color_blue_2"
+                    android:textSize="@dimen/large_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wo_separator"
+                    app:show="@{viewModel.items.empty}"
+                    tools:text="@string/notAuthenticatedHomeMessage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -125,16 +147,16 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/widget_overview_add_button_half_height_negative"
             android:background="@drawable/btn_background_purple"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
-            android:textAllCaps="false"
             android:onClick="@{() -> presenter.onAddNewItemClicked()}"
             android:paddingStart="@dimen/medium_s_margin"
             android:paddingEnd="@dimen/medium_s_margin"
             android:text="@{viewModel.labelAddRes}"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/larger_text_size"
-            android:clickable="true"
-            android:focusable="true"
             app:show="@{viewModel.isAddLabelVisible()}"
             tools:text="@string/addNewDiscovery" />
     </RelativeLayout>
