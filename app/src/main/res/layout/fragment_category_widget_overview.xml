@@ -48,6 +48,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
                 android:orientation="vertical">
 
                 <TextView
@@ -87,12 +88,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/xlarge_margin"
                     android:background="@null"
-                    android:includeFontPadding="false"
+                    android:padding="@dimen/small_margin"
                     android:onClick="@{() -> presenter.onSeeAllItemsClicked()}"
                     android:src="@drawable/ic_see_all"
+                    android:foreground="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="@id/wo_hint"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/wo_title" />
+                    app:layout_constraintTop_toTopOf="@id/wo_title"
+                    tools:ignore="ContentDescription" />
 
                 <include
                     android:id="@+id/wo_separator"

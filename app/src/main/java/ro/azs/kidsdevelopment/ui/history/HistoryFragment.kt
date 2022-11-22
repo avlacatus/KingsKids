@@ -57,9 +57,9 @@ class HistoryFragment : BaseFragment<HistoryContract.Presenter>(),
 
     private fun getHistoryItemDescription(item: HistoryItem): String {
         return when (item.eventType) {
-            HistoryEventType.deleted -> getString(R.string.oneItemFromSection, getString(R.string.deleted), getString(item.type.widgetTitleRes))
-            HistoryEventType.created -> getString(R.string.oneItemInSection, getString(R.string.created), getString(item.type.widgetTitleRes))
-            HistoryEventType.updated -> getString(R.string.oneItemFromSection, getString(R.string.updated), getString(item.type.widgetTitleRes))
+            HistoryEventType.deleted -> getString(R.string.oneItemFromSection, getString(R.string.deleted), getString(item.type.titleRes))
+            HistoryEventType.created -> getString(R.string.oneItemInSection, getString(R.string.created), getString(item.type.titleRes))
+            HistoryEventType.updated -> getString(R.string.oneItemFromSection, getString(R.string.updated), getString(item.type.titleRes))
         }
     }
 

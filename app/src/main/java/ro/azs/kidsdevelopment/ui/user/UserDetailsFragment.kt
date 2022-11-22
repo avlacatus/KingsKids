@@ -1,5 +1,6 @@
 package ro.azs.kidsdevelopment.ui.user
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.base.BaseFragment
 import ro.azs.kidsdevelopment.databinding.FragmentUserDetailsBinding
 import ro.azs.kidsdevelopment.models.UserProfile
 import ro.azs.kidsdevelopment.ui.user.edit.EditUserProfileActivity
+import ro.azs.kidsdevelopment.utils.Logger
 
 class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
     UserDetailsContract.View {
@@ -39,6 +45,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
         setHasOptionsMenu(true)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -84,7 +91,15 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
         return super.onOptionsItemSelected(item)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun openLogIn() {
+//        AuthUI.getInstance().auth.createUserWithEmailAndPassword("username", "password").addOnCompleteListener {
+//            Logger.e("tag", "signup completedd")
+//        }
+//
+//        AuthUI.getInstance().auth.signInWithEmailAndPassword("username", "password").addOnCompleteListener {
+//            Logger.e("tag", "login completedd")
+//        }
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build()
@@ -92,6 +107,8 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
+            .setTheme(R.style.LoginTheme)
+            .setLogo(R.mipmap.ic_launcher)
             .build()
         signInLauncher.launch(signInIntent)
     }

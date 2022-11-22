@@ -61,7 +61,7 @@
             app:itemIconSize="@dimen/bottom_navigation_icon_size"
             app:itemIconTint="@color/navbar_icon_color_selector"
             app:itemPaddingBottom="@dimen/xsmall_margin"
-            app:itemRippleColor="@color/darkGray"
+            app:itemRippleColor="@color/background_blue_1"
             app:itemTextAppearanceActive="@style/Theme.KidsDevelopment.BottomNavText.Active"
             app:itemTextAppearanceInactive="@style/Theme.KidsDevelopment.BottomNavText.Inactive"
             app:labelVisibilityMode="selected"

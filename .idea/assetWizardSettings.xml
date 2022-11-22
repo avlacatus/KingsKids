@@ -311,8 +311,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="category_hobby" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../resurse/1-hobby_nonstop.svg" />
+                            <entry key="outputName" value="ic_entry_details_header" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../resurse/add note.svg" />
                           </map>
                         </option>
                       </PersistentState>

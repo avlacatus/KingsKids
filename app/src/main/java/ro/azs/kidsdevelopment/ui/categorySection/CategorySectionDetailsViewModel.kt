@@ -1,8 +1,7 @@
-package ro.azs.kidsdevelopment.ui.widgets.base
+package ro.azs.kidsdevelopment.ui.categorySection
 
 import android.app.Application
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,10 +10,10 @@ import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.models.FirestoreModel
 import ro.azs.kidsdevelopment.models.WithDescriptionTimestamp
+import ro.azs.kidsdevelopment.ui.widgets.base.BaseWidgetOverviewViewModel
 import java.util.function.Consumer
 
-
-class BaseWidgetOverviewViewModelFactory( listener: Consumer<FirestoreModel>) : ViewModelProvider.Factory {
+class CategorySectionDetailsViewModelFactory(listener: Consumer<FirestoreModel>) : ViewModelProvider.Factory {
     private val itemClickListener: Consumer<FirestoreModel>
 
     init {
@@ -22,25 +21,20 @@ class BaseWidgetOverviewViewModelFactory( listener: Consumer<FirestoreModel>) : 
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return BaseWidgetOverviewViewModel(itemClickListener) as T
+        return CategorySectionDetailsViewModel(itemClickListener) as T
     }
 
 }
 
-class BaseWidgetOverviewViewModel(private val itemClickListener: Consumer<FirestoreModel>) : ViewModel() {
+class CategorySectionDetailsViewModel(private val itemClickListener: Consumer<FirestoreModel>) : ViewModel() {
+    val title = ObservableField("")
 
-    val titleRes = ObservableField(-1)
-    val hintRes = ObservableField(-1)
     val emptyMessageRes = ObservableField(-1)
-    val labelAddRes = ObservableField(-1)
-    val isAddLabelVisible = ObservableBoolean(true)
     val items = ObservableArrayList<Any>()
 
-    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: Any? ->
+    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, position: Int, item: Any? ->
         if (item is WithDescriptionTimestamp) {
-            itemBinding[BR.viewModel] = R.layout.item_list_widget_timestamp_label
+            itemBinding[BR.viewModel] = R.layout.item_list_long_label_timestamp
         }
     }.bindExtra(BR.listener, itemClickListener)
-
-
 }

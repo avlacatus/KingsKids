@@ -69,6 +69,7 @@
                 android:layout_gravity="center"
                 android:onClick="@{() -> presenter.onLogOutClicked()}"
                 android:text="@string/logoutButton"
+                android:layout_marginBottom="@dimen/bottom_navigation_size_height"
                 app:show="@{viewModel.userDetails != null}" />
 
 

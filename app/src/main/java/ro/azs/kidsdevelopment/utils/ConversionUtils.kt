@@ -11,8 +11,14 @@ object ConversionUtils {
     const val PATTERN_D_M_Y = "d MMM yyyy"
     private val GENERAL_DATE_FORMAT = SimpleDateFormat(PATTERN_D_M_Y, Locale.ENGLISH)
 
+    private val GENERAL_DATE_TIME_FORMAT = SimpleDateFormat("hh:mm, d MMM yyyy", Locale.ENGLISH)
+
     fun getTimestampShortValue(timestamp: Timestamp): String {
         return GENERAL_DATE_FORMAT.format(timestamp.toDate())
+    }
+
+    fun getTimestampLongValue(timestamp: Timestamp): String {
+        return GENERAL_DATE_TIME_FORMAT.format(timestamp.toDate())
     }
 
     fun getBibleReferenceDescription(bibleBookType: BibleBookType, chapter: Int, verse: Int = 0): String {

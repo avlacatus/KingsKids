@@ -16,9 +16,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
-        android:onClick="@{() -> listener.accept(viewModel)}">
+        android:onClick="@{() -> listener.accept(viewModel)}"
+        android:layout_height="wrap_content">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,18 +30,17 @@
             android:paddingBottom="@dimen/medium_s_margin">
 
             <TextView
+                android:id="@+id/li_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/xsmall_margin"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:text="@{viewModel.shortDescLabel}"
+                android:text="@{viewModel.longDescLabel}"
                 android:textColor="@color/text_color_blue_2"
                 android:textSize="@dimen/large_text_size"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/li_timestamp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_li_see_more"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/li_timestamp"
                 tools:text="Geneza 12" />
 
             <TextView
@@ -49,13 +48,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/xsmall_margin"
-                android:letterSpacing="-0.05"
-                android:text="@{viewModel.shortTimestampLabel}"
+                android:text="@{viewModel.longTimestampLabel}"
                 android:textColor="@color/text_color_blue_2"
                 android:textSize="@dimen/small_text_size"
+                android:layout_marginTop="@dimen/default_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btn_li_see_more"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/li_description"
+                android:letterSpacing="-0.05"
                 tools:text="5 dec. 2021" />
 
             <ImageButton
@@ -72,7 +72,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
-            layout="@layout/separator_light_blue_thin"
+            layout="@layout/separator_white_thin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/vertical_separator_height"
             android:layout_gravity="bottom"

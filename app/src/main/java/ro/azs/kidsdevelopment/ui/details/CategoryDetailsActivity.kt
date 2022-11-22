@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.Observable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -19,8 +20,8 @@ import ro.azs.kidsdevelopment.ui.widgets.WidgetHelper
 
 class CategoryDetailsActivity : BaseActivity<CategoryDetailsContract.Presenter>(), CategoryDetailsContract.View {
 
-    private lateinit var viewModel: CategoryDetailsViewModel
-    private lateinit var presenter: CategoryDetailsContract.Presenter
+    private val viewModel by lazy { ViewModelProvider(this)[CategoryDetailsViewModel::class.java] }
+    private val presenter by lazy { CategoryDetailsPresenter(this, intent.getStringExtra(INTENT_EXTRA_CATEGORY_ID) ?: "") }
     private var _binding: ActivityCategoryDetailsBinding? = null
 
     private val binding get() = _binding!!
@@ -28,9 +29,8 @@ class CategoryDetailsActivity : BaseActivity<CategoryDetailsContract.Presenter>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = ""
-        viewModel = ViewModelProvider(this)[CategoryDetailsViewModel::class.java]
-        _binding = ActivityCategoryDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_category_details)
+
         setSupportActionBar(binding.toolbar)
         binding.viewModel = viewModel
         supportActionBar?.displayOptions = ActionBar.DISPLAY_HOME_AS_UP
@@ -119,12 +119,7 @@ class CategoryDetailsActivity : BaseActivity<CategoryDetailsContract.Presenter>(
         viewModel.areWidgetsVisible.set(true)
     }
 
-    override fun getPresenter(): CategoryDetailsContract.Presenter {
-        if (!this::presenter.isInitialized) {
-            presenter = CategoryDetailsPresenter(this, intent.getStringExtra(INTENT_EXTRA_CATEGORY_ID) ?: "")
-        }
-        return presenter
-    }
+    override fun getPresenter(): CategoryDetailsContract.Presenter  = presenter
 
     companion object {
         private const val INTENT_EXTRA_CATEGORY_ID = "INTENT_EXTRA_CATEGORY_ID"
