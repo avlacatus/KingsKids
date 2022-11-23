@@ -24,7 +24,8 @@ object FirestoreDataManager {
     private val _historySubject = BehaviorSubject.createDefault<List<HistoryItem>>(emptyList())
     private val _favouritesSubject: BehaviorSubject<List<FavoriteCategory>> = BehaviorSubject.createDefault(emptyList())
 
-    private val dataProviders: Map<FirestoreCollection, FirestoreDataProvider<*>> = CategorySectionType.values().map { it to  FirestoreDataProvider(it, it.modelClass)}.toMap()
+    private val dataProviders: Map<FirestoreCollection, FirestoreDataProvider<*>> =
+        CategorySectionType.values().map { it to FirestoreDataProvider(it, it.modelClass) }.toMap()
 
     private val _userDataSubject: Observable<Optional<UserData>> =
         Observable.combineLatest(_userProfileSubject,
@@ -160,11 +161,20 @@ object FirestoreDataManager {
             .addOnFailureListener { Logger.e(TAG, "added to  $collection with error") }
     }
 
-    fun removeModel(collection: FirestoreCollection, model: FirestoreModel) {
-        getFirestoreUserDocument().collection(collection.name)
-            .document(model.id!!).delete()
-            .addOnSuccessListener { Logger.e(TAG, "removed from $collection with success!") }
-            .addOnFailureListener { Logger.e(TAG, "removed from $collection with error") }
+    fun removeModel(collection: FirestoreCollection, model: FirestoreModel, onSuccess: (() -> Unit)? = null,
+        onFailure: ((Exception) -> Unit)? = null) {
+        model.id?.let {
+            getFirestoreUserDocument().collection(collection.name)
+                .document(model.id!!).delete()
+                .addOnSuccessListener {
+                    Logger.e(TAG, "removed from $collection with success!")
+                    onSuccess?.invoke()
+                }
+                .addOnFailureListener {
+                    Logger.e(TAG, "removed from $collection with error")
+                    onFailure?.invoke(it)
+                }
+        }
     }
 
     private fun getFirestoreUserDocument(): DocumentReference {
@@ -181,7 +191,7 @@ object FirestoreDataManager {
         userListenerRegistrations.forEach { it.remove() }
     }
 
-    fun getSectionDataProvider(sectionType: CategorySectionType) : FirestoreDataProvider<*>? {
+    fun getSectionDataProvider(sectionType: CategorySectionType): FirestoreDataProvider<*>? {
         return dataProviders[sectionType]
     }
 

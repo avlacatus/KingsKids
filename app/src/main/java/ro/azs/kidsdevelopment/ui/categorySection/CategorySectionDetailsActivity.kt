@@ -62,6 +62,10 @@ class CategorySectionDetailsActivity : BaseActivity<CategorySectionDetailsContra
         }
     }
 
+    override fun setEmptyMessage(emptyMessageRes: Int) {
+        viewModel.emptyMessageRes.set(emptyMessageRes)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_add, menu)
         return true

@@ -13,6 +13,7 @@ class CategorySectionDetailsPresenter(view: CategorySectionDetailsContract.View,
 
         categorySection?.let {
             view.setupTitle(it.titleRes)
+            view.setEmptyMessage(it.emptyRes)
             FirestoreDataManager.getSectionDataProvider(it)?.let { dataManager ->
                 dataManager.getDataSubject().distinctUntilChanged().subscribe({ items ->
                     if (isViewAttached) {

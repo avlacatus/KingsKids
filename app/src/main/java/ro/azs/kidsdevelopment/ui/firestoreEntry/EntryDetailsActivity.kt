@@ -22,12 +22,19 @@ import ro.azs.kidsdevelopment.ui.details.CategoryDetailsViewModel
 class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), EntryDetailsContract.View {
 
     private val viewModel by lazy { ViewModelProvider(this)[EntryDetailsViewModel::class.java] }
-    private val presenter by lazy { EntryDetailsPresenter(this,
-        intent.getSerializableExtra(INTENT_EXTRA_CATEGORY_SECTION_TYPE) as CategorySectionType,
-        intent.getParcelableExtra(INTENT_EXTRA_EXISTING_MODEL) as FirestoreModel?) }
+    private val presenter by lazy {
+        val categorySectionType = intent.getSerializableExtra(INTENT_EXTRA_CATEGORY_SECTION_TYPE) as CategorySectionType
+        val existingModel = (intent.getParcelableExtra(INTENT_EXTRA_EXISTING_MODEL) as FirestoreModel?)?.apply {
+            id = intent.getStringExtra(INTENT_EXTRA_EXISTING_MODEL_ID)
+        }
+
+        EntryDetailsPresenter(this, categorySectionType, existingModel)
+    }
     private var _binding: ActivityEntryDetailsBinding? = null
 
     private val binding get() = _binding!!
+
+    private var showDeleteOption: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,31 +53,43 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
         viewModel.title.set(getString(titleRes))
     }
 
+    override fun setShowDeleteOption(show: Boolean) {
+        this.showDeleteOption = show
+        invalidateMenu()
+    }
+
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        return super.onPrepareOptionsMenu(menu)
+        if (showDeleteOption) {
+            menuInflater.inflate(R.menu.menu_delete, menu)
+            return true
+        }
+        return false
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == R.id.menu_item_mark_favorite) {
-//            presenter.onFavouriteClicked(true)
-//            return true
-//        } else if (item.itemId == R.id.menu_item_unmark_favorite) {
-//            presenter.onFavouriteClicked(false)
-//            return true
-//        }
+        if (item.itemId == R.id.menu_item_delete) {
+            presenter.onDeleteButtonClicked()
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun getPresenter(): EntryDetailsContract.Presenter  = presenter
+    override fun closeScreen() {
+        finish()
+    }
+
+    override fun getPresenter(): EntryDetailsContract.Presenter = presenter
 
     companion object {
         private const val INTENT_EXTRA_CATEGORY_SECTION_TYPE = "INTENT_EXTRA_CATEGORY_SECTION_TYPE"
         private const val INTENT_EXTRA_EXISTING_MODEL = "INTENT_EXTRA_EXISTING_MODEL"
+        private const val INTENT_EXTRA_EXISTING_MODEL_ID = "INTENT_EXTRA_EXISTING_MODEL_ID"
 
         fun getIntent(callingActivity: Activity, categorySection: CategorySectionType, existingModel: FirestoreModel? = null): Intent {
             val output = Intent(callingActivity, EntryDetailsActivity::class.java)
             output.putExtra(INTENT_EXTRA_CATEGORY_SECTION_TYPE, categorySection)
             output.putExtra(INTENT_EXTRA_EXISTING_MODEL, existingModel)
+            output.putExtra(INTENT_EXTRA_EXISTING_MODEL_ID, existingModel?.id)
             return output
         }
     }

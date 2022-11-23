@@ -52,6 +52,24 @@
             tools:itemCount="5"
             tools:listitem="@layout/item_list_long_label_timestamp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/xxlarge_margin"
+            android:layout_marginEnd="@dimen/xxlarge_margin"
+            android:layout_marginBottom="@dimen/xxlarge_margin"
+            android:gravity="center"
+            android:padding="@dimen/large_margin"
+            android:text="@{viewModel.emptyMessageRes}"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/large_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:show="@{viewModel.items.empty}"
+            tools:text="@string/emptyFavoritesMessage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
