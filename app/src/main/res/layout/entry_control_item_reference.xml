@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="ro.azs.kidsdevelopment.utils.ConversionUtils" />
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.BibleVerseReferenceItemViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingStart="@dimen/xlarge_margin"
+        android:paddingEnd="@dimen/xlarge_margin">
+
+        <include
+            layout="@layout/separator_white_thin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vertical_separator_height"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eci_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_extrabold"
+            android:paddingTop="@dimen/medium_s_margin"
+            android:paddingBottom="@dimen/medium_s_margin"
+            android:text="@{viewModel.label}"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/normal_text_style"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Referinta" />
+
+        <TextView
+            android:id="@+id/eci_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:paddingTop="@dimen/medium_s_margin"
+            android:paddingBottom="@dimen/medium_s_margin"
+            android:text="@{viewModel.referenceLabel}"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@id/eci_label"
+            tools:text="33 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 2023" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

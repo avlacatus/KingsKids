@@ -3,6 +3,7 @@ package ro.azs.kidsdevelopment.utils
 import com.google.firebase.Timestamp
 import ro.azs.kidsdevelopment.models.BibleBookType
 import ro.azs.kidsdevelopment.models.BiblePrayerText
+import ro.azs.kidsdevelopment.models.BibleReference
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,6 +24,10 @@ object ConversionUtils {
 
     fun getBibleReferenceDescription(bibleBookType: BibleBookType, chapter: Int, verse: Int = 0): String {
         return "${bibleBookType.getLocalizedString()} $chapter" + (if (verse == 0) "" else ":$verse")
+    }
+
+    fun getBibleReferenceDescription(bibleReference: BibleReference): String {
+        return "${bibleReference.bibleBookType.getLocalizedString()} ${bibleReference.chapter}" + (if (bibleReference.verse == 0) "" else ":${bibleReference.chapter}")
     }
 
     fun getBiblePrayerTextDescription(biblePrayerText: BiblePrayerText): String {

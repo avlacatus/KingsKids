@@ -141,24 +141,38 @@ object FirestoreDataManager {
             }
     }
 
-    fun updateModel(collection: FirestoreCollection, model: FirestoreModel) {
+    fun updateModel(collection: FirestoreCollection, model: FirestoreModel, onSuccess: (() -> Unit)? = null,
+        onFailure: ((Exception) -> Unit)? = null) {
         if (model.id != null) {
             getFirestoreUserDocument().collection(collection.name)
                 .document(model.id!!)
                 .set(model)
-                .addOnSuccessListener { Logger.e(TAG, "added to  $collection with success!") }
-                .addOnFailureListener { Logger.e(TAG, "added to  $collection with error") }
+                .addOnSuccessListener {
+                    Logger.e(TAG, "added to  $collection with success!")
+                    onSuccess?.invoke()
+                }
+                .addOnFailureListener {
+                    Logger.e(TAG, "added to  $collection with error")
+                    onFailure?.invoke(it)
+                }
         } else {
-            addModel(collection, model)
+            addModel(collection, model, onSuccess, onFailure)
         }
 
     }
 
-    fun addModel(collection: FirestoreCollection, model: FirestoreModel) {
+    fun addModel(collection: FirestoreCollection, model: FirestoreModel, onSuccess: (() -> Unit)? = null,
+        onFailure: ((Exception) -> Unit)? = null) {
         getFirestoreUserDocument().collection(collection.name)
             .add(model)
-            .addOnSuccessListener { Logger.e(TAG, "added to  $collection with success!") }
-            .addOnFailureListener { Logger.e(TAG, "added to  $collection with error") }
+            .addOnSuccessListener {
+                Logger.e(TAG, "added to  $collection with success!")
+                onSuccess?.invoke()
+            }
+            .addOnFailureListener {
+                Logger.e(TAG, "added to  $collection with error")
+                onFailure?.invoke(it)
+            }
     }
 
     fun removeModel(collection: FirestoreCollection, model: FirestoreModel, onSuccess: (() -> Unit)? = null,

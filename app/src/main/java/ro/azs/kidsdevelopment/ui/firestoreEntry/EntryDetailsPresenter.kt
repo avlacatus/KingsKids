@@ -16,18 +16,14 @@ class EntryDetailsPresenter(view: EntryDetailsContract.View,
         } else {
             view.setShowDeleteOption(true)
             view.setupTitle(categorySectionType.editLabelRes)
-            if (existingEntryModel is WithDescriptionTimestamp) {
-                view.setMsg(existingEntryModel.getLongDescLabel())
-            } else
-                view.setMsg(existingEntryModel.toString())
         }
 
+        if (existingEntryModel != null && existingEntryModel::class.java != categorySectionType.modelClass) {
+            Logger.e(TAG, "data inconsistency between $categorySectionType and $existingEntryModel")
+        } else {
+            view.setupView(categorySectionType, existingEntryModel)
+        }
     }
-
-    override fun onAttachView() {
-        super.onAttachView()
-    }
-
 
     override fun onDeleteButtonClicked() {
         view.showConfirmOperationDialog(message = categorySectionType.deleteMessageRes, onConfirm = {
@@ -40,10 +36,31 @@ class EntryDetailsPresenter(view: EntryDetailsContract.View,
     }
 
     override fun onSaveButtonPressed() {
-        Logger.e("EntryDetailsPresenter", "saveButtonPressed")
+        val modelFromView = view.getModelFromInput()
+        if (modelFromView::class.java != categorySectionType.modelClass) {
+            Logger.e(TAG, "data inconsistency between $categorySectionType and $existingEntryModel")
+        } else {
+            if (existingEntryModel != null) {
+                modelFromView.id = existingEntryModel.id
+            }
+
+            FirestoreDataManager.updateModel(categorySectionType, modelFromView, {
+                if (existingEntryModel == null)
+                    view.showToastMessage("adaugare cu succes")
+                else
+                    view.showToastMessage("actualizare cu succes")
+                view.closeScreen()
+            }, {
+                Logger.e(TAG, "update error: ${it.message}", it)
+                if (existingEntryModel == null)
+                    view.showToastMessage("adaugare cu eroare")
+                else
+                view.showToastMessage("actualizare cu eroare")
+            })
+        }
     }
 
     companion object {
-        private const val TAG = "CategoryDetailsPresenter"
+        private val TAG = EntryDetailsPresenter::class.java.simpleName
     }
 }
