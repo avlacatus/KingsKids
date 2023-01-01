@@ -5,13 +5,15 @@
 
     <data>
 
+        <import type="ro.azs.kidsdevelopment.utils.ConversionUtils" />
+
         <variable
             name="listener"
             type="java.util.function.Consumer" />
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.models.WithDescriptionTimestamp" />
+            type="ro.azs.kidsdevelopment.models.HealthMetric" />
     </data>
 
     <FrameLayout
@@ -30,53 +32,82 @@
             android:paddingBottom="@dimen/medium_s_margin">
 
             <TextView
-                android:id="@+id/li_title"
+                android:id="@+id/li_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/xsmall_margin"
-                android:text="@{viewModel.longDescTitle}"
+                android:text="@{ConversionUtils.INSTANCE.getTimestampShortValue(viewModel.date)}"
                 android:textColor="@color/text_color_blue_2"
                 android:textSize="@dimen/large_text_size"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/li_description"
+                app:layout_constraintBottom_toTopOf="@id/li_height"
                 app:layout_constraintEnd_toStartOf="@id/btn_li_see_more"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:show="@{!viewModel.longDescTitle.empty}"
                 tools:text="Geneza 12"
                 tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/li_description"
+                android:id="@+id/li_height_lbl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/xxsmall_margin"
                 android:layout_marginEnd="@dimen/xsmall_margin"
-                android:text="@{viewModel.longDescLabel}"
+                android:text="@string/heightLabel"
                 android:textColor="@color/text_color_blue_2"
-                android:textSize="@dimen/large_text_size"
-                app:layout_constraintBottom_toTopOf="@id/li_timestamp"
-                app:layout_constraintEnd_toStartOf="@id/btn_li_see_more"
+                android:textSize="@dimen/normal_text_style"
+                app:layout_constraintBottom_toTopOf="@id/li_weight"
+                app:layout_constraintEnd_toStartOf="@id/li_height"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/li_title"
-                app:show="@{!viewModel.longDescLabel.empty}"
-                tools:text="text despre ceva"
+                app:layout_constraintTop_toBottomOf="@id/li_date"
                 tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/li_timestamp"
+                android:id="@+id/li_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/xxsmall_margin"
+                android:layout_marginEnd="@dimen/xsmall_margin"
+                android:text="@{String.valueOf(viewModel.height)}"
+                android:textColor="@color/text_color_blue_2"
+                android:textSize="@dimen/normal_text_style"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/li_height_lbl"
+                app:layout_constraintEnd_toStartOf="@id/btn_li_see_more"
+                app:layout_constraintStart_toEndOf="@id/li_height_lbl"
+                tools:text="122"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/li_weight_lbl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/xxsmall_margin"
+                android:layout_marginEnd="@dimen/xsmall_margin"
+                android:text="@string/weightLabel"
+                android:textColor="@color/text_color_blue_2"
+                android:textSize="@dimen/normal_text_style"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/li_weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/li_height_lbl"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/li_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"
                 android:layout_marginEnd="@dimen/xsmall_margin"
                 android:letterSpacing="-0.05"
-                android:text="@{viewModel.longTimestampLabel}"
+                android:text="@{String.valueOf(viewModel.weight)}"
                 android:textColor="@color/text_color_blue_2"
-                android:textSize="@dimen/small_text_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/li_description"
-                tools:text="5 dec. 2021" />
+                android:textSize="@dimen/normal_text_style"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/li_weight_lbl"
+                app:layout_constraintEnd_toStartOf="@id/btn_li_see_more"
+                app:layout_constraintStart_toEndOf="@id/li_weight_lbl"
+                tools:text="20" />
 
             <ImageButton
                 android:id="@+id/btn_li_see_more"

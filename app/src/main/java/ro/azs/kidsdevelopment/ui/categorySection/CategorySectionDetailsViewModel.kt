@@ -9,6 +9,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.models.FirestoreModel
+import ro.azs.kidsdevelopment.models.HealthMetric
 import ro.azs.kidsdevelopment.models.WithDescriptionTimestamp
 import ro.azs.kidsdevelopment.ui.widgets.base.BaseWidgetOverviewViewModel
 import java.util.function.Consumer
@@ -33,7 +34,9 @@ class CategorySectionDetailsViewModel(private val itemClickListener: Consumer<Fi
     val items = ObservableArrayList<Any>()
 
     val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, position: Int, item: Any? ->
-        if (item is WithDescriptionTimestamp) {
+        if (item is HealthMetric) {
+            itemBinding[BR.viewModel] = R.layout.item_list_health_metric
+        } else if (item is WithDescriptionTimestamp) {
             itemBinding[BR.viewModel] = R.layout.item_list_long_label_timestamp
         }
     }.bindExtra(BR.listener, itemClickListener)

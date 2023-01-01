@@ -115,4 +115,12 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/larger_text_size</item>
     </style>
+
+    <style name="Full_Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowMinWidthMajor">85%</item>
+        <item name="android:windowMinWidthMinor">85%</item>
+        <item name="windowMinWidthMajor">85%</item>
+        <item name="windowMinWidthMinor">85%</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
 </resources>

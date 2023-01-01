@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.SelectBibleReferenceDialog.ViewModel" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="@dimen/medium_margin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/selectReferenceLabel"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_blue_2"
+                android:textSize="@dimen/subtitle_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <AutoCompleteTextView
+                android:id="@+id/bible_book"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:gravity="center"
+                android:hint="Selectează carte din bible"
+                android:imeOptions="actionNext"
+                android:includeFontPadding="false"
+                android:nextFocusForward="@id/bible_chapter"
+                app:layout_constrainedHeight="true"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@id/bible_chapter"
+                app:layout_constraintEnd_toStartOf="@id/bible_chapter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:ignore="LabelFor" />
+
+            <EditText
+                android:id="@+id/bible_chapter"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:nextFocusForward="@id/bible_verse"
+                android:text="@={viewModel.chapter}"
+                app:layout_constraintEnd_toStartOf="@id/bible_verse"
+                app:layout_constraintStart_toEndOf="@id/bible_book"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <EditText
+                android:id="@+id/bible_verse"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:autofillHints=""
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:text="@={viewModel.verse}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bible_chapter"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:show="@{viewModel.showVersePicker}"
+
+                tools:visibility="gone" />
+
+            <Button
+                style="@style/PurpleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> viewModel.action.invoke()}"
+                app:layout_constraintTop_toBottomOf="@id/bible_chapter" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

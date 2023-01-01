@@ -151,9 +151,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/widget_overview_add_button_half_height_negative"
             android:onClick="@{() -> presenter.onAddNewItemClicked()}"
-            android:text="@{viewModel.labelAddRes}"
-            app:show="@{viewModel.isAddLabelVisible()}"
-            tools:text="@string/addNewDiscovery" />
+            android:text="@string/addNew"
+            app:show="@{viewModel.isAddLabelVisible()}" />
     </RelativeLayout>
 
 </layout>

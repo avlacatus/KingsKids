@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
+        android:onClick="@{() -> viewModel.onClick.invoke()}"
         android:paddingStart="@dimen/xlarge_margin"
         android:paddingEnd="@dimen/xlarge_margin">
 
@@ -57,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@id/eci_label"
-            tools:text="33 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 2023" />
+            tools:text="33 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar 202333 Mar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

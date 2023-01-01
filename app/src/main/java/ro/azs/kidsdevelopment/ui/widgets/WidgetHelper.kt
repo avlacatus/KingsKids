@@ -36,6 +36,7 @@ object WidgetHelper {
                 BibleFavoriteTextsOverviewFragment::class.java,
                 BiblePrayerTextsOverviewFragment::class.java)
             CategoryType.prayer -> listOf(
+                BiblePrayerTextsOverviewFragment::class.java,
                 PrayerSubjectsOverviewFragment::class.java,
                 PrayerPeopleOverviewFragment::class.java)
             CategoryType.body -> listOf(

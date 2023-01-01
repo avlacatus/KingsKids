@@ -55,7 +55,7 @@ class EntryDetailsPresenter(view: EntryDetailsContract.View,
                 if (existingEntryModel == null)
                     view.showToastMessage("adaugare cu eroare")
                 else
-                view.showToastMessage("actualizare cu eroare")
+                    view.showToastMessage("actualizare cu eroare")
             })
         }
     }

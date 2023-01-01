@@ -10,9 +10,9 @@ import java.util.*
 object ConversionUtils {
 
     const val PATTERN_D_M_Y = "d MMM yyyy"
-    private val GENERAL_DATE_FORMAT = SimpleDateFormat(PATTERN_D_M_Y, Locale.ENGLISH)
+    private val GENERAL_DATE_FORMAT = SimpleDateFormat(PATTERN_D_M_Y, Locale.getDefault())
 
-    private val GENERAL_DATE_TIME_FORMAT = SimpleDateFormat("hh:mm, d MMM yyyy", Locale.ENGLISH)
+    private val GENERAL_DATE_TIME_FORMAT = SimpleDateFormat("hh:mm, d MMM yyyy", Locale.getDefault())
 
     fun getTimestampShortValue(timestamp: Timestamp): String {
         return GENERAL_DATE_FORMAT.format(timestamp.toDate())

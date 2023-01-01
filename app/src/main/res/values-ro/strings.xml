@@ -221,7 +221,7 @@
     <string name="financesHint">Îmi gestionez banii</string>
     <string name="borrowsHint">M-am împrumutat de bani</string>
     <string name="lendsHint">Am împrumutat bani altora</string>
-    <string name="addNew">Adaugă</string>
+    <string name="addNew">+ Adaugă</string>
     <string name="seeAll">Vezi toate</string>
     <!-- Bible Discoveries -->
     <string name="addNewDiscovery">+ Adauga descoperire</string>
@@ -310,7 +310,7 @@
     <string name="friends">Prieteni</string>
     <!-- finance types -->
     <string name="earning">Câștiguri</string>
-    <string name="gift">Daruri</string>
+    <string name="gifts">Daruri</string>
     <string name="tihte">Zeciuială</string>
     <string name="givings">Daruri</string>
     <string name="spendings">Cheltuieli</string>
@@ -467,4 +467,6 @@
     <string name="errorGeneratingReport">A apărut o eroare la generarea raportului. Mai încercați încă o data</string>
     <string name="categoryLabel">Categorie</string>
     <string name="changesLabel">Modificări</string>
+
+    <string name="selectReferenceLabel">Selectează referință</string>
 </resources>

@@ -10,6 +10,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.models.FirestoreModel
+import ro.azs.kidsdevelopment.models.HealthMetric
 import ro.azs.kidsdevelopment.models.WithDescriptionTimestamp
 import java.util.function.Consumer
 
@@ -37,7 +38,9 @@ class BaseWidgetOverviewViewModel(private val itemClickListener: Consumer<Firest
     val items = ObservableArrayList<Any>()
 
     val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: Any? ->
-        if (item is WithDescriptionTimestamp) {
+        if (item is HealthMetric) {
+            itemBinding[BR.viewModel] = R.layout.item_list_widget_health_metric
+        } else if (item is WithDescriptionTimestamp) {
             itemBinding[BR.viewModel] = R.layout.item_list_widget_timestamp_label
         }
     }.bindExtra(BR.listener, itemClickListener)

@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.StringItemViewModel" />
+            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.NumberItemViewModel" />
     </data>
 
 
@@ -43,9 +43,9 @@
             android:layout_marginBottom="@dimen/medium_s_margin"
             android:gravity="start"
             android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:lines="@{viewModel.multiline? 3 : 1}"
-            android:text="@={viewModel.value}"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:text="@={viewModel.stringValue}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

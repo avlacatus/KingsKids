@@ -201,7 +201,7 @@
     <string name="friends">Friends</string>
     <!-- finance types -->
     <string name="earning">Earnings</string>
-    <string name="gift">Gifts</string>
+    <string name="gifts">Gifts</string>
     <string name="tihte">Tihte</string>
     <string name="givings">Givings</string>
     <string name="spendings">Spendings</string>
@@ -265,7 +265,7 @@
     <string name="financesHint">I manange my money</string>
     <string name="borrowsHint">I borrow money from others</string>
     <string name="lendsHint">I lend money to others</string>
-    <string name="addNew">Add New</string>
+    <string name="addNew">+ Add New</string>
     <string name="seeAll">See All</string>
     <!-- Bible Discoveries -->
     <string name="addNewDiscovery">Add New Discovery</string>
@@ -472,4 +472,6 @@
     <string name="oneItemFromSection">%1$s something from %2$s section.</string>
     <string name="oneItemInSection">%1$s something into %2$s section</string>
     <string name="historyListEmptyMessage">You have no history record yet.</string>
+
+    <string name="selectReferenceLabel">Select reference</string>
 </resources>

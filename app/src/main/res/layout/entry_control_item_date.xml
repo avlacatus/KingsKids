@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.LongTimestampItemViewModel" />
+            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.TimestampItemViewModel" />
     </data>
 
 
@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
+        android:onClick="@{() -> viewModel.onClick.invoke()}"
         android:paddingStart="@dimen/xlarge_margin"
         android:paddingEnd="@dimen/xlarge_margin">
 
@@ -46,15 +47,15 @@
             android:id="@+id/eci_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:paddingTop="@dimen/medium_s_margin"
             android:paddingBottom="@dimen/medium_s_margin"
-            android:gravity="center_vertical"
+            android:text="@{viewModel.dateLabel}"
             android:textColor="@color/text_color_blue_2"
             android:textSize="@dimen/small_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
-            android:text="@{viewModel.dateLabel}"
             app:layout_constraintStart_toEndOf="@id/eci_label"
             tools:text="33 Mar 2023" />
 

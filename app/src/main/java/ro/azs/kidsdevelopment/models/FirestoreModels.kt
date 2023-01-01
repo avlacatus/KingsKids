@@ -28,6 +28,8 @@ open class FirestoreModel : Parcelable {
 interface WithDescriptionTimestamp {
     fun getShortDescLabel(): String
     fun getShortTimestampLabel(): String
+
+    fun getLongDescTitle(): String = ""
     fun getLongDescLabel(): String = getShortDescLabel()
     fun getLongTimestampLabel(): String = getShortTimestampLabel()
 }
@@ -38,9 +40,11 @@ data class BibleDiscovery(
     var chapter: Int = 0,
     var date: Timestamp = Timestamp.now(),
     var discovery: String = "") : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = ConversionUtils.getBibleReferenceDescription(book, chapter, 0)
+    override fun getShortDescLabel(): String = ConversionUtils.getBibleReferenceDescription(book, chapter)
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = ConversionUtils.getBibleReferenceDescription(book, chapter, 0) + "\n" + discovery
+
+    override fun getLongDescTitle(): String = ConversionUtils.getBibleReferenceDescription(book, chapter)
+    override fun getLongDescLabel(): String = discovery
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -53,7 +57,9 @@ data class BibleFavoriteText(
 
     override fun getShortDescLabel(): String = ConversionUtils.getBibleReferenceDescription(book, chapter, verse)
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = ConversionUtils.getBibleReferenceDescription(book, chapter, verse)
+    override fun getLongDescLabel(): String = ""
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -68,7 +74,9 @@ data class BiblePrayerText(
 
     override fun getShortDescLabel(): String = ConversionUtils.getBiblePrayerTextDescription(this)
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = "${prayerType.getLocalizedString()}\n${
+
+    override fun getLongDescTitle(): String = prayerType.getLocalizedString()
+    override fun getLongDescLabel(): String = "${
         ConversionUtils.getBibleReferenceDescription(book, chapter, verse)
     }\n$discovery"
 
@@ -84,7 +92,9 @@ data class PrayerSubject(
 
     override fun getShortDescLabel(): String = subject
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = "${getShortDescLabel()}\n$description"
+
+    override fun getLongDescTitle(): String = subject
+    override fun getLongDescLabel(): String = description
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 
 }
@@ -175,7 +185,9 @@ data class HealthDiscovery(
     var discovery: String = "") : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = "${book.author} ${book.name}(${type.getLocalizedString()})"
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = "${book.author}-${book.name}(${type.getLocalizedString()})"
+    override fun getLongDescLabel(): String = discovery
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -186,7 +198,9 @@ data class SportPractice(
     var location: String = "") : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = sport
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = sport
+    override fun getLongDescLabel(): String = location
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -204,7 +218,9 @@ data class KnowledgeFinding
     var type: KnowledgeFindingType = KnowledgeFindingType.church) : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = discovery
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = discovery
+    override fun getLongDescLabel(): String = type.getLocalizedString()
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -223,9 +239,11 @@ data class HobbyItem
     var type: HobbyItemType = HobbyItemType.playing,
     var typeDetails: String = "",
     var details: String = "") : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = "${type.getLocalizedString()}($typeDetails)"
+    override fun getShortDescLabel(): String = "${type.getLocalizedString()} ($typeDetails)"
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = details
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -239,9 +257,11 @@ data class MediaDiscovery
     (var date: Timestamp = Timestamp.now(),
     var type: MediaDiscoveryType = MediaDiscoveryType.TVshow,
     var discovery: String = "") : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = discovery + "(" + type.getLocalizedString() + ")"
+    override fun getShortDescLabel(): String = type.getLocalizedString()
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = discovery
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -257,9 +277,11 @@ data class GoodDeed
     (var date: Timestamp = Timestamp.now(),
     var type: GoodDeedType = GoodDeedType.volunteering,
     var details: String = "") : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = details + "(" + type.getLocalizedString() + ")"
+    override fun getShortDescLabel(): String = type.getLocalizedString()
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = details
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -282,7 +304,9 @@ data class PleasantAction
     var action: String = "") : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = action
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = ""
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -298,9 +322,11 @@ data class UsefulAction
     (var date: Timestamp = Timestamp.now(),
     var type: UsefulActionType = UsefulActionType.family,
     var action: String = "") : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = action + "(" + type.getLocalizedString() + ")"
+    override fun getShortDescLabel(): String = type.getLocalizedString()
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = action
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -310,7 +336,9 @@ data class FamilyTask
     var task: String = "") : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = task
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = ""
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -320,7 +348,9 @@ data class SchoolTask
     var task: String = "") : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = task
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = ""
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -330,7 +360,9 @@ data class ChurchTask
     var task: String = "") : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = task
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = ""
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -356,9 +388,11 @@ data class Finance
     var type: FinanceType = FinanceType.earning,
     var amount: Double = 0.0,
     var amountCurrency: FinanceCurrency = FinanceCurrency.RON) : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = type.getLocalizedString() + "(" + amount + ")"
+    override fun getShortDescLabel(): String = type.getLocalizedString()
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = "$amount ${amountCurrency.getLocalizedString()}"
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -368,9 +402,11 @@ data class Borrows
     var reason: String = "",
     var amount: Double = 0.0,
     var amountCurrency: FinanceCurrency = FinanceCurrency.RON) : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = "$reason($amount)"
+    override fun getShortDescLabel(): String = "$amount ${amountCurrency.getLocalizedString()}"
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = reason
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }
 
@@ -380,8 +416,10 @@ data class Lends
     var reason: String = "",
     var amount: Double = 0.0,
     var amountCurrency: FinanceCurrency = FinanceCurrency.RON) : FirestoreModel(), WithDescriptionTimestamp {
-    override fun getShortDescLabel(): String = "$reason($amount)"
+    override fun getShortDescLabel(): String = "$amount ${amountCurrency.getLocalizedString()}"
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = getShortDescLabel()
+
+    override fun getLongDescTitle(): String = getShortDescLabel()
+    override fun getLongDescLabel(): String = reason
     override fun getLongTimestampLabel(): String = ConversionUtils.getTimestampLongValue(date)
 }

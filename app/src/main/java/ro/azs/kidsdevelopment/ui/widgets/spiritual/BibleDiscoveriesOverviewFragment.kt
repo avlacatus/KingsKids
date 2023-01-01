@@ -21,8 +21,5 @@ class BibleDiscoveriesOverviewFragment : BaseWidgetOverviewFragment<BaseWidgetOv
         return presenter
     }
 
-    override fun displayItems(items: List<Any>) {
-        super.displayItems(items)
-    }
     override fun getCategorySectionType(): CategorySectionType = CategorySectionType.bibleDiscoveries
 }
