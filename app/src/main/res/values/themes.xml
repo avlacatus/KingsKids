@@ -14,6 +14,9 @@
         <item name="android:colorBackground">@color/background_blue_1</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="windowActionBar">false</item>
+        <item name="actionMenuTextColor">@color/text_color_blue_1</item>
+        <item name="android:actionMenuTextColor">@color/text_color_blue_1</item>
+        <item name="actionButtonStyle">@style/AppTheme.ActionButton</item>
     </style>
 
     <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
@@ -26,38 +29,43 @@
         <item name="android:popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
         <item name="android:fontFamily">@font/nunito_bold</item>
         <item name="android:background">@color/white</item>
-        <!--        <item name="actionButtonStyle">@style/AppTheme.Toolbar.ActionButton</item>-->
         <item name="android:homeAsUpIndicator">@drawable/ic_circle_arrow_left</item>
+    </style>
 
+    <style name="AppTheme.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="fontFamily">@font/nunito_regular</item>
     </style>
 
     <style name="LoginTheme" parent="FirebaseUI">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/text_color_blue_2</item>
+        <item name="colorPrimaryDark">@color/darkGray</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="colorControlNormal">@android:color/white</item>
         <item name="colorControlActivated">@android:color/white</item>
         <item name="colorControlHighlight">@android:color/white</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColor">@color/text_color_blue_2</item>
+        <item name="android:textColorPrimary">@color/text_color_blue_2</item>
+        <item name="android:textColorSecondary">@color/text_color_blue_2</item>
         <item name="android:windowBackground">@color/background_blue_1</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColorHint">@android:color/white</item>
     </style>
 
-    <style name="FirebaseUI.Text">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
+<!--    <style name="FirebaseUI.Text">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">wrap_content</item>-->
+<!--        <item name="android:fontFamily">sans-serif</item>-->
+<!--        <item name="android:textColor">@android:color/white</item>-->
+<!--    </style>-->
 
-    <style name="FirebaseUI.Text.Link">
-        <item name="android:textColor">@color/colorSecondary</item>
-    </style>
+<!--    <style name="FirebaseUI.Text.Link">-->
+<!--        <item name="android:textColor">@color/colorSecondary</item>-->
+<!--    </style>-->
 
     <style name="Theme.KidsDevelopment.BottomNavText">
         <item name="android:textSize">@dimen/xsmall_text_size</item>
@@ -83,14 +91,10 @@
         <item name="boxBackgroundMode">none</item>
     </style>
 
-    <style name="UserProfileEditText" parent="@style/Widget.AppCompat.EditText">
-        <item name="android:padding">10dp</item>
-        <item name="android:importantForAutofill" tools:targetApi="o">no</item>
-    </style>
-
     <style name="HyperlinkText" parent="@style/Widget.AppCompat.TextView">
         <item name="android:textColor">@color/text_link_selector</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
 
     <style name="EntryDetails_EditText">
@@ -101,7 +105,7 @@
         <item name="android:paddingEnd">@dimen/xlarge_margin</item>
         <item name="android:paddingBottom">@dimen/medium_s_margin</item>
         <item name="android:textColor">@color/text_color_blue_2</item>
-        <item name="android:textSize">@dimen/normal_text_style</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
 
     <style name="PurpleButton">
@@ -116,11 +120,36 @@
         <item name="android:textSize">@dimen/larger_text_size</item>
     </style>
 
+    <style name="DarkBlueButton" parent="PurpleButton">
+        <item name="android:background">@drawable/btn_background_dark_blue</item>
+
+    </style>
+
     <style name="Full_Dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowMinWidthMajor">85%</item>
         <item name="android:windowMinWidthMinor">85%</item>
         <item name="windowMinWidthMajor">85%</item>
         <item name="windowMinWidthMinor">85%</item>
         <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <style name="UserDetails_Label">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textColor">@color/text_color_blue_2</item>
+        <item name="android:textSize">@dimen/large_text_size</item>
+    </style>
+
+    <style name="UserDetails_EditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:paddingStart">@dimen/default_margin</item>
+        <item name="android:paddingEnd">@dimen/default_margin</item>
+        <item name="android:paddingTop">@dimen/medium_s_margin</item>
+        <item name="android:paddingBottom">@dimen/medium_s_margin</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">no</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">end</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textColor">@color/user_details_text_color_selector</item>
+        <item name="android:textColorHint">@color/text_color_blue_3</item>
     </style>
 </resources>

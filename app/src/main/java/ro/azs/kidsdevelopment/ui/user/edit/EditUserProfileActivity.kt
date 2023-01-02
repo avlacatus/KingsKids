@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import ro.azs.kidsdevelopment.R
@@ -26,7 +27,9 @@ class EditUserProfileActivity : BaseActivity<EditUserProfileContract.Presenter?>
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        actionBar?.setDisplayHomeAsUpEnabled(true);
+        title = ""
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_HOME_AS_UP
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

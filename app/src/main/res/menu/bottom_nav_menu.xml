@@ -16,10 +16,10 @@
         android:icon="@drawable/ic_history"
         android:title="@string/title_history" />
 
-    <item
-        android:id="@+id/navigation_reports"
-        android:icon="@drawable/ic_reports"
-        android:title="@string/report" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_reports"-->
+<!--        android:icon="@drawable/ic_reports"-->
+<!--        android:title="@string/report" />-->
 
     <item
         android:id="@+id/navigation_user_details"

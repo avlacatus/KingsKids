@@ -22,5 +22,7 @@ class UserDetailsContract {
         fun onLogInError()
 
         fun onLogOutClicked()
+
+        fun onDeleteAccountClicked()
     }
 }

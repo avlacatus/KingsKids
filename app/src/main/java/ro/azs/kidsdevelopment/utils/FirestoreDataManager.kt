@@ -50,7 +50,9 @@ object FirestoreDataManager {
                             return@addSnapshotListener
                         }
 
-                        _userProfileSubject.onNext(if (snapshot == null) Optional.empty() else Optional.of(snapshot.toObject(UserProfile::class.java)))
+                        Logger.e(TAG, "received userProfile: ${snapshot?.toObject(UserProfile::class.java)}")
+                        val userProfile = snapshot?.toObject(UserProfile::class.java) ?: UserProfile()
+                        _userProfileSubject.onNext(Optional.of(userProfile))
                     }
                 )
 

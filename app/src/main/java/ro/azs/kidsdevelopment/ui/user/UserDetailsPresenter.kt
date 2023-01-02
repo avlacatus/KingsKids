@@ -1,6 +1,8 @@
 package ro.azs.kidsdevelopment.ui.user
 
 import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.auth.api.Auth
+import com.google.firebase.auth.FirebaseAuth
 import ro.azs.kidsdevelopment.KidsDevelopmentApplication
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.base.BasePresenter
@@ -25,11 +27,10 @@ class UserDetailsPresenter(view: UserDetailsContract.View) : BasePresenter<UserD
     }
 
     private fun ensureViewData() {
-        if (userProfile != null) {
-            view.setupUserProfile(userProfile!!)
-        } else {
-            view.setupLoggedOutPage()
-        }
+        userProfile?.let {
+            view.setupUserProfile(it)
+        } ?: kotlin.run { view.setupLoggedOutPage() }
+
     }
 
     override fun onUserProfileEdited() {
@@ -55,7 +56,24 @@ class UserDetailsPresenter(view: UserDetailsContract.View) : BasePresenter<UserD
             { AuthUI.getInstance().signOut(KidsDevelopmentApplication.appContext).addOnCompleteListener {} },
             onDismiss = null
         )
+    }
 
+    override fun onDeleteAccountClicked() {
+        view.showConfirmOperationDialog(
+            title = R.string.warning,
+            message = R.string.deleteAccountMessage,
+            positiveButtonMessage = R.string.yes,
+            negativeButtonMessage = R.string.no,
+            {
+                FirebaseAuth.getInstance().currentUser?.delete()?.addOnCompleteListener {
+                    Logger.e(TAG, "user deleted")
+                }
+
+                // AuthUI.getInstance().signOut(KidsDevelopmentApplication.appContext).addOnCompleteListener {}
+
+            },
+            onDismiss = null
+        )
     }
 
     companion object {

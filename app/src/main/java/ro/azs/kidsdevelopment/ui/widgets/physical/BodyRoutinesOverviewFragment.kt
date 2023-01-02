@@ -9,6 +9,8 @@ class BodyRoutinesOverviewPresenter(view: BaseWidgetOverviewContract.View) :
     BaseWidgetOverviewPresenter<BaseWidgetOverviewContract.View>(view),
     BaseWidgetOverviewContract.Presenter {
 
+    override fun getMaxCountDisplayed() = 1
+
     companion object {
         private val TAG = BodyRoutinesOverviewPresenter::class.java.simpleName
     }

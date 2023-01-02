@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.RadioChoiceItemViewModel.RadioItemVM" />
+    </data>
+
+
+    <ro.azs.kidsdevelopment.utils.CustomToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@{viewModel.isSelected() ? @color/text_color_blue_2 : @color/text_color_blue_3}"
+        android:checked="@={viewModel.isSelected()}"
+        android:minHeight="0dp"
+        android:padding="@dimen/default_margin"
+        android:textAllCaps="false"
+        android:textColor="@{viewModel.isSelected() ? @color/text_color_blue_3 : @color/textColor}"
+        android:textOff="@{viewModel.label}"
+        android:textOn="@{viewModel.label}"
+        tools:backgroundTint="@color/text_color_blue_2"
+        tools:textColor="@color/white"
+        tools:textOff="@string/rareLabel" />
+
+</layout>
+

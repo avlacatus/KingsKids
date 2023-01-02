@@ -17,11 +17,11 @@
         android:label="@string/title_favourites"
         tools:layout="@layout/fragment_categories" />
 
-    <fragment
-        android:id="@+id/navigation_reports"
-        android:name="ro.azs.kidsdevelopment.ui.reports.ReportsFragment"
-        android:label="@string/report"
-        tools:layout="@layout/fragment_reports" />
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_reports"-->
+<!--        android:name="ro.azs.kidsdevelopment.ui.reports.ReportsFragment"-->
+<!--        android:label="@string/report"-->
+<!--        tools:layout="@layout/fragment_reports" />-->
 
     <fragment
         android:id="@+id/navigation_history"

@@ -39,18 +39,20 @@
                 android:id="@+id/profile_welcome_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginTop="@dimen/large_margin"
                 android:layout_marginBottom="@dimen/default_margin"
-                android:text="@{@string/helloGreeting(viewModel.userDetails.name == null ? @string/unknownName : viewModel.userDetails.name)}"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:text="@{viewModel.userGreeting}"
+                android:textColor="@color/text_color_blue_2"
+                android:textSize="@dimen/toolbar_text_size"
                 android:textStyle="bold"
                 tools:text="Buna, David!" />
 
             <Button
                 android:id="@+id/profile_button_login"
+                style="@style/DarkBlueButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_margin"
                 android:onClick="@{() -> presenter.onLogInClicked()}"
                 android:text="@string/loginButton"
                 app:show="@{viewModel.userDetails == null}" />
@@ -62,17 +64,25 @@
                 app:show="@{viewModel.userDetails != null}"
                 app:viewModel="@{viewModel.userDetails}" />
 
+            <TextView
+                style="@style/HyperlinkText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:onClick="@{() -> presenter.onDeleteAccountClicked()}"
+                android:text="@string/deleteAccount"
+                app:show="@{viewModel.userDetails != null}" />
+
             <Button
                 android:id="@+id/profile_button_logout"
+                style="@style/DarkBlueButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/bottom_navigation_size_height"
                 android:onClick="@{() -> presenter.onLogOutClicked()}"
                 android:text="@string/logoutButton"
-                android:layout_marginBottom="@dimen/bottom_navigation_size_height"
                 app:show="@{viewModel.userDetails != null}" />
-
-
         </LinearLayout>
 
     </ScrollView>

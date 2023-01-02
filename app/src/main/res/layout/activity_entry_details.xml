@@ -14,7 +14,7 @@
             type="ro.azs.kidsdevelopment.ui.firestoreEntry.EntryDetailsViewModel" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -45,51 +45,57 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_below="@id/toolbar"
+            android:layout_above="@id/entries_save_btn">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <ImageView
+                    android:id="@+id/header_icon"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_entry_details_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_max="140dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/header_icon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/ic_entry_details_header"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_max="140dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/entries_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:itemBinding="@{viewModel.itemBindings}"
+                    app:items="@{viewModel.items}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/entries_bottom_spacer"
+                    app:layout_constraintTop_toBottomOf="@id/header_icon"
+                    tools:listitem="@layout/entry_control_item_string" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:itemBinding="@{viewModel.itemBindings}"
-                        app:items="@{viewModel.items}"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/header_icon"
-                        tools:listitem="@layout/entry_control_item_string" />
+                <View
+                    android:id="@+id/entries_bottom_spacer"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/entries_rv" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
         <Button
+            android:id="@+id/entries_save_btn"
             style="@style/PurpleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/large_margin"
             android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/large_margin"
             android:onClick="@{() -> presenter.onSaveButtonPressed()}"
             android:text="@string/save" />
+    </RelativeLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

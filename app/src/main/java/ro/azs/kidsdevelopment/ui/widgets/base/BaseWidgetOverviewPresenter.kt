@@ -11,11 +11,14 @@ open class BaseWidgetOverviewPresenter<T : BaseWidgetOverviewContract.View>(view
         FirestoreDataManager.getSectionDataProvider(view.getCategorySectionType())?.let { dataManager ->
             dataManager.getDataSubject().distinctUntilChanged().subscribe({ items ->
                 if (isViewAttached) {
-                    view.displayItems(items.take(3))
+                    view.displayItems(items.take(getMaxCountDisplayed()))
                 }
             }, {})
         }
     }
+
+    open fun getMaxCountDisplayed() = 3
+
     override fun onSeeAllItemsClicked() {
         view.openCategorySectionDetails()
     }

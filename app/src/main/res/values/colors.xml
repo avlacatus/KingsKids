@@ -15,6 +15,7 @@
     <color name="text_color_blue_4">#D0EAFC</color>
     <color name="purple">#BF8FFD</color>
     <color name="purple_tint">#8564b1</color>
+    <color name="text_color_orange">#F5A72B</color>
 
     <color name="colorPrimary">@color/text_color_blue_1</color>
     <color name="colorPrimaryDark">@color/text_color_blue_2</color>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="ro.azs.kidsdevelopment.utils.ConversionUtils" />
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.PrayerAnswerItemViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingStart="@dimen/xlarge_margin"
+        android:paddingEnd="@dimen/xlarge_margin">
+
+        <include
+            android:id="@+id/separator_1"
+            layout="@layout/separator_white_thin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vertical_separator_height"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eci_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_extrabold"
+            android:labelFor="@id/eci_value"
+            android:paddingTop="@dimen/medium_s_margin"
+            android:paddingBottom="@dimen/medium_s_margin"
+            android:text="@string/answerLabel"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/text_color_blue_2"
+            android:checked="@={viewModel.isAnswered}"
+            android:text=""
+            app:layout_constraintBaseline_toBaselineOf="@id/eci_label"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <include
+            android:id="@+id/separator_2"
+            layout="@layout/separator_white_thin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vertical_separator_height"
+            app:layout_constraintTop_toBottomOf="@id/eci_label"
+            app:show="@{viewModel.isAnswered()}" />
+
+
+        <TextView
+            android:id="@+id/eci_date_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_extrabold"
+            android:paddingTop="@dimen/medium_s_margin"
+            android:paddingBottom="@dimen/medium_s_margin"
+            android:text="@string/dateLabel"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/eci_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator_2"
+            app:show="@{viewModel.isAnswered()}" />
+
+        <TextView
+            android:id="@+id/eci_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> viewModel.onDateClick.invoke()}"
+            android:paddingTop="@dimen/medium_s_margin"
+            android:paddingBottom="@dimen/medium_s_margin"
+            android:text="@{ConversionUtils.INSTANCE.getTimestampShortValue(viewModel.answerDate)}"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/eci_date_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@id/eci_label"
+            app:show="@{viewModel.isAnswered()}"
+            tools:text="33 Mar 2023" />
+
+        <include
+            android:id="@+id/separator_3"
+            layout="@layout/separator_white_thin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vertical_separator_height"
+            app:layout_constraintTop_toBottomOf="@id/eci_date_label"
+            app:show="@{viewModel.isAnswered()}" />
+
+        <TextView
+            android:id="@+id/eci_desc_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_extrabold"
+            android:labelFor="@id/eci_desc_value"
+            android:paddingTop="@dimen/medium_s_margin"
+            android:text="@string/descriptionLabel"
+            android:textColor="@color/text_color_blue_2"
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator_3"
+            app:show="@{viewModel.isAnswered()}" />
+
+        <EditText
+            android:id="@+id/eci_desc_value"
+            style="@style/EntryDetails_EditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_s_margin"
+            android:layout_marginBottom="@dimen/medium_s_margin"
+            android:gravity="start"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:text="@={viewModel.answerDescription}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eci_desc_label"
+            app:show="@{viewModel.isAnswered()}"
+            tools:text="valoare" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

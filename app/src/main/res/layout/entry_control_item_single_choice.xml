@@ -36,7 +36,7 @@
             android:paddingBottom="@dimen/medium_s_margin"
             android:text="@{viewModel.label}"
             android:textColor="@color/text_color_blue_2"
-            android:textSize="@dimen/normal_text_style"
+            android:textSize="@dimen/normal_text_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/eci_option"
             app:layout_constraintStart_toStartOf="parent"

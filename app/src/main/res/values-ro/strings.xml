@@ -47,13 +47,16 @@
     <string name="social">Relații Sociale</string>
     <string name="finance">Finanțe</string>
     <!-- profile -->
-    <string name="helloGreeting">Bună, %s</string>
+    <string name="helloGreeting">Bună, %s!</string>
+    <string name="helloGreetingSimple">Bună!</string>
     <string name="unknownName">Necunoscut</string>
     <string name="logoutMessage">Ești sigur că dorești delogarea?</string>
+    <string name="deleteAccountMessage">Ești sigur că dorești să ștergi contul? Dacă ștergi contul toate datele tale vor fi pierdute.</string>
     <string name="logoutYesAction">Da, mă deloghez</string>
     <string name="logoutNoAction">Nu, rămân logat</string>
     <string name="loginButton">Autentificare</string>
     <string name="logoutButton">Delogare</string>
+    <string name="deleteAccount">Șterge contul</string>
     <string name="detailsLabel">Detalii</string>
     <string name="editProfile">Editează Profil</string>
     <string name="report">Raport</string>

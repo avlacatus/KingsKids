@@ -42,7 +42,7 @@
             android:text="@{viewModel.description}"
             android:textColor="@color/text_color_blue_2"
             android:textStyle="bold"
-            android:textSize="@dimen/normal_text_style"
+            android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/lih_image"
             app:layout_constraintTop_toTopOf="parent"

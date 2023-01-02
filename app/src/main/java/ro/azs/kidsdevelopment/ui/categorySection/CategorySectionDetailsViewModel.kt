@@ -8,9 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
-import ro.azs.kidsdevelopment.models.FirestoreModel
-import ro.azs.kidsdevelopment.models.HealthMetric
-import ro.azs.kidsdevelopment.models.WithDescriptionTimestamp
+import ro.azs.kidsdevelopment.models.*
 import ro.azs.kidsdevelopment.ui.widgets.base.BaseWidgetOverviewViewModel
 import java.util.function.Consumer
 
@@ -27,17 +25,27 @@ class CategorySectionDetailsViewModelFactory(listener: Consumer<FirestoreModel>)
 
 }
 
-class CategorySectionDetailsViewModel(private val itemClickListener: Consumer<FirestoreModel>) : ViewModel() {
+class CategorySectionDetailsViewModel(itemClickListener: Consumer<FirestoreModel>) : ViewModel() {
     val title = ObservableField("")
 
     val emptyMessageRes = ObservableField(-1)
     val items = ObservableArrayList<Any>()
 
     val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, position: Int, item: Any? ->
-        if (item is HealthMetric) {
-            itemBinding[BR.viewModel] = R.layout.item_list_health_metric
-        } else if (item is WithDescriptionTimestamp) {
-            itemBinding[BR.viewModel] = R.layout.item_list_long_label_timestamp
+        when (item) {
+            is BodyRoutine -> {
+                itemBinding[BR.viewModel] = R.layout.item_list_body_routine
+            }
+            is DailySchedule -> {
+                itemBinding[BR.viewModel] = R.layout.item_list_daily_schedule
+            }
+            is HealthMetric -> {
+                itemBinding[BR.viewModel] = R.layout.item_list_health_metric
+            }
+            is WithDescriptionTimestamp -> {
+                itemBinding[BR.viewModel] = R.layout.item_list_long_label_timestamp
+            }
         }
     }.bindExtra(BR.listener, itemClickListener)
+        .bindExtra(BR.useDarkSeparator, false)
 }

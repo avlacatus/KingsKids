@@ -54,13 +54,17 @@
     <string name="social">Social Relations</string>
     <string name="finance">Finances</string>
     <!-- profile -->
-    <string name="helloGreeting">Hello, %s</string>
+    <string name="helloGreeting">Hello, %s!</string>
+    <string name="helloGreetingSimple">Hello!</string>
     <string name="unknownName">Unknown</string>
     <string name="logoutMessage">Are you sure you want to logout?</string>
+    <string name="deleteAccountMessage">Are you sure you want to delete your account? If you delete your account all your data will be lost.</string>
+
     <string name="logoutYesAction">Yes, logout</string>
     <string name="logoutNoAction">No, stay logged in</string>
     <string name="loginButton">Sign In</string>
     <string name="logoutButton">Sign Out</string>
+    <string name="deleteAccount">Delete account</string>
     <string name="detailsLabel">Details</string>
     <string name="editProfile">Edit Profile</string>
     <string name="report">Report</string>

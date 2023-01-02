@@ -100,12 +100,13 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                 val timestamp = TimestampItemViewModel(existingModel?.date ?: Timestamp.now(), this)
                 val subject = StringItemViewModel(R.string.subjectLabel, existingModel?.subject)
                 val description = StringItemViewModel(R.string.descriptionLabel, existingModel?.description, true)
+                val answer = PrayerAnswerItemViewModel(existingModel?.answer, this)
 
-                //TODO add prayerAnswer
                 linkedMapOf(
                     K.timestamp to timestamp,
                     K.subject to subject,
-                    K.description to description
+                    K.description to description,
+                    K.answer to answer
                 )
 
             }
@@ -121,7 +122,22 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                     K.reason to reason
                 )
             }
-            CategorySectionType.bodyRoutines -> TODO()
+            CategorySectionType.bodyRoutines -> {
+                val existingModel = existingEntryModel as? BodyRoutine?
+                linkedMapOf(
+                    K.timestamp to TimestampItemViewModel(existingModel?.date ?: Timestamp.now(), this),
+                    K.teeth to RadioChoiceItemViewModel(R.string.teethBrushLabel,
+                        existingModel?.teethBrush ?: BodyRoutineValue.somethimes,
+                        BodyRoutineValue.values()),
+                    K.shower to RadioChoiceItemViewModel(R.string.showerLabel, existingModel?.shower ?: BodyRoutineValue.somethimes, BodyRoutineValue.values()),
+                    K.hands to RadioChoiceItemViewModel(R.string.handWashLabel,
+                        existingModel?.handWash ?: BodyRoutineValue.somethimes,
+                        BodyRoutineValue.values()),
+                    K.nails to RadioChoiceItemViewModel(R.string.nailsLabel, existingModel?.nails ?: BodyRoutineValue.somethimes, BodyRoutineValue.values()),
+                    K.tease to RadioChoiceItemViewModel(R.string.teaseLabel, existingModel?.tease ?: BodyRoutineValue.somethimes, BodyRoutineValue.values()),
+                    K.dressed to RadioChoiceItemViewModel(R.string.dressedLabel, existingModel?.dress ?: BodyRoutineValue.somethimes, BodyRoutineValue.values())
+                )
+            }
             CategorySectionType.healthMetrics -> {
                 val existingModel = existingEntryModel as? HealthMetric?
                 linkedMapOf(
@@ -211,7 +227,17 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                     K.details to StringItemViewModel(R.string.detailsLabel, existingModel?.details, true),
                 )
             }
-            CategorySectionType.dailySchedule -> TODO()
+            CategorySectionType.dailySchedule -> {
+                val existingModel = existingEntryModel as? DailySchedule?
+                linkedMapOf(
+                    K.timestamp to TimestampItemViewModel(existingModel?.date ?: Timestamp.now(), this),
+                    K.godTime to NumberItemViewModel(R.string.godLabel, existingModel?.god),
+                    K.familyTime to NumberItemViewModel(R.string.familyLabel, existingModel?.family),
+                    K.schoolTime to NumberItemViewModel(R.string.schoolLabel2, existingModel?.school),
+                    K.friendsTime to NumberItemViewModel(R.string.friendsLabel, existingModel?.friends),
+                )
+
+            }
             CategorySectionType.pleasantActions -> {
                 val existingModel = existingEntryModel as? PleasantAction?
                 linkedMapOf(
@@ -339,11 +365,14 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                 val timestamp = viewModel.getItemForTag(K.timestamp) as TimestampItemViewModel?
                 val subject = viewModel.getItemForTag(K.subject) as StringItemViewModel?
                 val description = viewModel.getItemForTag(K.description) as StringItemViewModel?
+                val answer = viewModel.getItemForTag(K.answer) as PrayerAnswerItemViewModel?
 
                 PrayerSubject(
                     timestamp?.selectedDate?.get() ?: Timestamp(Date()),
                     subject?.value?.get() ?: "",
-                    description?.value?.get() ?: ""
+                    description?.value?.get() ?: "",
+                    if (answer?.isAnswered?.get() == true) PrayerSubjectAnswer(answer.answerDate.get() ?: Timestamp.now(),
+                        answer.answerDescription.get() ?: "") else null
                 )
             }
 
@@ -352,7 +381,6 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                 val person = viewModel.getItemForTag(K.person) as StringItemViewModel?
                 val reason = viewModel.getItemForTag(K.reason) as StringItemViewModel?
 
-                //TODO add prayerAnswer
                 PrayerPeople(
                     timestamp?.selectedDate?.get() ?: Timestamp(Date()),
                     person?.value?.get() ?: "",
@@ -486,7 +514,26 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                     task?.value?.get() ?: ""
                 )
             }
-            CategorySectionType.bodyRoutines -> TODO()
+            CategorySectionType.bodyRoutines -> {
+                val timestamp = viewModel.getItemForTag(K.timestamp) as TimestampItemViewModel?
+                val teeth = viewModel.getItemForTag(K.teeth) as RadioChoiceItemViewModel<BodyRoutineValue>?
+                val shower = viewModel.getItemForTag(K.shower) as RadioChoiceItemViewModel<BodyRoutineValue>?
+                val hands = viewModel.getItemForTag(K.hands) as RadioChoiceItemViewModel<BodyRoutineValue>?
+                val nails = viewModel.getItemForTag(K.nails) as RadioChoiceItemViewModel<BodyRoutineValue>?
+                val tease = viewModel.getItemForTag(K.tease) as RadioChoiceItemViewModel<BodyRoutineValue>?
+                val dressed = viewModel.getItemForTag(K.dressed) as RadioChoiceItemViewModel<BodyRoutineValue>?
+
+                BodyRoutine(
+                    timestamp?.selectedDate?.get() ?: Timestamp(Date()),
+                    teeth?.selectedOption?.get() ?: BodyRoutineValue.somethimes,
+                    shower?.selectedOption?.get() ?: BodyRoutineValue.somethimes,
+                    hands?.selectedOption?.get() ?: BodyRoutineValue.somethimes,
+                    nails?.selectedOption?.get() ?: BodyRoutineValue.somethimes,
+                    tease?.selectedOption?.get() ?: BodyRoutineValue.somethimes,
+                    dressed?.selectedOption?.get() ?: BodyRoutineValue.somethimes,
+                )
+
+            }
             CategorySectionType.healthMetrics -> {
                 val timestamp = viewModel.getItemForTag(K.timestamp) as TimestampItemViewModel?
                 val height = viewModel.getItemForTag(K.height) as NumberItemViewModel?
@@ -499,7 +546,21 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                 )
 
             }
-            CategorySectionType.dailySchedule -> TODO()
+            CategorySectionType.dailySchedule -> {
+                val timestamp = viewModel.getItemForTag(K.timestamp) as TimestampItemViewModel?
+                val godTime = viewModel.getItemForTag(K.godTime) as NumberItemViewModel?
+                val familyTime = viewModel.getItemForTag(K.familyTime) as NumberItemViewModel?
+                val schoolTime = viewModel.getItemForTag(K.schoolTime) as NumberItemViewModel?
+                val friendsTime = viewModel.getItemForTag(K.friendsTime) as NumberItemViewModel?
+
+                DailySchedule(
+                    timestamp?.selectedDate?.get() ?: Timestamp(Date()),
+                    godTime?.value?.get() ?: 0.0,
+                    familyTime?.value?.get() ?: 0.0,
+                    schoolTime?.value?.get() ?: 0.0,
+                    friendsTime?.value?.get() ?: 0.0
+                )
+            }
             CategorySectionType.finances -> {
                 val timestamp = viewModel.getItemForTag(K.timestamp) as TimestampItemViewModel?
                 val financeType = viewModel.getItemForTag(K.financeType) as SingleChoiceItemViewModel<FinanceType>?

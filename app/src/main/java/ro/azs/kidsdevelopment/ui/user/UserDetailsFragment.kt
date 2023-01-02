@@ -63,6 +63,8 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.userDetails.observe(this.viewLifecycleOwner) {
+            viewModel.userGreeting.set(if (it == null || it.name.value.isNullOrBlank()) getString(R.string.helloGreetingSimple) else getString(R.string.helloGreeting,
+                it.name.value))
             activity?.invalidateOptionsMenu()
         }
     }
@@ -108,7 +110,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
             .setTheme(R.style.LoginTheme)
-            .setLogo(R.mipmap.ic_launcher)
+            .setLogo(R.drawable.img_profile)
             .build()
         signInLauncher.launch(signInIntent)
     }

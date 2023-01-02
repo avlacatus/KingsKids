@@ -6,12 +6,18 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.Observable
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import com.google.firebase.Timestamp
+import me.tatarka.bindingcollectionadapter2.ItemBinding
+import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.models.BibleReference
 import ro.azs.kidsdevelopment.models.LocalizedString
+import ro.azs.kidsdevelopment.models.PrayerSubjectAnswer
 import ro.azs.kidsdevelopment.utils.ConversionUtils
+import ro.azs.kidsdevelopment.utils.Logger
 import java.util.*
 
 
@@ -94,12 +100,11 @@ class NumberItemViewModel(@StringRes label: Int, initialValue: Double? = 0.0) : 
     init {
         stringValue.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                value.set(stringValue.get()?.toDoubleOrNull())
+                value.set(stringValue.get()?.toDoubleOrNull() ?: 0.0)
             }
-
         })
 
-        stringValue.set(initialValue.toString())
+        stringValue.set((initialValue ?: 0.0).toString())
     }
 }
 
@@ -133,5 +138,89 @@ class SingleChoiceItemViewModel<T>(@StringRes label: Int, initialValue: T?, allI
             }
         })
         selectedOption.set(initialValue)
+    }
+}
+
+class RadioChoiceItemViewModel<T>(@StringRes label: Int, initialValue: T?, allItems: Array<T>) :
+    EntryItemViewModel(label, R.layout.entry_control_item_radio_choice) where T : LocalizedString {
+
+    val selectedOption = ObservableField<T>()
+    val items = ObservableArrayList<RadioItemVM>()
+    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: RadioItemVM? ->
+        itemBinding[BR.viewModel] = R.layout.item_list_generic_radio
+    }
+
+    init {
+        items.addAll(allItems.map { item ->
+            RadioItemVM(item).apply {
+                isSelected.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+                    override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                        if (this@apply.isSelected.get()) {
+                            selectedOption.set(item)
+                            items.forEach { otherVm ->
+                                if (otherVm != this@apply) {
+                                    otherVm.isSelected.set(false)
+                                }
+                            }
+                        } else {
+                            if (item == selectedOption.get()) {
+                                isSelected.set(true)
+                                Logger.e("errrrooorrr", "s-a dezactivat singurul element selectat")
+                            }
+                        }
+                    }
+
+                })
+                isSelected.set(item == initialValue)
+            }
+        })
+    }
+
+    class RadioItemVM(val item: LocalizedString) {
+        val label = item.getLocalizedString()
+        val isSelected = ObservableBoolean(false)
+
+    }
+}
+
+
+class PrayerAnswerItemViewModel(initialValue: PrayerSubjectAnswer?, private val refActivity: AppCompatActivity) :
+    EntryItemViewModel(R.string.answerLabel, R.layout.entry_control_item_prayer_answer) {
+
+    val isAnswered = ObservableBoolean()
+    val answerDate = ObservableField<Timestamp>()
+    val answerDescription = ObservableField<String>()
+
+
+    val onDateClick = {
+        val currentCalendar = Calendar.getInstance().apply {
+            time = (answerDate.get() ?: Timestamp.now()).toDate()
+        }
+        DatePickerDialog(
+            refActivity, { _, year, month, dayOfMonth ->
+                onDatePickerSet(year, month, dayOfMonth)
+            }, currentCalendar.get(Calendar.YEAR), currentCalendar.get(Calendar.MONTH), currentCalendar.get(Calendar.DAY_OF_MONTH)).show()
+    }
+
+    private fun onDatePickerSet(year: Int, month: Int, dayOfMonth: Int) {
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.YEAR, year)
+            set(Calendar.MONTH, month)
+            set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        }
+        answerDate.set(Timestamp(calendar.time))
+    }
+
+
+    init {
+        initialValue?.let {
+            isAnswered.set(true)
+            answerDate.set(it.date)
+            answerDescription.set(it.description)
+        } ?: kotlin.run {
+            isAnswered.set(false)
+            answerDate.set(Timestamp.now())
+            answerDescription.set("")
+        }
     }
 }
