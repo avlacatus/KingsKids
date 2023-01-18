@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.SelectBibleReferenceDialog.ItemViewModel" />
+
+    </data>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.onSelected.invoke(viewModel.tag)}"
+        android:padding="@dimen/default_margin"
+        android:text="@{viewModel.label}"
+        android:textColor="@color/text_color_blue_2"
+        android:textSize="@dimen/small_text_size"
+        app:isBold="@{viewModel.isSelected}"
+        tools:text="Geneza" />
+
+</layout>
+

@@ -46,10 +46,10 @@ class EntryDetailsPresenter(view: EntryDetailsContract.View,
 
             FirestoreDataManager.updateModel(categorySectionType, modelFromView, {
                 if (existingEntryModel == null)
-                    view.showToastMessage("adaugare cu succes")
+                    view.showSuccessToast("adaugare cu succes", view::closeScreen)
                 else
-                    view.showToastMessage("actualizare cu succes")
-                view.closeScreen()
+                    view.showSuccessToast("actualizare cu succes", view::closeScreen)
+
             }, {
                 Logger.e(TAG, "update error: ${it.message}", it)
                 if (existingEntryModel == null)

@@ -7,6 +7,8 @@ import ro.azs.kidsdevelopment.models.FirestoreModel
 class EntryDetailsContract {
 
     interface View : BaseContract.View {
+        fun showSuccessToast(messageRes: Int, onDismiss: () -> Unit)
+        fun showSuccessToast(message: String, onDismiss: () -> Unit)
         fun setupTitle(titleRes: Int)
         fun setShowDeleteOption(show: Boolean)
         fun closeScreen()

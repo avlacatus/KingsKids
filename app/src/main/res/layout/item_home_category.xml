@@ -39,7 +39,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/large_margin"
                 android:contentDescription="@string/app_name"
+                android:padding="@dimen/no_margin"
                 android:scaleType="centerCrop"
                 android:src="@{viewModel.category.type.iconRes}"
                 tools:src="@drawable/category_bible" />

@@ -110,7 +110,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
             .setTheme(R.style.LoginTheme)
-            .setLogo(R.drawable.img_profile)
+            .setLogo(R.drawable.img_profile_v2)
             .build()
         signInLauncher.launch(signInIntent)
     }

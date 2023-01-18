@@ -3,8 +3,11 @@ package ro.azs.kidsdevelopment.ui.firestoreEntry
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -12,9 +15,12 @@ import com.google.firebase.Timestamp
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.base.BaseActivity
 import ro.azs.kidsdevelopment.databinding.ActivityEntryDetailsBinding
+import ro.azs.kidsdevelopment.databinding.LayoutToastOperationSuccessBinding
 import ro.azs.kidsdevelopment.models.*
 import ro.azs.kidsdevelopment.ui.firestoreEntry.control.*
+import ro.azs.kidsdevelopment.ui.firestoreEntry.toast.SuccessOperationDialog
 import java.util.*
+import kotlin.concurrent.timerTask
 
 
 @Suppress("DEPRECATION")
@@ -317,6 +323,28 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
                 )
             }
         }
+    }
+
+    override fun showSuccessToast(messageRes: Int, onDismiss: () -> Unit) {
+        showSuccessToast(getString(messageRes), onDismiss)
+    }
+
+    override fun showSuccessToast(message: String, onDismiss: () -> Unit) {
+//        val dialog = SuccessOperationDialog.getDialog(message)
+//        dialog.show(supportFragmentManager, "success_toast")
+//        Handler().postDelayed({
+//            onDismiss.invoke()
+//        }, 3000)
+
+
+        val binding: LayoutToastOperationSuccessBinding = DataBindingUtil.inflate(layoutInflater, R.layout.layout_toast_operation_success, null, false)
+        binding.message = message
+        val toast = Toast(this)
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+        toast.duration = Toast.LENGTH_LONG
+        toast.view = binding.root
+        toast.show()
+        onDismiss.invoke()
     }
 
     override fun getModelFromInput(): FirestoreModel {

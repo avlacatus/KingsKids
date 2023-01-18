@@ -1,8 +1,10 @@
 package ro.azs.kidsdevelopment.utils;
 
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
@@ -76,5 +78,11 @@ public class BindingMethods {
             p.setMargins(p.leftMargin, p.topMargin, (int) marginEnd, p.bottomMargin);
             view.requestLayout();
         }
+    }
+
+    @BindingAdapter("isBold")
+    public static void setBold(@NonNull TextView view, boolean isBold) {
+        Typeface typeface = Typeface.create(view.getTypeface(), Typeface.NORMAL);
+        view.setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
     }
 }
