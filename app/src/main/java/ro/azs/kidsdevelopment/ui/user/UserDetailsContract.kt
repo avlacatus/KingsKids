@@ -10,6 +10,7 @@ class UserDetailsContract {
         fun openLogIn()
         fun setupLoggedOutPage()
         fun setupUserProfile(user: UserProfile)
+        fun openContactForm()
     }
 
     interface Presenter : BaseContract.Presenter {
@@ -22,6 +23,8 @@ class UserDetailsContract {
         fun onLogInError()
 
         fun onLogOutClicked()
+
+        fun onContactUsClicked()
 
         fun onDeleteAccountClicked()
     }

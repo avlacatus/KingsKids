@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <string name="app_name">Copiii Regelui</string>
+    <string name="title_home">Acasă</string>
+    <string name="title_categories">Categorii</string>
+    <string name="title_favourites">Favorite</string>
+    <string name="title_history">Istoric</string>
+    <string name="title_user_details">Profil</string>
     <string name="yesLabel">Da</string>
     <string name="noLabel">Nu</string>
     <string name="sometimesLabel">Uneori</string>
@@ -16,7 +22,7 @@
     <string name="notAuthenticatedHomeMessage">Nu ești autentificat. Autentifică-te pentru a folosi toate funcționalitățile aplicației.</string>
     <string name="reviewForm">Revizuire formular</string>
     <string name="discard">Șterge</string>
-    <string name="notFound">Fara traducere</string>
+    <string name="notFound">Fără traducere</string>
     <string name="categories">Categorii</string>
     <string name="favorites">Favorite</string>
     <string name="history">Istoric</string>
@@ -294,7 +300,7 @@
     <string name="all">Toate</string>
     <string name="tryAgain">Reîncercați</string>
     <string name="offlineMessage">Ești ofline. Nu te panica, aplicația va accesa și salva datele local. Sincronizarea datelor se va efectua când conexiunea va fi restabilită.</string>
-    <string name="unautheticatedMessage">Nu ești autetificat. Autentifică-te în secțiunea de Profil.</string>
+    <string name="unautheticatedMessage">Nu ești autentificat. Autentifică-te în secțiunea de Profil.</string>
     <!-- hobbies types -->
     <string name="playing">Cântat (instrument)</string>
     <string name="singing">Cântat (vocal)</string>
@@ -472,4 +478,6 @@
     <string name="changesLabel">Modificări</string>
 
     <string name="selectReferenceLabel">Selectează referință</string>
+    <string name="contactLabel">Contactează-ne</string>
+    <string name="sendViaLabel">Trimite prin…</string>
 </resources>

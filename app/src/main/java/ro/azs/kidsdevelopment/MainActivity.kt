@@ -20,7 +20,7 @@ class MainActivity : BaseActivity<BaseContract.Presenter>() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         binding.navView.setupWithNavController(navController)
         title = ""
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.title = destination.label?.toString() ?: ""
         }
     }

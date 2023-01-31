@@ -315,7 +315,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/diamond/baseline_diamond_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/remove_circle_outline/baseline_remove_circle_outline_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -325,9 +325,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="de1cff" />
-                            <entry key="outputName" value="ic_diamond" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/profile_v2_nonstop.svg" />
+                            <entry key="color" value="1c77ff" />
+                            <entry key="outputName" value="ic_remove_account" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/Chat.svg" />
                           </map>
                         </option>
                       </PersistentState>

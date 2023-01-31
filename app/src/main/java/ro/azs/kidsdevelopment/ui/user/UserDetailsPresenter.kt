@@ -58,6 +58,10 @@ class UserDetailsPresenter(view: UserDetailsContract.View) : BasePresenter<UserD
         )
     }
 
+    override fun onContactUsClicked() {
+        view.openContactForm()
+    }
+
     override fun onDeleteAccountClicked() {
         view.showConfirmOperationDialog(
             title = R.string.warning,

@@ -2,8 +2,8 @@ package ro.azs.kidsdevelopment.ui.firestoreEntry
 
 import android.app.Activity
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -18,9 +18,7 @@ import ro.azs.kidsdevelopment.databinding.ActivityEntryDetailsBinding
 import ro.azs.kidsdevelopment.databinding.LayoutToastOperationSuccessBinding
 import ro.azs.kidsdevelopment.models.*
 import ro.azs.kidsdevelopment.ui.firestoreEntry.control.*
-import ro.azs.kidsdevelopment.ui.firestoreEntry.toast.SuccessOperationDialog
 import java.util.*
-import kotlin.concurrent.timerTask
 
 
 @Suppress("DEPRECATION")
@@ -325,23 +323,28 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
         }
     }
 
+    override fun playSuccessSound() {
+        MediaPlayer.create(this, R.raw.sound).start()
+    }
+
     override fun showSuccessToast(messageRes: Int, onDismiss: () -> Unit) {
         showSuccessToast(getString(messageRes), onDismiss)
     }
 
     override fun showSuccessToast(message: String, onDismiss: () -> Unit) {
-//        val dialog = SuccessOperationDialog.getDialog(message)
-//        dialog.show(supportFragmentManager, "success_toast")
-//        Handler().postDelayed({
-//            onDismiss.invoke()
-//        }, 3000)
-
+//        SuccessOperationDialog.getDialog(message).apply {
+//            show(supportFragmentManager, SUCCESS_TOAST_TAG)
+//            Handler().postDelayed({
+//                dismiss()
+//                onDismiss.invoke()
+//            }, 2000)
+//        }
 
         val binding: LayoutToastOperationSuccessBinding = DataBindingUtil.inflate(layoutInflater, R.layout.layout_toast_operation_success, null, false)
         binding.message = message
         val toast = Toast(this)
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
-        toast.duration = Toast.LENGTH_LONG
+        toast.setGravity(Gravity.FILL, 0, 0)
+        toast.duration = Toast.LENGTH_SHORT
         toast.view = binding.root
         toast.show()
         onDismiss.invoke()
@@ -664,6 +667,7 @@ class EntryDetailsActivity : BaseActivity<EntryDetailsContract.Presenter>(), Ent
 
     companion object {
         private val TAG = EntryDetailsActivity::class.java.simpleName
+        private const val SUCCESS_TOAST_TAG = "SUCCESS_TOAST_TAG"
         private const val INTENT_EXTRA_CATEGORY_SECTION_TYPE = "INTENT_EXTRA_CATEGORY_SECTION_TYPE"
         private const val INTENT_EXTRA_EXISTING_MODEL = "INTENT_EXTRA_EXISTING_MODEL"
         private const val INTENT_EXTRA_EXISTING_MODEL_ID = "INTENT_EXTRA_EXISTING_MODEL_ID"

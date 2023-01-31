@@ -146,7 +146,7 @@ class RadioChoiceItemViewModel<T>(@StringRes label: Int, initialValue: T?, allIt
 
     val selectedOption = ObservableField<T>()
     val items = ObservableArrayList<RadioItemVM>()
-    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: RadioItemVM? ->
+    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, _: RadioItemVM? ->
         itemBinding[BR.viewModel] = R.layout.item_list_generic_radio
     }
 

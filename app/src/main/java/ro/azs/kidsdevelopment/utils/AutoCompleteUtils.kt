@@ -32,7 +32,7 @@ object AutoCompleteUtils {
             }
         })
         autoCompleteTextView.onItemClickListener =
-            OnItemClickListener { parent: AdapterView<*>, _: View?, position: Int, id: Long -> onItemSelected.invoke(parent.getItemAtPosition(position) as T) }
+            OnItemClickListener { parent: AdapterView<*>, _: View?, position: Int, _: Long -> onItemSelected.invoke(parent.getItemAtPosition(position) as T) }
         autoCompleteTextView.validator = AnyCaseStringValidator(items, onItemSelected)
         autoCompleteTextView.addTextChangedListener(object : TextWatcherAdapter() {
             override fun afterTextChanged(s: Editable) {
@@ -41,7 +41,7 @@ object AutoCompleteUtils {
                 }
             }
         })
-        autoCompleteTextView.onFocusChangeListener = OnFocusChangeListener { v: View?, hasFocus: Boolean ->
+        autoCompleteTextView.onFocusChangeListener = OnFocusChangeListener { _: View?, hasFocus: Boolean ->
             if (hasFocus) {
                 autoCompleteTextView.showDropDown()
             } else {
@@ -51,7 +51,7 @@ object AutoCompleteUtils {
                 }
             }
         }
-        autoCompleteTextView.setOnClickListener { v: View? ->
+        autoCompleteTextView.setOnClickListener { _: View? ->
             if (autoCompleteTextView.text.isEmpty()) {
                 autoCompleteTextView.showDropDown()
             }

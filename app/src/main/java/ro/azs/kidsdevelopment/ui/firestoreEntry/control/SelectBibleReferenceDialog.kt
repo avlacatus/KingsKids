@@ -10,14 +10,13 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.tabs.TabLayout.TabGravity
+import io.reactivex.rxjava3.disposables.Disposable
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import ro.azs.kidsdevelopment.BR
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.databinding.DialogSelectBibleReferenceBinding
-import ro.azs.kidsdevelopment.models.BibleBookType
-import ro.azs.kidsdevelopment.models.BibleReference
-import ro.azs.kidsdevelopment.models.Labeled
+import ro.azs.kidsdevelopment.models.*
+import ro.azs.kidsdevelopment.utils.FirestoreDataManager
 import ro.azs.kidsdevelopment.utils.Logger
 
 class SelectBibleReferenceDialog : DialogFragment() {
@@ -25,11 +24,21 @@ class SelectBibleReferenceDialog : DialogFragment() {
     private lateinit var binding: DialogSelectBibleReferenceBinding
     private val viewModel = ViewModel()
     private val correspondingFieldVM: BibleVerseReferenceItemViewModel? by lazy { arguments?.getSerializable(ARG_CORRESPONDING_FIELD_VM) as BibleVerseReferenceItemViewModel? }
-
+    private lateinit var bibleBooksDisposable: Disposable
+    private lateinit var bibleBooksList: List<BibleBook>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = true
         setStyle(STYLE_NO_FRAME, R.style.Full_Dialog)
+
+        bibleBooksDisposable = FirestoreDataManager.bibleBooks.take(1).subscribe({ books ->
+            bibleBooksList = books
+        }, { e -> Logger.e(TAG, "error fetching categories: ${e.message}") })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        bibleBooksDisposable.dispose()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -52,33 +61,45 @@ class SelectBibleReferenceDialog : DialogFragment() {
 
         viewModel.showVersePicker.set(arguments?.getBoolean(ARG_SHOW_VERSE_PICKER) ?: true)
 
-
         val initialReference = (arguments?.getParcelable(ARG_INITIAL_REFERENCE) as BibleReference?) ?: kotlin.run {
             getDefaultReference()
         }
 
         viewModel.bibleReference.set(initialReference)
 
-        viewModel.bookItems.addAll(BibleBookType.values()
-            .map { ItemViewModel(it, it.getLocalizedString(), it == initialReference.bibleBookType, this::onBibleBookSelected) })
-        viewModel.chapterItems.addAll((1..initialReference.bibleBookType.chapters).map {
-            ItemViewModel(
-                it,
-                it.toString(),
-                it == initialReference.chapter,
-                this::onChapterSelected
-            )
-        })
-        viewModel.verseItems.addAll((1..initialReference.bibleBookType.verseCounts[initialReference.chapter - 1]).map {
-            ItemViewModel(it,
-                it.toString(),
-                it == initialReference.verse,
-                this::onVerseSelected)
-        })
+        if (!this::bibleBooksList.isInitialized) {
+            return
+        }
 
-        binding.rvBooks.scrollToPosition(initialReference.bibleBookType.ordinal)
-        binding.rvChapters.scrollToPosition(initialReference.chapter - 1)
-        binding.rvVerses.scrollToPosition(if (initialReference.verse > 1) initialReference.verse - 1 else 0)
+        val correspondingBibleBook = bibleBooksList.firstOrNull{it.type == initialReference.bibleBookType}
+
+        if (correspondingBibleBook != null) {
+            viewModel.bookItems.addAll(bibleBooksList
+                .map { ItemViewModel(it.type, it.type.getLocalizedString(), it.type == initialReference.bibleBookType, false, this::onBibleBookSelected) })
+
+
+            viewModel.chapterItems.addAll((1..correspondingBibleBook.chapters).map {
+                ItemViewModel(
+                    it,
+                    it.toString(),
+                    it == initialReference.chapter,
+                    true,
+                    this::onChapterSelected
+                )
+            })
+            viewModel.verseItems.addAll((1..(correspondingBibleBook.verses[(initialReference.chapter).toString()] ?: -1)).map {
+                ItemViewModel(it,
+                    it.toString(),
+                    it == initialReference.verse,
+                    true,
+                    this::onVerseSelected)
+            })
+
+            binding.rvBooks.scrollToPosition(initialReference.bibleBookType.ordinal)
+            binding.rvChapters.scrollToPosition(initialReference.chapter - 1)
+            binding.rvVerses.scrollToPosition(if (initialReference.verse > 1) initialReference.verse - 1 else 0)
+        }
+
     }
 
     private fun getDefaultReference(): BibleReference =
@@ -86,37 +107,41 @@ class SelectBibleReferenceDialog : DialogFragment() {
 
     private fun onBibleBookSelected(bibleBook: Any) {
         if (bibleBook !is BibleBookType) return
-        Logger.e(TAG, "onBibleBookSelected: $bibleBook")
         viewModel.bibleReference.get()?.let { safePrevReference ->
             if (safePrevReference.bibleBookType != bibleBook) {
                 val bibleReference = getDefaultReference().copy(bibleBookType = bibleBook)
                 viewModel.bibleReference.set(bibleReference)
                 viewModel.bookItems.forEach { itemViewModel -> itemViewModel.isSelected.set(itemViewModel.tag == bibleBook) }
 
-                viewModel.chapterItems.clear()
-                viewModel.chapterItems.addAll((1..bibleReference.bibleBookType.chapters).map {
-                    ItemViewModel(
-                        it,
-                        it.toString(),
-                        it == bibleReference.chapter,
-                        this::onChapterSelected
-                    )
-                })
+                val correspondingBibleBook = bibleBooksList.firstOrNull { it.type == bibleReference.bibleBookType }
 
-                viewModel.verseItems.clear()
-                viewModel.verseItems.addAll((1..bibleReference.bibleBookType.verseCounts[bibleReference.chapter - 1]).map {
-                    ItemViewModel(it,
-                        it.toString(),
-                        it == bibleReference.verse,
-                        this::onVerseSelected)
-                })
+                if (correspondingBibleBook != null) {
+                    viewModel.chapterItems.clear()
+                    viewModel.chapterItems.addAll((1..correspondingBibleBook.chapters).map {
+                        ItemViewModel(
+                            it,
+                            it.toString(),
+                            it == bibleReference.chapter,
+                            true,
+                            this::onChapterSelected
+                        )
+                    })
+
+                    viewModel.verseItems.clear()
+                    viewModel.verseItems.addAll((1..(correspondingBibleBook.verses[(bibleReference.chapter).toString()] ?: -1)).map {
+                        ItemViewModel(it,
+                            it.toString(),
+                            it == bibleReference.verse,
+                            true,
+                            this::onVerseSelected)
+                    })
+                }
             }
         }
     }
 
     private fun onChapterSelected(chapter: Any) {
         if (chapter !is Int) return
-        Logger.e(TAG, "onChapterSelected: $chapter")
 
         viewModel.bibleReference.get()?.let { safePrevReference ->
             val bibleReference = safePrevReference.copy(chapter = chapter)
@@ -124,13 +149,18 @@ class SelectBibleReferenceDialog : DialogFragment() {
 
             viewModel.chapterItems.forEach { itemViewModel -> itemViewModel.isSelected.set(itemViewModel.tag == chapter) }
 
-            viewModel.verseItems.clear()
-            viewModel.verseItems.addAll((1..bibleReference.bibleBookType.verseCounts[bibleReference.chapter - 1]).map {
-                ItemViewModel(it,
-                    it.toString(),
-                    it == bibleReference.verse,
-                    this::onVerseSelected)
-            })
+            val correspondingBibleBook = bibleBooksList.firstOrNull { it.type == bibleReference.bibleBookType }
+
+            if (correspondingBibleBook != null) {
+                viewModel.verseItems.clear()
+                viewModel.verseItems.addAll((1..(correspondingBibleBook.verses[(bibleReference.chapter).toString()] ?: -1)).map {
+                    ItemViewModel(it,
+                        it.toString(),
+                        it == bibleReference.verse,
+                        true,
+                        this::onVerseSelected)
+                })
+            }
         }
     }
 
@@ -153,7 +183,11 @@ class SelectBibleReferenceDialog : DialogFragment() {
 
     }
 
-    class ItemViewModel<T>(@JvmField val tag: T, initialLabel: String = "", initialSelected: Boolean = false, @JvmField val onSelected: (Any) -> Unit = {}) {
+    class ItemViewModel<T>(@JvmField val tag: T,
+        initialLabel: String = "",
+        initialSelected: Boolean = false,
+        @JvmField val isCenterAligned: Boolean = true,
+        @JvmField val onSelected: (Any) -> Unit = {}) {
         @JvmField
         val label = ObservableField(initialLabel)
 

@@ -10,16 +10,18 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java8.util.Optional
 import ro.azs.kidsdevelopment.models.*
 
-
 object FirestoreDataManager {
 
     private const val TAG = "FireStoreDataManager"
 
     private var _categoriesListenerRegistration: ListenerRegistration? = null
+    private var _bibleBooksListenerRegistration: ListenerRegistration? = null
 
     private val userListenerRegistrations = ArrayList<ListenerRegistration>()
 
     private val _categoriesSubject: BehaviorSubject<List<CategoryGroup>> = BehaviorSubject.createDefault(emptyList())
+    private val _bibleBooksSubject: BehaviorSubject<List<BibleBook>> = BehaviorSubject.createDefault(emptyList())
+
     private val _userProfileSubject: BehaviorSubject<Optional<UserProfile>> = BehaviorSubject.createDefault(Optional.empty())
     private val _historySubject = BehaviorSubject.createDefault<List<HistoryItem>>(emptyList())
     private val _favouritesSubject: BehaviorSubject<List<FavoriteCategory>> = BehaviorSubject.createDefault(emptyList())
@@ -98,6 +100,9 @@ object FirestoreDataManager {
     val categoryGroups: Observable<List<CategoryGroup>>
         get() = _categoriesSubject.distinctUntilChanged()
 
+    val bibleBooks: Observable<List<BibleBook>>
+        get() = _bibleBooksSubject.distinctUntilChanged()
+
     val userData: Observable<Optional<UserData>>
         get() = _userDataSubject.distinctUntilChanged()
 
@@ -122,11 +127,26 @@ object FirestoreDataManager {
                 }
             }
 
+        _bibleBooksListenerRegistration =
+            FirebaseFirestore.getInstance().collection(FirestoreConstants.bibleBooks.name).addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Logger.e(TAG, "error adding bibleBooks snapshotListener: ${e.message}")
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null) {
+                    _bibleBooksSubject.onNext(snapshot.documents.map {  doc ->
+                        (doc.toObject(BibleBook::class.java) as BibleBook).copy(type =  BibleBookType.getBibleBook(doc.getString("type") ?: ""))
+                    }.sortedBy { book -> book.order })
+                }
+            }
+
         FirebaseAuth.getInstance().addAuthStateListener(authStateListener)
     }
 
     fun stopDataSync() {
         _categoriesListenerRegistration?.remove()
+        _bibleBooksListenerRegistration?.remove()
         clearUserListenerRegistrations()
         FirebaseAuth.getInstance().removeAuthStateListener(authStateListener)
     }

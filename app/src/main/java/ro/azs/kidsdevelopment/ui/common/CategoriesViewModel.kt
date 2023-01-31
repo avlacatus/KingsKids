@@ -17,14 +17,14 @@ import ro.azs.kidsdevelopment.ui.history.HistoryEntryViewModel
 import java.util.function.Consumer
 
 
-public class CategoriesViewModelFactory(private val listener: Consumer<Category>) : ViewModelProvider.Factory {
+class CategoriesViewModelFactory(private val listener: Consumer<Category>) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return CategoriesViewModel(listener) as T
     }
 }
 
-public class CategoriesViewModel(val listener: Consumer<Category>) : ViewModel() {
+class CategoriesViewModel(val listener: Consumer<Category>) : ViewModel() {
 
     private val diffCallback: DiffUtil.ItemCallback<CategoryGroupViewModel> = object : DiffUtil.ItemCallback<CategoryGroupViewModel>() {
         override fun areItemsTheSame(oldItem: CategoryGroupViewModel, newItem: CategoryGroupViewModel): Boolean {
@@ -37,18 +37,18 @@ public class CategoriesViewModel(val listener: Consumer<Category>) : ViewModel()
     }
     val items: DiffObservableList<CategoryGroupViewModel> = DiffObservableList(diffCallback)
 
-    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: CategoryGroupViewModel? ->
+    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, _: CategoryGroupViewModel? ->
         itemBinding[BR.viewModel] = R.layout.item_home_category_group
     }
 
     val emptyMessage = ObservableField("")
 }
 
-public class CategoryGroupViewModel(val categoryGroup: CategoryGroup, val listener: Consumer<Category>) {
+class CategoryGroupViewModel(val categoryGroup: CategoryGroup, val listener: Consumer<Category>) {
 
     val items: ObservableList<CategoryViewModel> = ObservableArrayList()
 
-    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, item: CategoryViewModel? ->
+    val itemBindings = ItemBinding.of { itemBinding: ItemBinding<*>, _: Int, _: CategoryViewModel? ->
         itemBinding[BR.viewModel] = R.layout.item_home_category
         itemBinding.bindExtra(BR.listener, listener)
     }

@@ -45,6 +45,7 @@ class EntryDetailsPresenter(view: EntryDetailsContract.View,
             }
 
             FirestoreDataManager.updateModel(categorySectionType, modelFromView, {
+                view.playSuccessSound()
                 if (existingEntryModel == null)
                     view.showSuccessToast("adaugare cu succes", view::closeScreen)
                 else

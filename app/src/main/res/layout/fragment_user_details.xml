@@ -61,17 +61,11 @@
             <include
                 layout="@layout/layout_user_profile_details"
                 app:isEditable="@{false}"
+                tools:visibility="gone"
                 app:show="@{viewModel.userDetails != null}"
                 app:viewModel="@{viewModel.userDetails}" />
 
-            <TextView
-                style="@style/HyperlinkText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/large_margin"
-                android:onClick="@{() -> presenter.onDeleteAccountClicked()}"
-                android:text="@string/deleteAccount"
-                app:show="@{viewModel.userDetails != null}" />
+
 
             <Button
                 android:id="@+id/profile_button_logout"
@@ -79,10 +73,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/bottom_navigation_size_height"
+                android:layout_marginBottom="@dimen/large_margin"
                 android:onClick="@{() -> presenter.onLogOutClicked()}"
                 android:text="@string/logoutButton"
                 app:show="@{viewModel.userDetails != null}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/bottom_navigation_size_height">
+
+                <TextView
+                    style="@style/HyperlinkText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/large_margin"
+                    android:onClick="@{() -> presenter.onDeleteAccountClicked()}"
+                    android:text="@string/deleteAccount"
+                    app:drawableStartCompat="@drawable/ic_remove_account"
+                    android:drawablePadding="@dimen/small_margin"
+                    app:show="@{viewModel.userDetails != null}" />
+
+
+                <TextView
+                    style="@style/HyperlinkText"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/large_margin"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> presenter.onContactUsClicked()}"
+                    android:text="@string/contactLabel"
+                    app:drawableStartCompat="@drawable/ic_contact"
+                    android:drawablePadding="@dimen/small_margin"
+                    app:show="@{viewModel.userDetails != null}" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </ScrollView>

@@ -3,6 +3,7 @@ package ro.azs.kidsdevelopment.ui.user
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,35 +11,28 @@ import androidx.lifecycle.ViewModelProvider
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import ro.azs.kidsdevelopment.BuildConfig
 import ro.azs.kidsdevelopment.R
 import ro.azs.kidsdevelopment.base.BaseFragment
 import ro.azs.kidsdevelopment.databinding.FragmentUserDetailsBinding
 import ro.azs.kidsdevelopment.models.UserProfile
 import ro.azs.kidsdevelopment.ui.user.edit.EditUserProfileActivity
-import ro.azs.kidsdevelopment.utils.Logger
 
-class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
-    UserDetailsContract.View {
+
+class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(), UserDetailsContract.View {
 
     private lateinit var viewModel: UserDetailsViewModel
     private var _binding: FragmentUserDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: UserDetailsContract.Presenter
 
-    private val signInLauncher =
-        registerForActivityResult(FirebaseAuthUIActivityResultContract()) { res ->
-            onSignInResult(res)
-        }
+    private val signInLauncher = registerForActivityResult(FirebaseAuthUIActivityResultContract()) { res ->
+        onSignInResult(res)
+    }
 
-    private val editProfileLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
-            if (activityResult.resultCode == Activity.RESULT_OK)
-                getPresenter().onUserProfileEdited()
-        }
+    private val editProfileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
+        if (activityResult.resultCode == Activity.RESULT_OK) getPresenter().onUserProfileEdited()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +40,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
     }
 
     @SuppressLint("RestrictedApi")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewModel = ViewModelProvider(this)[UserDetailsViewModel::class.java]
 
         _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
@@ -102,16 +92,10 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
 //        AuthUI.getInstance().auth.signInWithEmailAndPassword("username", "password").addOnCompleteListener {
 //            Logger.e("tag", "login completedd")
 //        }
-        val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build()
-        )
-        val signInIntent = AuthUI.getInstance()
-            .createSignInIntentBuilder()
-            .setAvailableProviders(providers)
-            .setTheme(R.style.LoginTheme)
-            .setLogo(R.drawable.img_profile_v2)
-            .build()
+        val providers = arrayListOf(AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build())
+        val signInIntent =
+            AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(providers).setTheme(R.style.LoginTheme).setLogo(R.drawable.img_profile_v2)
+                .build()
         signInLauncher.launch(signInIntent)
     }
 
@@ -120,9 +104,20 @@ class UserDetailsFragment : BaseFragment<UserDetailsContract.Presenter>(),
     }
 
     override fun setupUserProfile(user: UserProfile) {
-        val userViewModel =
-            ViewModelProvider(this)[UserProfileFormData::class.java].initFromUserProfileData(user)
+        val userViewModel = ViewModelProvider(this)[UserProfileFormData::class.java].initFromUserProfileData(user)
         viewModel.userDetails.postValue(userViewModel)
+    }
+
+    override fun openContactForm() {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "plain/text"
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("copiiiregelui@adventist.ro"))
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name) + " Android " + BuildConfig.VERSION_NAME)
+
+        intent.putExtra(Intent.EXTRA_TEXT,
+                    "\n\n\n\nHW Model: ${Build.MANUFACTURER} & ${Build.MODEL}\n" +
+                    "Version: ${Build.VERSION.SDK_INT} & ${Build.VERSION.RELEASE}")
+        startActivity(Intent.createChooser(intent, getString(R.string.sendViaLabel)))
     }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
