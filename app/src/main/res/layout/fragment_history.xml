@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.history.HistoryViewModel" />
+            type="ro.adventist.copiiiregelui.ui.history.HistoryViewModel" />
     </data>
 
 

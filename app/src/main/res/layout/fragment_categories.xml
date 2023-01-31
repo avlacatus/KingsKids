@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.categories.CategoriesViewModel" />
+            type="ro.adventist.copiiiregelui.ui.categories.CategoriesViewModel" />
     </data>
 
 

@@ -7,11 +7,11 @@
 
         <variable
             name="presenter"
-            type="ro.azs.kidsdevelopment.ui.widgets.base.BaseWidgetOverviewContract.Presenter" />
+            type="ro.adventist.copiiiregelui.ui.widgets.base.BaseWidgetOverviewContract.Presenter" />
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.widgets.base.BaseWidgetOverviewViewModel" />
+            type="ro.adventist.copiiiregelui.ui.widgets.base.BaseWidgetOverviewViewModel" />
     </data>
 
 

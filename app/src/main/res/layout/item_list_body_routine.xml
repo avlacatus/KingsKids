@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="ro.azs.kidsdevelopment.models.BodyRoutineValue" />
+        <import type="ro.adventist.copiiiregelui.models.BodyRoutineValue" />
 
-        <import type="ro.azs.kidsdevelopment.models.LocalizedString" />
+        <import type="ro.adventist.copiiiregelui.models.LocalizedString" />
 
-        <import type="ro.azs.kidsdevelopment.utils.ConversionUtils" />
+        <import type="ro.adventist.copiiiregelui.utils.ConversionUtils" />
 
         <variable
             name="useDarkSeparator"
@@ -21,7 +21,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.models.BodyRoutine" />
+            type="ro.adventist.copiiiregelui.models.BodyRoutine" />
     </data>
 
     <FrameLayout

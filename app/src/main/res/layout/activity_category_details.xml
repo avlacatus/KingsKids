@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.details.CategoryDetailsViewModel" />
+            type="ro.adventist.copiiiregelui.ui.details.CategoryDetailsViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

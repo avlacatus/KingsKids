@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="ro.azs.kidsdevelopment.utils.ConversionUtils" />
+        <import type="ro.adventist.copiiiregelui.utils.ConversionUtils" />
 
         <variable
             name="useDarkSeparator"
@@ -17,7 +17,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.models.DailySchedule" />
+            type="ro.adventist.copiiiregelui.models.DailySchedule" />
     </data>
 
     <FrameLayout

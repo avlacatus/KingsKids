@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.user.UserProfileFormData" />
+            type="ro.adventist.copiiiregelui.ui.user.UserProfileFormData" />
 
 
     </data>

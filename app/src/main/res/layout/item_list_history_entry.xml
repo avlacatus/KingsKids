@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="ro.azs.kidsdevelopment.utils.ConversionUtils" />
+        <import type="ro.adventist.copiiiregelui.utils.ConversionUtils" />
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.history.HistoryEntryViewModel" />
+            type="ro.adventist.copiiiregelui.ui.history.HistoryEntryViewModel" />
     </data>
 
 

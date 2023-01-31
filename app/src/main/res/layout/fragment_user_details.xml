@@ -7,11 +7,11 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.user.UserDetailsViewModel" />
+            type="ro.adventist.copiiiregelui.ui.user.UserDetailsViewModel" />
 
         <variable
             name="presenter"
-            type="ro.azs.kidsdevelopment.ui.user.UserDetailsContract.Presenter" />
+            type="ro.adventist.copiiiregelui.ui.user.UserDetailsContract.Presenter" />
     </data>
 
     <ScrollView

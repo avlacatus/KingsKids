@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.models.WithDescriptionTimestamp" />
+            type="ro.adventist.copiiiregelui.models.WithDescriptionTimestamp" />
     </data>
 
     <FrameLayout

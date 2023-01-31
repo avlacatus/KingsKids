@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.categories.CategoryViewModel" />
+            type="ro.adventist.copiiiregelui.ui.categories.CategoryViewModel" />
 
         <variable
             name="listener"

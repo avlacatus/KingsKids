@@ -8,11 +8,11 @@
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.firestoreEntry.control.RadioChoiceItemViewModel.RadioItemVM" />
+            type="ro.adventist.copiiiregelui.ui.firestoreEntry.control.RadioChoiceItemViewModel.RadioItemVM" />
     </data>
 
 
-    <ro.azs.kidsdevelopment.utils.CustomToggleButton
+    <ro.adventist.copiiiregelui.utils.CustomToggleButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@{viewModel.isSelected() ? @color/text_color_blue_2 : @color/text_color_blue_3}"

@@ -7,11 +7,11 @@
 
         <variable
             name="presenter"
-            type="ro.azs.kidsdevelopment.ui.firestoreEntry.EntryDetailsContract.Presenter" />
+            type="ro.adventist.copiiiregelui.ui.firestoreEntry.EntryDetailsContract.Presenter" />
 
         <variable
             name="viewModel"
-            type="ro.azs.kidsdevelopment.ui.firestoreEntry.EntryDetailsViewModel" />
+            type="ro.adventist.copiiiregelui.ui.firestoreEntry.EntryDetailsViewModel" />
     </data>
 
     <RelativeLayout
