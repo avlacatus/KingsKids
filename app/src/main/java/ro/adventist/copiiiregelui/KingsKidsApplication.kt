@@ -8,7 +8,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import ro.adventist.copiiiregelui.utils.FirestoreDataManager
 import ro.adventist.copiiiregelui.utils.LocaleUtils
 
-class KidsDevelopmentApplication : Application() {
+class KingsKidsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -27,8 +27,8 @@ class KidsDevelopmentApplication : Application() {
     }
 
     companion object {
-        private const val TAG = "KidsDevelopmentApplication"
-        private var instance: KidsDevelopmentApplication? = null
+        private const val TAG = "KingsKidsApplication"
+        private var instance: KingsKidsApplication? = null
 
         @JvmStatic
         val appContext: Context

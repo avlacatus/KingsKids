@@ -2,7 +2,7 @@ package ro.adventist.copiiiregelui.ui.user
 
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import ro.adventist.copiiiregelui.KidsDevelopmentApplication
+import ro.adventist.copiiiregelui.KingsKidsApplication
 import ro.adventist.copiiiregelui.R
 import ro.adventist.copiiiregelui.base.BasePresenter
 import ro.adventist.copiiiregelui.models.UserProfile
@@ -52,7 +52,7 @@ class UserDetailsPresenter(view: UserDetailsContract.View) : BasePresenter<UserD
             message = R.string.logoutMessage,
             positiveButtonMessage = R.string.logoutYesAction,
             negativeButtonMessage = R.string.logoutNoAction,
-            { AuthUI.getInstance().signOut(KidsDevelopmentApplication.appContext).addOnCompleteListener {} },
+            { AuthUI.getInstance().signOut(KingsKidsApplication.appContext).addOnCompleteListener {} },
             onDismiss = null
         )
     }

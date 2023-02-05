@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import ro.adventist.copiiiregelui.KidsDevelopmentApplication;
+import ro.adventist.copiiiregelui.KingsKidsApplication;
 
 public final class ViewUtils {
 
@@ -32,7 +32,7 @@ public final class ViewUtils {
 
 
     public static void hideKeyboard(@Nullable IBinder iBinder) {
-        InputMethodManager keyboard = (InputMethodManager) KidsDevelopmentApplication.getAppContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager keyboard = (InputMethodManager) KingsKidsApplication.getAppContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         keyboard.hideSoftInputFromWindow(iBinder, 0);
     }
 

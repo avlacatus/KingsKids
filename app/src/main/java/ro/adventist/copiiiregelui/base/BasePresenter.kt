@@ -6,6 +6,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.functions.Supplier
+import ro.adventist.copiiiregelui.R
+import ro.adventist.copiiiregelui.utils.NetworkChecker
 import ro.adventist.copiiiregelui.utils.Logger
 import ro.adventist.copiiiregelui.utils.RxUtils
 import ro.adventist.copiiiregelui.utils.UseCase
@@ -13,6 +15,7 @@ import ro.adventist.copiiiregelui.utils.UseCase
 open class BasePresenter<T : BaseContract.View?> protected constructor(protected val view: T) : BaseContract.Presenter {
     private var compositeDisposable: CompositeDisposable? = null
     override var isViewAttached = false
+    private var networkDisposable: Disposable? = null
 
     /**
      * adds a disposable to a queue that gets canceled when the presenter is destroyed. useful for making sure we don't leave subscriptions hanging
@@ -32,6 +35,7 @@ open class BasePresenter<T : BaseContract.View?> protected constructor(protected
      *
      * @param useCase the use case to be performed
      */
+    @Suppress("SameParameterValue")
     protected fun <Y> performUseCase(useCase: UseCase<Y>): Observable<Y> {
         return useCase.perform()
     }
@@ -80,11 +84,34 @@ open class BasePresenter<T : BaseContract.View?> protected constructor(protected
     @CallSuper
     override fun onAttachView() {
         isViewAttached = true
+
+        NetworkChecker.start((view as BaseContract.View).toString())
+        networkDisposable = NetworkChecker.isNetworkConnectedSubject
+            .compose(RxUtils.applySchedulers())
+            .subscribe { isConnected: Boolean ->
+                if (isConnected) {
+                    onNetworkFound()
+                } else {
+                    onNetworkLost()
+                }
+            }
+    }
+
+    protected open fun onNetworkLost() {
+        if (!hasDisplayedLostNetworkMessage) {
+            hasDisplayedLostNetworkMessage = true
+            view?.showConfirmOperationDialog(R.string.warning, R.string.offlineMessage, android.R.string.ok, null, {}, null)
+        }
+    }
+
+    protected open fun onNetworkFound() {
+        hasDisplayedLostNetworkMessage = false
     }
 
     override fun onDetachView() {
         isViewAttached = false
         unSubscribe()
+        NetworkChecker.stop((view as BaseContract.View).toString())
     }
 
     override fun subscribe() {}
@@ -92,5 +119,9 @@ open class BasePresenter<T : BaseContract.View?> protected constructor(protected
         if (compositeDisposable != null && compositeDisposable!!.size() != 0) {
             compositeDisposable!!.clear()
         }
+    }
+
+    companion object {
+        private var hasDisplayedLostNetworkMessage = false
     }
 }

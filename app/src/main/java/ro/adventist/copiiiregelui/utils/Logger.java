@@ -8,12 +8,12 @@ import androidx.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 
-import ro.adventist.copiiiregelui.KidsDevelopmentApplication;
+import ro.adventist.copiiiregelui.KingsKidsApplication;
 
 public final class Logger {
 
     private static final String TAG = Logger.class.getSimpleName();
-    private static final String LOG_FILE_PATH = KidsDevelopmentApplication.getAppContext().getFilesDir() + "/log/";
+    private static final String LOG_FILE_PATH = KingsKidsApplication.getAppContext().getFilesDir() + "/log/";
     private static final String LOG_FILE_NAME = "log.txt";
 
     public static void v(@NonNull String tag, @Nullable String message) {

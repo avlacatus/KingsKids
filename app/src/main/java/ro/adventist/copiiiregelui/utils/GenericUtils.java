@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
-import ro.adventist.copiiiregelui.KidsDevelopmentApplication;
+import ro.adventist.copiiiregelui.KingsKidsApplication;
 import ro.adventist.copiiiregelui.R;
 
 public class GenericUtils {
@@ -58,7 +58,7 @@ public class GenericUtils {
         if (resId < 0) {
             return fallback;
         } else {
-            Context context = KidsDevelopmentApplication.getAppContext();
+            Context context = KingsKidsApplication.getAppContext();
             return context.getString(resId);
         }
     }

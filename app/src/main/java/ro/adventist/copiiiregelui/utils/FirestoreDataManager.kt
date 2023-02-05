@@ -51,8 +51,6 @@ object FirestoreDataManager {
                             Logger.e(TAG, "error adding user data snapshotListener: ${e.message}")
                             return@addSnapshotListener
                         }
-
-                        Logger.e(TAG, "received userProfile: ${snapshot?.toObject(UserProfile::class.java)}")
                         val userProfile = snapshot?.toObject(UserProfile::class.java) ?: UserProfile()
                         _userProfileSubject.onNext(Optional.of(userProfile))
                     }
@@ -170,11 +168,9 @@ object FirestoreDataManager {
                 .document(model.id!!)
                 .set(model)
                 .addOnSuccessListener {
-                    Logger.e(TAG, "added to  $collection with success!")
                     onSuccess?.invoke()
                 }
                 .addOnFailureListener {
-                    Logger.e(TAG, "added to  $collection with error")
                     onFailure?.invoke(it)
                 }
         } else {
@@ -188,11 +184,9 @@ object FirestoreDataManager {
         getFirestoreUserDocument().collection(collection.name)
             .add(model)
             .addOnSuccessListener {
-                Logger.e(TAG, "added to  $collection with success!")
                 onSuccess?.invoke()
             }
             .addOnFailureListener {
-                Logger.e(TAG, "added to  $collection with error")
                 onFailure?.invoke(it)
             }
     }
@@ -203,11 +197,9 @@ object FirestoreDataManager {
             getFirestoreUserDocument().collection(collection.name)
                 .document(model.id!!).delete()
                 .addOnSuccessListener {
-                    Logger.e(TAG, "removed from $collection with success!")
                     onSuccess?.invoke()
                 }
                 .addOnFailureListener {
-                    Logger.e(TAG, "removed from $collection with error")
                     onFailure?.invoke(it)
                 }
         }

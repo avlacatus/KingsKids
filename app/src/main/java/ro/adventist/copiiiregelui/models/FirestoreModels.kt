@@ -6,7 +6,7 @@ import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.IgnoreExtraProperties
 import kotlinx.parcelize.Parcelize
-import ro.adventist.copiiiregelui.KidsDevelopmentApplication
+import ro.adventist.copiiiregelui.KingsKidsApplication
 import ro.adventist.copiiiregelui.R
 import ro.adventist.copiiiregelui.utils.ConversionUtils
 
@@ -134,7 +134,7 @@ data class BodyRoutine(
     var dress: BodyRoutineValue = BodyRoutineValue.somethimes) : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = "Rutină zilnică"
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = KidsDevelopmentApplication.appContext.resources.let {
+    override fun getLongDescLabel(): String = KingsKidsApplication.appContext.resources.let {
         it.getString(R.string.teethBrushLabel) + ": " + teethBrush.getLocalizedString() + "\n" +
                 it.getString(R.string.showerLabel) + ": " + shower.getLocalizedString() + "\n" +
                 it.getString(R.string.handWashLabel) + ": " + handWash.getLocalizedString() + "\n" +
@@ -153,7 +153,7 @@ data class HealthMetric(
     var weight: Double = 0.0) : FirestoreModel(), WithDescriptionTimestamp {
     override fun getShortDescLabel(): String = "Valoare de sănătate"
     override fun getShortTimestampLabel(): String = ConversionUtils.getTimestampShortValue(date)
-    override fun getLongDescLabel(): String = KidsDevelopmentApplication.appContext.resources.let {
+    override fun getLongDescLabel(): String = KingsKidsApplication.appContext.resources.let {
         it.getString(R.string.dateLabel) + ": " + ConversionUtils.getTimestampShortValue(date) + "\n" +
                 it.getString(R.string.heightLabel) + ": " + height + "\n" +
                 it.getString(R.string.weightLabel) + ": " + weight

@@ -166,7 +166,6 @@ class SelectBibleReferenceDialog : DialogFragment() {
 
     private fun onVerseSelected(verse: Any) {
         if (verse !is Int) return
-        Logger.e(TAG, "onVerseSelected: $verse")
         viewModel.bibleReference.get()?.let { safePrevReference ->
             val bibleReference = safePrevReference.copy(verse = verse)
             viewModel.bibleReference.set(bibleReference)
