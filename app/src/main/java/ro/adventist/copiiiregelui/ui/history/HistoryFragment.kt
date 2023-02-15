@@ -71,6 +71,7 @@ class HistoryFragment : BaseFragment<HistoryContract.Presenter>(),
     }
 
     override fun setupLoggedOutView() {
+        viewModel.items.clear()
         viewModel.message.set(getString(R.string.notAuthenticatedHomeMessage))
     }
 }

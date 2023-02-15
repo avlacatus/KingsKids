@@ -19,10 +19,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'KingsKids@2023'
+            keyPassword 'KingsKids@2023'
+            storeFile file('../../kings_kids.jks')
+            storePassword 'KingsKids@2023'
+        }
+    }
+
     buildTypes {
         release {
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {

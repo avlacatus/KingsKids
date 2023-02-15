@@ -9,7 +9,7 @@ import ro.adventist.copiiiregelui.utils.Logger
 class HistoryPresenter(view: HistoryContract.View) : BasePresenter<HistoryContract.View>(view),
     HistoryContract.Presenter {
 
-    private lateinit var historyItems: List<HistoryItem>
+    private var historyItems: List<HistoryItem>? = null
     override fun onAttachView() {
         super.onAttachView()
         addPresenterSubscription(
@@ -19,9 +19,7 @@ class HistoryPresenter(view: HistoryContract.View) : BasePresenter<HistoryContra
                 } else Optional.empty()
             }.distinctUntilChanged()
                 .subscribe({ optionalItems ->
-                    optionalItems.orElseGet { null }?.let {
-                        historyItems = it
-                    }
+                    historyItems = optionalItems.orElseGet { null }
                     if (isViewAttached) {
                         ensureViewData()
                     }
@@ -32,9 +30,9 @@ class HistoryPresenter(view: HistoryContract.View) : BasePresenter<HistoryContra
     }
 
     private fun ensureViewData() {
-        if (this::historyItems.isInitialized) {
-            view.displayHistoryItems(historyItems)
-        } else {
+        historyItems?.let {
+            view.displayHistoryItems(it)
+        } ?: kotlin.run {
             view.setupLoggedOutView()
         }
     }

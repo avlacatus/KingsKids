@@ -1,6 +1,7 @@
 package ro.adventist.copiiiregelui.ui.favorites
 
 import io.reactivex.rxjava3.core.Observable
+import java8.util.Optional
 import ro.adventist.copiiiregelui.base.BasePresenter
 import ro.adventist.copiiiregelui.models.Category
 import ro.adventist.copiiiregelui.models.CategoryGroup
@@ -13,23 +14,30 @@ class FavoritesPresenter(view: FavoritesContract.View) : BasePresenter<Favorites
         super.onAttachView()
 
         addPresenterSubscription(Observable.combineLatest(FirestoreDataManager.categoryGroups, FirestoreDataManager.userData) { categoryGroups, userData ->
-            Pair<List<CategoryGroup>, List<Category>>(
+            Pair<List<CategoryGroup>, Optional<List<Category>>>(
                 categoryGroups,
-                userData.map { it.favouriteCategories.map { favoriteCategory -> Category(favoriteCategory.type) } }.orElseGet { emptyList() })
-        }.map { categoriesFavoritesPair ->
-            categoriesFavoritesPair.first.mapNotNull { group ->
-                group.categories.intersect(categoriesFavoritesPair.second.toSet()).let { intersection ->
-                    if (intersection.isEmpty()) {
-                        null
-                    } else {
-                        CategoryGroup(group.type, group.order, intersection.toList())
+                if (userData.isPresent) {
+                    Optional.of( userData.map { it.favouriteCategories.map { favoriteCategory -> Category(favoriteCategory.type) } }.orElseGet { emptyList() })
+                } else Optional.empty())
+        }
+            .subscribe({ categoriesFavoritesPair ->
+                if (categoriesFavoritesPair.second.isPresent) {
+                    val categoryGroups = categoriesFavoritesPair.first.mapNotNull { group ->
+                        group.categories.intersect(categoriesFavoritesPair.second.get().toSet()).let { intersection ->
+                            if (intersection.isEmpty()) {
+                                null
+                            } else {
+                                CategoryGroup(group.type, group.order, intersection.toList())
+                            }
+                        }
                     }
+                    if (isViewAttached) {
+                        view.displaySections(categoryGroups)
+                    }
+                } else {
+                    view.setupLoggedOutView()
                 }
-            }
-        }.subscribe({ categoryGroups ->
-            if (isViewAttached) {
-                view.displaySections(categoryGroups)
-            }
+
         }, { e -> Logger.e(TAG, "error fetching categories: ${e.message}") })
         )
     }

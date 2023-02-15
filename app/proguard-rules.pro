@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# For jackson
+-keepattributes *Annotation*,EnclosingMethod,Signature
+-dontwarn com.fasterxml.jackson.databind.**
+-keep class com.fasterxml.jackson.** { *; }
+-keep class org.codehaus.** { *; }
+-keepclassmembers class * {
+     @com.fasterxml.jackson.annotation.* *;
+}
+
+-keep class * implements java.io.Serializable{*;}
+-keep class * implements android.os.Parcelable{*;}
+
+-keep class **.R$string {
+    <fields>;
+}

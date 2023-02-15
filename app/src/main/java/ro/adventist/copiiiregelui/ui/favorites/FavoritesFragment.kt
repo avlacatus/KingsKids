@@ -48,6 +48,11 @@ class FavoritesFragment : BaseFragment<FavoritesContract.Presenter>(), Favorites
         startActivity(CategoryDetailsActivity.getIntent(requireActivity(), category.type.categoryTypeId))
     }
 
+    override fun setupLoggedOutView() {
+        viewModel.items.clear()
+        viewModel.emptyMessage.set(getString(R.string.notAuthenticatedHomeMessage))
+    }
+
     override fun getPresenter(): FavoritesContract.Presenter {
         return presenter
     }

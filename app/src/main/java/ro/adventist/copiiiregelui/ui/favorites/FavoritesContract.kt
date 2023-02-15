@@ -8,6 +8,7 @@ class FavoritesContract {
     interface View : BaseContract.View {
         fun displaySections(categories: List<CategoryGroup>)
         fun openCategoryDetails(category: Category)
+        fun setupLoggedOutView()
     }
 
     interface Presenter : BaseContract.Presenter {
